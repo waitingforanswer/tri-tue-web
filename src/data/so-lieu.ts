@@ -1,0 +1,35 @@
+/* SINH TỰ ĐỘNG bởi tools/seed-gen.mjs — đừng sửa tay. */
+export const SO_LIEU = {
+  "module": 7,
+  "nut": 694,
+  "lienKet": 60,
+  "theoLoai": {
+    "bam_14": 14,
+    "buoc": 5,
+    "buoc_y": 23,
+    "bo_tro": 11,
+    "nhom_hoc": 4,
+    "cong_thuc_hoc": 4,
+    "chu_ky": 7,
+    "phan_xa": 2,
+    "canh_phat_sinh": 2,
+    "dat_ten_canh": 3,
+    "khuon_ngoai": 1,
+    "khoi": 7,
+    "van_de": 33,
+    "khai_thac": 51,
+    "bieu_hien": 12,
+    "goc_do": 10,
+    "phap": 3,
+    "phan": 11,
+    "nhanh": 52,
+    "y": 227,
+    "khuon": 24,
+    "viec": 100,
+    "khuon_khoi": 6,
+    "nhom_tu": 5,
+    "tu": 46,
+    "cap_de_nham": 7,
+    "y_bam": 24
+  }
+} as const;

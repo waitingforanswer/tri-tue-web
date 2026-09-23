@@ -1,0 +1,2222 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thước Trí tuệ</title>
+<style>
+  :root { color-scheme: light dark; }
+  html, body { margin: 0; }
+  body { font: 14px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<title>Thước Trí tuệ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Serif:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+/* ─────────────────────────────────────────────────────────────
+   THƯỚC TRÍ TUỆ — bảng màu lấy từ thước lỗ ban (cung đỏ) và
+   ngọn đăng (đèn dầu). Sáng là mặc định; tối là bộ token thứ hai.
+   ───────────────────────────────────────────────────────────── */
+:root{
+  --paper:#FBFAF7;
+  --surface:#FFFFFF;
+  --surface-2:#F4F1EC;
+  --ink:#17140F;
+  --ink-2:#453E36;
+  --tro:#7C736A;
+  --tro-2:#A79D93;
+  --vach:#E4DFD8;
+  --vach-2:#EFEBE5;
+  --cung-do:#A6231C;
+  --cung-do-nhat:#F6E9E7;
+  --cung-do-vien:#E3B5B0;
+  --dang:#9A6D18;
+  --dang-nhat:#F7F0DF;
+  --dang-vien:#DCC48E;
+  --xanh:#1F5D4C;
+  --xanh-nhat:#E6F0EC;
+  --bong:0 1px 2px rgba(23,20,15,.05), 0 8px 24px -12px rgba(23,20,15,.14);
+  --bong-nho:0 1px 2px rgba(23,20,15,.06);
+  --r:10px;
+  --f-display:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-body:"Noto Serif",Georgia,"Times New Roman",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#141210;
+    --surface:#1C1915;
+    --surface-2:#232019;
+    --ink:#F2EDE6;
+    --ink-2:#C9C0B4;
+    --tro:#9C938A;
+    --tro-2:#6E655C;
+    --vach:#2F2A24;
+    --vach-2:#262119;
+    --cung-do:#E4756A;
+    --cung-do-nhat:#2C1A17;
+    --cung-do-vien:#5A2E28;
+    --dang:#E0B45C;
+    --dang-nhat:#2A2213;
+    --dang-vien:#584626;
+    --xanh:#6FB79E;
+    --xanh-nhat:#152722;
+    --bong:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    --bong-nho:0 1px 2px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#141210;
+  --surface:#1C1915;
+  --surface-2:#232019;
+  --ink:#F2EDE6;
+  --ink-2:#C9C0B4;
+  --tro:#9C938A;
+  --tro-2:#6E655C;
+  --vach:#2F2A24;
+  --vach-2:#262119;
+  --cung-do:#E4756A;
+  --cung-do-nhat:#2C1A17;
+  --cung-do-vien:#5A2E28;
+  --dang:#E0B45C;
+  --dang-nhat:#2A2213;
+  --dang-vien:#584626;
+  --xanh:#6FB79E;
+  --xanh-nhat:#152722;
+  --bong:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  --bong-nho:0 1px 2px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--f-display);font-size:15px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:none}
+:focus-visible{outline:2px solid var(--cung-do);outline-offset:2px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* ── Khung ứng dụng ───────────────────────────────────────── */
+.khung{display:grid;grid-template-columns:236px 1fr;min-height:100vh}
+.ray{
+  border-right:1px solid var(--vach);background:var(--surface);
+  padding:20px 0 28px;position:sticky;top:0;height:100vh;overflow-y:auto;
+  display:flex;flex-direction:column;gap:22px;
+}
+.hieu{padding:0 18px;display:flex;flex-direction:column;gap:3px}
+.hieu-ten{font-size:19px;font-weight:700;letter-spacing:-.015em;display:flex;align-items:center;gap:8px}
+.hieu-den{width:9px;height:9px;border-radius:50%;background:var(--dang);box-shadow:0 0 0 3px var(--dang-nhat);flex:none}
+.hieu-phu{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--tro)}
+
+.nav{display:flex;flex-direction:column;gap:1px;padding:0 10px}
+.nav-nhan{font-family:var(--f-mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--tro-2);padding:0 8px 6px}
+.nav b{
+  display:grid;grid-template-columns:22px 1fr;align-items:center;gap:8px;
+  padding:9px 8px;border-radius:8px;font-weight:500;font-size:14px;
+  color:var(--ink-2);transition:background .12s,color .12s;text-align:left;width:100%;
+}
+.nav b:hover{background:var(--surface-2);color:var(--ink)}
+.nav b[aria-current="true"]{background:var(--cung-do-nhat);color:var(--cung-do);font-weight:600}
+.nav b[aria-current="true"] .stt{color:var(--cung-do);border-color:var(--cung-do-vien)}
+.stt{
+  font-family:var(--f-mono);font-size:10px;color:var(--tro);
+  border:1px solid var(--vach);border-radius:4px;text-align:center;padding:1px 0;
+}
+
+.ray-chan{margin-top:auto;padding:0 18px;display:flex;flex-direction:column;gap:10px}
+.doi-nen{
+  display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--tro);
+  padding:7px 9px;border:1px solid var(--vach);border-radius:8px;justify-content:center;
+}
+.doi-nen:hover{border-color:var(--tro-2);color:var(--ink)}
+.ray-ghi{font-size:11.5px;line-height:1.5;color:var(--tro-2)}
+
+.than{min-width:0;display:flex;flex-direction:column}
+
+/* ── Thanh trên ───────────────────────────────────────────── */
+.thanh{
+  position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--vach);
+  padding:12px 28px;display:flex;gap:14px;align-items:center;
+}
+.o-tim{flex:1;max-width:520px;position:relative}
+.o-tim input{
+  width:100%;font-family:var(--f-display);font-size:14px;color:var(--ink);
+  background:var(--surface);border:1px solid var(--vach);border-radius:9px;
+  padding:9px 12px 9px 34px;
+}
+.o-tim input::placeholder{color:var(--tro-2)}
+.o-tim input:focus{outline:none;border-color:var(--cung-do);box-shadow:0 0 0 3px var(--cung-do-nhat)}
+.o-tim svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--tro-2)}
+.thanh-dem{font-family:var(--f-mono);font-size:11.5px;color:var(--tro);margin-left:auto;font-variant-numeric:tabular-nums}
+
+/* ── Vùng nội dung ────────────────────────────────────────── */
+.trang{padding:26px 28px 72px;max-width:1080px}
+.trang.hep{max-width:820px}
+h1.tieu{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px;text-wrap:balance}
+p.dan{font-family:var(--f-body);font-size:15px;color:var(--ink-2);margin:0 0 22px;max-width:64ch;line-height:1.65}
+h2.muc{
+  font-size:12px;font-family:var(--f-mono);letter-spacing:.1em;text-transform:uppercase;
+  color:var(--tro);margin:32px 0 12px;display:flex;align-items:center;gap:10px;
+}
+h2.muc::after{content:"";flex:1;height:1px;background:var(--vach)}
+
+/* ── Cây kiến thức: vạch chia độ sâu ──────────────────────── */
+.cay{display:flex;flex-direction:column;gap:5px}
+.nut{border:1px solid var(--vach);border-radius:var(--r);background:var(--surface);overflow:hidden}
+.nut.mo{border-color:var(--cung-do-vien);box-shadow:var(--bong-nho)}
+.dau{
+  display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:start;
+  width:100%;text-align:left;padding:13px 14px;transition:background .12s;
+}
+.dau:hover{background:var(--surface-2)}
+.so{
+  font-family:var(--f-mono);font-size:12px;font-weight:500;color:var(--cung-do);
+  background:var(--cung-do-nhat);border-radius:5px;text-align:center;padding:3px 0;
+  font-variant-numeric:tabular-nums;
+}
+.dau-chu{min-width:0}
+.dau-ten{display:block;font-weight:600;font-size:15px;letter-spacing:-.005em}
+.dau-hoi{display:block;font-family:var(--f-body);font-size:13px;color:var(--tro);margin-top:2px;line-height:1.5}
+.mui{color:var(--tro-2);flex:none;margin-top:3px;transition:transform .18s}
+.nut.mo .mui{transform:rotate(90deg);color:var(--cung-do)}
+.than-nut{padding:0 14px 16px 60px;border-top:1px solid var(--vach-2);margin-top:-1px;padding-top:14px}
+
+/* các nhánh con — dùng vạch chia thay thụt lề trơn */
+.nhanh{display:flex;flex-direction:column;gap:0;margin-top:2px}
+.canh{position:relative;padding:9px 0 9px 20px;border-left:1px solid var(--vach)}
+.canh::before{
+  content:"";position:absolute;left:0;top:18px;width:11px;height:1px;background:var(--vach);
+}
+.canh:last-child{border-left-color:transparent}
+.canh:last-child::after{
+  content:"";position:absolute;left:0;top:0;height:18px;width:1px;background:var(--vach);
+}
+.canh-ten{font-weight:600;font-size:13.5px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.canh-ma{font-family:var(--f-mono);font-size:10.5px;color:var(--tro-2);letter-spacing:.03em}
+.canh-noi{font-family:var(--f-body);font-size:13.5px;color:var(--ink-2);line-height:1.62;margin-top:3px}
+.canh-noi em{color:var(--tro);font-style:italic}
+.ds{margin:6px 0 0;padding-left:17px;font-family:var(--f-body);font-size:13.5px;color:var(--ink-2);line-height:1.6}
+.ds li{margin-bottom:3px}
+.ds li::marker{color:var(--cung-do-vien)}
+
+/* ── Nhãn ─────────────────────────────────────────────────── */
+.nhan{
+  font-family:var(--f-mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+  padding:2px 6px;border-radius:4px;border:1px solid;white-space:nowrap;flex:none;
+}
+.n-qc{color:var(--cung-do);border-color:var(--cung-do-vien);background:var(--cung-do-nhat)}
+.n-qchieu{color:var(--xanh);border-color:color-mix(in srgb,var(--xanh) 35%,transparent);background:var(--xanh-nhat)}
+.n-ud{color:var(--dang);border-color:var(--dang-vien);background:var(--dang-nhat)}
+.n-trong{color:var(--tro);border-color:var(--vach);background:var(--surface-2)}
+
+/* ── Thẻ chung ────────────────────────────────────────────── */
+.the{border:1px solid var(--vach);border-radius:var(--r);background:var(--surface);padding:16px 18px}
+.luoi{display:grid;gap:12px}
+.luoi-2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.luoi-3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+
+/* ── Kết quả tìm ──────────────────────────────────────────── */
+.kq{display:flex;flex-direction:column;gap:8px}
+.kq-mot{border:1px solid var(--vach);border-radius:9px;background:var(--surface);padding:12px 14px;text-align:left;width:100%}
+.kq-mot:hover{border-color:var(--cung-do-vien);background:var(--surface-2)}
+.kq-duong{font-family:var(--f-mono);font-size:10.5px;color:var(--tro-2);letter-spacing:.03em;margin-bottom:3px}
+.kq-ten{font-weight:600;font-size:14.5px}
+.kq-noi{font-family:var(--f-body);font-size:13px;color:var(--ink-2);margin-top:3px;line-height:1.55}
+mark{background:var(--dang-nhat);color:inherit;padding:0 2px;border-radius:2px;box-shadow:inset 0 -2px 0 var(--dang-vien)}
+.rong{font-family:var(--f-body);color:var(--tro);font-size:14px;padding:28px 0;text-align:center}
+
+/* ── Từ điển ──────────────────────────────────────────────── */
+.tu{border-bottom:1px solid var(--vach-2);padding:11px 0;display:grid;grid-template-columns:210px 1fr;gap:18px;align-items:start}
+.tu:last-child{border-bottom:none}
+.tu-ten{font-weight:600;font-size:14px}
+.tu-nghia{font-family:var(--f-body);font-size:13.5px;color:var(--ink-2);line-height:1.62}
+.tu-nghia b{color:var(--ink);font-weight:600}
+@media (max-width:640px){.tu{grid-template-columns:1fr;gap:4px}}
+
+/* ── Wizard: bảng đo 4 trạm ───────────────────────────────── */
+.thuoc{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:0 0 26px;
+  border:1px solid var(--vach);border-radius:var(--r);overflow:hidden;background:var(--surface);
+}
+.tram{
+  padding:12px 14px;border-right:1px solid var(--vach);position:relative;text-align:left;
+  transition:background .15s;display:flex;flex-direction:column;gap:2px;
+}
+.tram:last-child{border-right:none}
+.tram::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--vach)}
+.tram[data-tt="xong"]::before{background:var(--dang)}
+.tram[data-tt="dang"]::before{background:var(--cung-do)}
+.tram[data-tt="dang"]{background:var(--cung-do-nhat)}
+.tram-so{font-family:var(--f-mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--tro)}
+.tram[data-tt="dang"] .tram-so{color:var(--cung-do)}
+.tram-ten{font-weight:600;font-size:13.5px;line-height:1.35}
+.tram-tt{font-family:var(--f-body);font-size:12px;color:var(--tro);line-height:1.45;min-height:1.45em}
+.tram[data-tt="xong"] .tram-tt{color:var(--dang)}
+.tram:disabled{cursor:not-allowed;opacity:.55}
+@media (max-width:860px){.thuoc{grid-template-columns:1fr 1fr}.tram:nth-child(2){border-right:none}.tram:nth-child(-n+2){border-bottom:1px solid var(--vach)}}
+
+.buoc-de{font-size:20px;font-weight:700;letter-spacing:-.015em;margin:0 0 4px}
+.buoc-dan{font-family:var(--f-body);font-size:14px;color:var(--ink-2);margin:0 0 20px;max-width:66ch;line-height:1.6}
+.buoc-dan b{color:var(--cung-do);font-weight:600}
+
+.chon{
+  border:1px solid var(--vach);border-radius:9px;background:var(--surface);
+  padding:12px 14px;text-align:left;display:flex;gap:11px;align-items:flex-start;width:100%;
+  transition:border-color .12s,background .12s;
+}
+.chon:hover{border-color:var(--tro-2)}
+.chon[aria-pressed="true"]{border-color:var(--cung-do);background:var(--cung-do-nhat)}
+.o{
+  width:17px;height:17px;border:1.5px solid var(--vach);border-radius:4px;flex:none;margin-top:2px;
+  display:grid;place-items:center;background:var(--surface);
+}
+.chon[aria-pressed="true"] .o{background:var(--cung-do);border-color:var(--cung-do)}
+.o svg{opacity:0;color:var(--paper)}
+.chon[aria-pressed="true"] .o svg{opacity:1}
+.chon>span:last-child{min-width:0}
+.chon-ten{display:block;font-weight:600;font-size:14px}
+.chon-mo{display:block;font-family:var(--f-body);font-size:12.5px;color:var(--tro);line-height:1.5;margin-top:2px}
+
+.dieu{border:1px solid var(--vach);border-radius:9px;background:var(--surface);overflow:hidden}
+.dieu+.dieu{margin-top:7px}
+.dieu-dau{display:flex;gap:11px;align-items:flex-start;padding:12px 14px;width:100%;text-align:left}
+.dieu-dau:hover{background:var(--surface-2)}
+.dieu[data-mo="1"]{border-color:var(--cung-do-vien)}
+.dieu[data-mo="1"] .mui{transform:rotate(90deg);color:var(--cung-do)}
+.dieu[data-mo="1"] .o{background:var(--cung-do);border-color:var(--cung-do)}
+.dieu[data-mo="1"] .o svg{opacity:1;color:var(--paper)}
+.dieu-dau .mui{margin-top:3px}
+.dieu-than{padding:0 14px 14px 42px;font-family:var(--f-body);font-size:13.5px;color:var(--ink-2);line-height:1.62}
+.dieu-than p{margin:0 0 8px}
+.dieu-than p:last-child{margin-bottom:0}
+.hoi{
+  font-family:var(--f-display);font-weight:600;font-size:12.5px;color:var(--cung-do);
+  margin:10px 0 4px;letter-spacing:.005em;
+}
+
+.nut-hd{
+  display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;
+  font-weight:600;font-size:14px;background:var(--cung-do);color:#fff;
+  border:1px solid var(--cung-do);transition:filter .12s;
+}
+:root[data-theme="dark"] .nut-hd,
+:root:not([data-theme="light"]) .nut-hd{color:var(--paper)}
+.nut-hd:hover{filter:brightness(1.08)}
+.nut-hd:disabled{opacity:.4;cursor:not-allowed;filter:none}
+.nut-phu{
+  display:inline-flex;align-items:center;gap:7px;padding:10px 16px;border-radius:9px;
+  font-weight:500;font-size:14px;border:1px solid var(--vach);color:var(--ink-2);background:var(--surface);
+}
+.nut-phu:hover{border-color:var(--tro-2);color:var(--ink)}
+.chan-buoc{display:flex;gap:10px;align-items:center;margin-top:26px;padding-top:20px;border-top:1px solid var(--vach);flex-wrap:wrap}
+.chan-ghi{font-family:var(--f-mono);font-size:11.5px;color:var(--tro);margin-left:auto}
+
+/* ── Phiếu kết quả ────────────────────────────────────────── */
+.phieu{border:1px solid var(--vach);border-radius:var(--r);background:var(--surface);box-shadow:var(--bong);overflow:hidden}
+.phieu-dau{padding:18px 20px;border-bottom:1px solid var(--vach);background:var(--surface-2)}
+.phieu-nhan{font-family:var(--f-mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--tro)}
+.phieu-ten{font-size:19px;font-weight:700;margin-top:3px;letter-spacing:-.015em}
+.phieu-than{padding:4px 20px 20px}
+.hang{padding:16px 0;border-bottom:1px solid var(--vach-2)}
+.hang:last-child{border-bottom:none}
+.hang-nhan{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--tro);margin-bottom:9px}
+.vien{display:flex;flex-wrap:wrap;gap:6px}
+.the-nho{
+  font-size:12.5px;padding:4px 10px;border-radius:20px;border:1px solid var(--cung-do-vien);
+  background:var(--cung-do-nhat);color:var(--cung-do);font-weight:500;
+}
+.the-nho.vang{border-color:var(--dang-vien);background:var(--dang-nhat);color:var(--dang)}
+.the-nho.xam{border-color:var(--vach);background:var(--surface-2);color:var(--ink-2)}
+
+.khuon{border:1px solid var(--vach);border-radius:9px;padding:13px 15px;background:var(--surface)}
+.khuon+.khuon{margin-top:8px}
+.khuon-ten{font-weight:600;font-size:14.5px;display:flex;gap:9px;align-items:baseline;flex-wrap:wrap}
+.khuon-vi{font-family:var(--f-body);font-size:13px;color:var(--ink-2);margin-top:6px;line-height:1.6}
+.khuon-vi b{color:var(--cung-do);font-weight:600}
+.vi-sao{
+  margin-top:9px;padding:10px 12px;border-left:2px solid var(--dang);background:var(--dang-nhat);
+  border-radius:0 6px 6px 0;font-family:var(--f-body);font-size:12.5px;line-height:1.6;color:var(--ink-2);
+}
+.vi-sao b{color:var(--ink);font-weight:600}
+
+.canh-bao{
+  border-left:2px solid var(--cung-do);background:var(--cung-do-nhat);border-radius:0 8px 8px 0;
+  padding:12px 15px;font-family:var(--f-body);font-size:13.5px;line-height:1.62;color:var(--ink-2);margin-top:14px;
+}
+.canh-bao b{color:var(--cung-do);font-weight:600}
+
+.ghi-nguon{font-family:var(--f-mono);font-size:10.5px;color:var(--tro-2);margin-top:7px;letter-spacing:.02em}
+
+/* ── Mở đầu ───────────────────────────────────────────────── */
+.mo-dau{display:flex;flex-direction:column;gap:0}
+.mo-tren{padding:8px 0 30px;border-bottom:1px solid var(--vach);margin-bottom:26px}
+.mo-nhan{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--cung-do);margin-bottom:12px}
+.mo-de{font-size:36px;font-weight:700;letter-spacing:-.028em;line-height:1.14;margin:0 0 12px;max-width:17ch;text-wrap:balance}
+.mo-de span{color:var(--cung-do)}
+.mo-tha{font-family:var(--f-body);font-size:16px;line-height:1.68;color:var(--ink-2);max-width:60ch;margin:0}
+.cua{
+  border:1px solid var(--vach);border-radius:var(--r);background:var(--surface);padding:18px;
+  text-align:left;display:flex;flex-direction:column;gap:7px;transition:border-color .14s,box-shadow .14s;
+}
+.cua:hover{border-color:var(--cung-do-vien);box-shadow:var(--bong)}
+.cua-so{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.09em;color:var(--tro-2)}
+.cua-ten{font-weight:700;font-size:16.5px;letter-spacing:-.01em}
+.cua-mo{font-family:var(--f-body);font-size:13.5px;color:var(--ink-2);line-height:1.58}
+.cua-di{font-family:var(--f-mono);font-size:11px;color:var(--cung-do);margin-top:auto;padding-top:4px}
+
+@media (max-width:820px){
+  .khung{grid-template-columns:1fr}
+  .ray{position:static;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center;gap:10px 14px;overflow:visible;padding:12px 16px;border-right:none;border-bottom:1px solid var(--vach)}
+  .hieu{padding:0;flex:1 0 auto}
+  .hieu-ten{font-size:17px}
+  .nav{flex-direction:row;flex-wrap:wrap;padding:0;gap:4px;flex:1 1 100%}
+  .nav b{grid-template-columns:1fr;padding:7px 11px;font-size:13px}
+  .nav b .stt,.nav-nhan,.ray-ghi,.hieu-phu{display:none}
+  .ray-chan{margin-top:0;padding:0;flex:0 0 auto}
+  .doi-nen{padding:6px 10px;font-size:12px}
+  .thanh,.trang{padding-left:16px;padding-right:16px}
+  .mo-de{font-size:28px}
+  .than-nut{padding-left:16px}
+}
+
+/* ── v0.2: mạch 5 bước ────────────────────────────────────── */
+.mach{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:1px solid var(--vach);border-radius:var(--r);overflow:hidden;background:var(--surface);margin-bottom:6px}
+.mach-o{padding:13px 14px;border-right:1px solid var(--vach);position:relative}
+.mach-o:last-child{border-right:none}
+.mach-so{font-family:var(--f-mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--tro)}
+.mach-chu{font-weight:700;font-size:15px;color:var(--cung-do);letter-spacing:-.01em;margin-top:1px}
+.mach-tt{font-family:var(--f-body);font-size:12px;color:var(--tro);line-height:1.45;margin-top:3px}
+.mach-mui{position:absolute;right:-8px;top:16px;color:var(--vach);font-size:15px;z-index:1;background:var(--surface);padding:0 1px}
+@media (max-width:860px){.mach{grid-template-columns:1fr 1fr}.mach-mui{display:none}.mach-o{border-bottom:1px solid var(--vach)}}
+
+/* ── v0.2: bảng 11 mục Bổ trợ ─────────────────────────────── */
+.bt-bang{border:1px solid var(--vach);border-radius:var(--r);overflow:hidden;background:var(--surface)}
+.bt-dau,.bt-hang{display:grid;grid-template-columns:1.5fr .8fr 1.4fr 2fr;gap:14px;padding:12px 15px}
+.bt-dau{background:var(--surface-2);font-family:var(--f-mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--tro);border-bottom:1px solid var(--vach)}
+.bt-hang{border-bottom:1px solid var(--vach-2);align-items:start}
+.bt-hang:last-child{border-bottom:none}
+.bt-ten{display:flex;gap:9px;align-items:baseline;font-weight:600;font-size:13.5px}
+.bt-so{font-family:var(--f-mono);font-size:11px;color:var(--cung-do);background:var(--cung-do-nhat);border-radius:4px;padding:1px 6px;flex:none}
+.bt-khi{font-family:var(--f-body);font-size:12.5px;color:var(--ink-2);line-height:1.5}
+.bt-lam{font-family:var(--f-body);font-size:12.5px;color:var(--tro);line-height:1.5;margin-top:5px}
+.bt-di{font-family:var(--f-mono);font-size:11px;color:var(--cung-do);border:1px solid var(--cung-do-vien);background:var(--cung-do-nhat);border-radius:6px;padding:3px 8px;text-align:left}
+.bt-di:hover{background:var(--cung-do);color:var(--paper);border-color:var(--cung-do)}
+@media (max-width:900px){.bt-dau{display:none}.bt-hang{grid-template-columns:1fr;gap:6px;padding:14px 15px}}
+
+/* ── v0.2: công thức học 4 cột ────────────────────────────── */
+.ct4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:0;border:1px solid var(--vach);border-radius:9px;overflow:hidden;margin-bottom:14px}
+.ct-cot{padding:13px 14px;border-right:1px solid var(--vach)}
+.ct-cot:last-child{border-right:none}
+.ct-nhan{font-family:var(--f-mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--tro-2)}
+.ct-ten{font-weight:700;font-size:15px;color:var(--cung-do);margin-top:2px}
+.ct-h{font-family:var(--f-body);font-size:12.5px;color:var(--ink-2);line-height:1.55;margin-top:5px}
+
+/* ── v0.2: một ngày ───────────────────────────────────────── */
+.ngay{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:12px}
+.ngay-o{border:1px solid var(--vach);border-radius:var(--r);background:var(--surface);padding:15px 17px}
+.ngay-nhan{font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dang)}
+.ngay-ten{font-weight:700;font-size:16px;letter-spacing:-.01em;margin-top:2px;margin-bottom:6px}
+
+/* ── v0.2: khuôn bên ngoài ────────────────────────────────── */
+.mat-o{border:1px solid var(--vach);border-radius:9px;padding:12px 14px;background:var(--surface-2)}
+.mat-t{font-weight:700;font-size:14.5px;color:var(--cung-do)}
+.mat-n{font-family:var(--f-body);font-size:12.5px;color:var(--ink-2);line-height:1.58;margin-top:4px}
+.buoc4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:8px;margin-top:9px}
+.b4{display:flex;gap:9px;align-items:center;border:1px solid var(--vach);border-radius:8px;padding:9px 11px;font-size:13px;font-weight:500}
+.b4-so{font-family:var(--f-mono);font-size:11px;color:var(--cung-do);background:var(--cung-do-nhat);border-radius:4px;padding:1px 6px;flex:none}
+
+/* ── v0.2: thẻ khuôn ──────────────────────────────────────── */
+.khuon-the{border:1px solid var(--vach);border-radius:var(--r);background:var(--surface);overflow:hidden}
+.khuon-the.mo{border-color:var(--cung-do-vien);box-shadow:var(--bong-nho)}
+.khuon-dau{display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:start;width:100%;text-align:left;padding:13px 14px;transition:background .12s}
+.khuon-dau:hover{background:var(--surface-2)}
+.khuon-the.mo .mui{transform:rotate(90deg);color:var(--cung-do)}
+.khuon-noi{padding:0 16px 16px 60px;border-top:1px solid var(--vach-2);padding-top:4px}
+.phan{padding:12px 0;border-bottom:1px solid var(--vach-2)}
+.phan:last-child{border-bottom:none;padding-bottom:2px}
+.phan-nhan{font-family:var(--f-display);font-weight:600;font-size:12.5px;color:var(--ink);display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.phan-so{font-family:var(--f-mono);font-size:10px;color:var(--paper);background:var(--cung-do);border-radius:50%;width:17px;height:17px;display:inline-grid;place-items:center;flex:none}
+
+/* ── v0.2: chip bám ───────────────────────────────────────── */
+.chip-hang,.loc{display:flex;flex-wrap:wrap;gap:6px}
+.loc{margin-bottom:8px}
+.chip{font-size:12.5px;padding:5px 11px;border-radius:20px;border:1px solid var(--vach);background:var(--surface);color:var(--ink-2);font-weight:500;transition:all .12s}
+.chip:hover{border-color:var(--cung-do-vien);color:var(--cung-do)}
+.chip.sang{border-color:var(--cung-do);background:var(--cung-do);color:var(--paper)}
+.bam-mo{margin-top:9px;display:flex;flex-direction:column;gap:7px}
+.bam-mot{border-left:2px solid var(--cung-do);background:var(--cung-do-nhat);border-radius:0 7px 7px 0;padding:10px 13px;font-family:var(--f-body);font-size:12.5px;line-height:1.6;color:var(--ink-2)}
+.bam-mot b{color:var(--cung-do);font-weight:600;font-family:var(--f-display)}
+.bam-di{font-family:var(--f-mono);font-size:10.5px;color:var(--cung-do);text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
+.doc4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px;font-family:var(--f-body);font-size:12.5px;line-height:1.55}
+.doc4>div{display:block}
+.doc4 .phan-so{margin-right:6px;vertical-align:-3px}
+
+/* ── v0.2: nhóm điều hướng ────────────────────────────────── */
+.nav-nhom{display:flex;flex-direction:column;gap:1px}
+.nav-nhom+.nav-nhom{margin-top:14px}
+@media (max-width:820px){
+  .nav-nhom{flex-direction:row;flex-wrap:wrap;gap:4px}
+  .nav-nhom+.nav-nhom{margin-top:0}
+}
+
+</style>
+
+<div class="khung">
+  <aside class="ray">
+    <div class="hieu">
+      <div class="hieu-ten"><span class="hieu-den" aria-hidden="true"></span>Thước Trí tuệ</div>
+      <div class="hieu-phu">Bản dựng thử · v0.2</div>
+    </div>
+
+    <nav class="nav" id="nav" aria-label="Chế độ">
+      <div class="nav-nhan">Chế độ</div>
+    </nav>
+
+    <div class="ray-chan">
+      <button class="doi-nen" id="doiNen" type="button">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <span id="doiNenChu">Nền tối</span>
+      </button>
+      <p class="ray-ghi">Dữ liệu lấy nguyên văn từ 7 tài liệu trong project. Chỗ nào bản gốc còn trống đều ghi rõ.</p>
+    </div>
+  </aside>
+
+  <main class="than">
+    <div class="thanh">
+      <div class="o-tim">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input id="oTim" type="search" placeholder="Tìm trong kho Trí tuệ — thử: nghiệp, điểm tựa, oan gia, tùy duyên…" autocomplete="off" aria-label="Tìm trong kho Trí tuệ">
+      </div>
+      <div class="thanh-dem" id="thanhDem"></div>
+    </div>
+    <div id="vung"></div>
+  </main>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   DỮ LIỆU — trích từ 7 tài liệu Trí tuệ trong project.
+   nhan: qc = Quy chuẩn · qchieu = Quy chiếu · ud = Ứng dụng · trong = bản gốc còn trống
+   ═══════════════════════════════════════════════════════════════ */
+
+const CAY = [
+{so:1, ten:"5 mảng nền tảng", hoi:"Nền móng: ta là ai, sinh ra để làm gì, sống theo đạo nào, gặp cảnh thì dùng pháp gì",
+ nhanh:[
+  {ma:"MẢNG 1", ten:"NGUYÊN LÝ — 16 nguyên lý", nhan:"qc",
+   noi:"5 Nguyên lý Trí tuệ (ngọn đuốc soi đường) · 8 Nguyên lý Cuộc đời (xương sống của cả hệ thống) · 3 Nguyên lý Sống.",
+   ds:["<b>NLTT 1 · Xóa bỏ tư duy và thói quen cũ</b> — Tư duy = suy diễn, suy đoán, suy tưởng, tự nghĩ tự làm → tạo ý nghiệp. Thói quen cũ = kỹ năng, kỹ xảo, che đậy, bao biện, nói dối, ẩu, đại khái, chủ quan → tạo thân–khẩu–ý nghiệp. <em>Cách xóa: đưa mình trở về bằng 0, thành đứa trẻ 1 tuổi học lại từ đầu.</em>",
+       "<b>NLTT 2 · Trí tuệ là con mắt thứ 3</b>, có tầm nhìn xuyên suốt — <em>bản gốc chưa triển khai</em>",
+       "<b>NLTT 3 · Lãnh tụ tinh thần</b>, giúp ta làm chủ cuộc đời — <em>bản gốc chưa triển khai</em>",
+       "<b>NLTT 4 · Tinh tế, uyển chuyển</b> — <em>bản gốc chưa triển khai</em>",
+       "<b>NLTT 5 · Ấn định sử dụng Trí tuệ mọi lúc mọi nơi</b>, để đi con đường ngắn nhất — <em>bản gốc chưa triển khai</em>",
+       "<b>NLS 1 · Làm theo nguyên lý</b> — cụ thể: 2 NLTT (số 1 và 5) + 4 NLCĐ (số 1, 2, 6, 8)",
+       "<b>NLS 2 · Bám vào chân lý</b> (Trí tuệ và Từ bi) để hành động",
+       "<b>NLS 3 · Xây dựng nguyên tắc</b> để thành công"]},
+
+  {ma:"NLCĐ 1", ten:"Ta là ai? Ta có gì?", nhan:"qc",
+   noi:"Chỉ cho ta <b>gốc của con người</b>.",
+   ds:["Ta là <b>con Trời, con Phật</b>",
+       "5 câu hỏi <em>(quy chiếu)</em>: Ai sinh ra ta? Ai nuôi dưỡng ta? Ai hộ trì, độ trì ta? Ta đang sống với ai? Ta cần báo ơn ai?",
+       "Trong ta có: Cốt Phật/cốt Tiên · Thân Tứ Đại · Tần sóng · Năng lượng · <b>Tư lương</b> (Trí tuệ, Phúc đức, Căn cơ cốt mệnh, Nhân duyên, Hạnh nguyện)",
+       "Cần làm các khóa lễ <b>giữ Chân Mệnh và Cốt Mệnh</b> để tấu trình Cha Mẹ và Các Ngài"]},
+
+  {ma:"NLCĐ 2", ten:"Ta sinh ra để làm gì?", nhan:"qc",
+   noi:"Chỉ cho ta <b>gốc của bản thân</b>. Ba việc: Trả nghiệp · Tu · Thực hiện sứ mệnh.",
+   ds:["<b>Nghiệp sinh ra từ đâu?</b> Từ việc <em>không đưa Trí tuệ vào trong lợi tư</em>",
+       "<b>Nghiệp thân</b> — không trung thành với bản thân: lao tâm khổ tứ · mưu mô tính toán · sát sinh, hại mạng, chà đạp người khác",
+       "<b>Nghiệp đời</b> — không trung thành với công việc: làm không tròn tâm/đạo/việc/nhân duyên · dùng kỹ năng–kỹ xảo · ăn bớt việc bớt giờ mà hưởng đủ · bán hàng giá quá cao so với chất lượng",
+       "<b>Nợ đời</b> — không trung thành với gia đình <em>(nợ nặng nhất)</em>, với cộng đồng (bà con quyến thuộc), với đất nước (trốn thuế, ăn cắp giờ cơ quan, tham ô)",
+       "<b>Nghiệp chướng</b> — chướng bồ đề tâm (chê bai khiến người làm việc tốt nản) · chướng bồ đề nguyện (lôi kéo khiến người khác quên hạnh nguyện) · chướng bồ đề hạnh (rủ rê ăn chơi khiến người khác lỗi hạnh phạm giới)",
+       "<b>Nghiệp cản</b> — tiền kiếp cản người làm việc tốt: cản trực tiếp · nói xấu làm mất danh dự · cướp công",
+       "<b>Tu</b> để cốt sáng → tụ linh → linh khôn → linh cảm → linh ứng → linh thông → lục thông → thông toàn năng, toàn giác",
+       "<b>Sứ mệnh đáng nhất thời này là Lan tỏa Trí tuệ</b> — vì đó là sứ mệnh nền tảng để phát huy mọi sứ mệnh khác",
+       "<em>Dấu hiệu cho thấy nghiệp giảm (Kết quả) — bản gốc mới có tiêu đề, chưa có nội dung</em>"]},
+
+  {ma:"NLCĐ 3", ten:"Thời thế", nhan:"qc",
+   noi:"Thời thế theo quy luật <b>Thành – Trụ – Hoại – Không</b> nên có Thịnh, có Suy.",
+   ds:["Thời này là <b>THỜI MẠT</b>: mạt thế · mạt kỷ · mạt kiếp · mạt vận · mạt pháp · mạt tâm",
+       "Thời này <b>không phải thời làm giàu</b>, mà là thời cần rốt ráo <b>Tạo phúc – Trả nghiệp – Tu</b>"]},
+
+  {ma:"NLCĐ 4", ten:"Xét người", nhan:"qc",
+   noi:"Đích: xét người để <b>xét chính mình</b> · để có phương pháp giúp người tốt nhất · để chọn bạn mà chơi · để hành xử phù hợp từng mối quan hệ.",
+   ds:["<b>Qua ánh mắt</b> — mắt thiện = tâm thiện · mắt trong sáng có thần = tâm sáng · tâm loạn thì mắt loạn · người trung trực hay nhìn thẳng · mắt đỏ, hay nhìn trộm = có vong · mắt đảo điên, lấm lét = gian xảo · mắt không biểu cảm = đang dò xét · người tự ti hay nhìn trần nhà hoặc nhìn đất, nói nhỏ",
+       "<b>Qua lời nói</b> — <em>nói thói thường</em>: không trả lời trực diện, lái sang chuyện khác, chỉ dạ vâng cho qua. <em>Nói Trí tuệ</em>: đủ câu – đủ ý – đủ nghĩa – đủ từ, đúng nguyên lý, đúng đạo, đúng nguyên tắc. <b>Mẹo: cho họ hỏi mình một câu để biết tâm và tầm của họ</b>",
+       "<b>Qua hành động</b> — <em>“Bậc quân cư xử bình dị để đãi mệnh / Kẻ tiểu nhân hành động nguy hiểm để cầu may”</em>. Nhìn cách họ hành xử với <em>những người khác nhau</em> xem có chuẩn đạo như nhau không · thử người bằng hành động",
+       "<b>Qua thần khí</b> — mắt sáng, mắt định, lời nói có hồn khí = thần khí tốt · mắt lờ đờ, uể oải = không sinh khí · da xanh tái = năng lượng kém · da sạm = có vấn đề sức khỏe, vận đi xuống",
+       "<b>7 ý giải thích vì sao con người phức tạp</b>: 4 dạng tâm · 5 dạng tái sinh và 2 nhóm xuống trần hành đạo · 4 dạng tập khí · thực tế con người hiện nay · cốt Phật–cốt Tiên–cốt Phàm · 6 nấc căn cơ cốt mệnh · nhóm trí thức–thói thường–trí tuệ"]},
+
+  {ma:"NLCĐ 5", ten:"Kiểm soát", nhan:"qc",
+   noi:"Sáu lĩnh vực: Sức khỏe · Cảm xúc · Hành động · Quan hệ · Tài chính · Chi tiêu.",
+   ds:["<b>Sức khỏe</b> — tư tưởng tinh thần phải thông · <b>trọng thân</b>: chọn việc đáng mới làm, dinh dưỡng cân bằng, vận động sinh hoạt hợp lý",
+       "<b>Cảm xúc</b> — luôn có dòng tư tưởng có định hướng · luôn bám đích · xây dựng nguyên tắc · khi có dấu hiệu mất kiểm soát thì <b>xin phép rời đi vài phút để ngắt nhân duyên</b>",
+       "<b>Hành động</b> — nội tâm, lời nói, hành động phải chuẩn mực và nhất quán. <b>Bỏ để biến</b>: bỏ <em>bận</em> lấy <em>đáng</em> · bỏ <em>tưởng</em> lấy <em>chắc chắn</em> · bỏ <em>khó</em> lấy <em>phương pháp</em> · bỏ <em>nghĩ</em> · bỏ các <em>từ phụ</em> (rằng, thì, là, mà, chắc là…)",
+       "<b>Quan hệ</b> — phân rõ và có nguyên tắc cho từng quan hệ: gia đình (lớn/nhỏ) · ngoài cộng đồng (tri kỷ, tâm giao, làm ăn, xã giao)",
+       "<b>Tài chính</b> — kiểm soát phải là tiền của mình · biết thu gom · dự trữ · dùng tiền đúng giá trị · <b>tiền phải là tiền sạch</b>",
+       "<b>Chi tiêu</b> — chia thu nhập <b>5 khoản</b>: chi tiêu gia đình · tiết kiệm phòng rủi ro · tạo phúc trả nợ · tái đầu tư tiêu dùng · chi tiêu cá nhân",
+       "<b>Tiền sạch</b> = làm việc tròn tâm–tròn đạo–tròn việc–tròn nhân duyên, và kiếm từ công việc đúng 4 luật: Luật Pháp · Giới luật · Luật tự nhiên · Luật lương tâm"]},
+
+  {ma:"NLCĐ 6", ten:"Xoay chuyển vận mệnh", nhan:"qc",
+   noi:"Năm yếu tố xoay chuyển được vận mệnh, dù không đổi được quy luật và thời thế.",
+   ds:["<b>Tính cách</b> — chuỗi <em>Tập khí → Tính cách → Hành động → Vận mệnh</em>. Tính cách cần sửa: kiêu mạn · ẩu, cẩu thả, đại khái · chủ quan · xuề xòa",
+       "<b>Ý chí</b> — cõi Ta Bà là <em>thao trường</em> tu luyện. Gặp 3 dạng cảnh: Cha Mẹ và các Ngài thử tâm · Ma Chướng phá · nhân quả cá nhân. Vượt được thì lên một nấc, không thì lùi về",
+       "<b>Môi trường</b> — chọn môi trường tích cực để được cộng hưởng tốt · <b>chủ động tạo môi trường Trí tuệ</b> xung quanh mình",
+       "<b>Trí tuệ</b> — là pháp tối thắng: cái gì Trí tuệ <em>trực chỉ</em> thì sống, <em>định hướng</em> thì làm, <em>không chỉ</em> thì không làm",
+       "<b>Tu tâm cải mệnh</b> — từ trước tới nay ta thường dùng tâm người, tâm thú, tâm ma → cần <b>ấn định tâm Phật 24/24 giờ</b>. Lập <b>sổ tay phúc đức</b>",
+       "<em>Bảng Trí tuệ và thói thường — bản gốc mới có tiêu đề, chưa lập bảng</em>"]},
+
+  {ma:"NLCĐ 7", ten:"Đích", nhan:"qc",
+   noi:"Năm ý về đích.",
+   ds:["Ấn định <b>đích đáng nhất là trở về với Gốc</b> — xuống trần làm 3 việc: trả hết nghiệp · hoàn thành sứ mệnh · tu để lập Đức",
+       "Đích là <b>luôn sử dụng Trí tuệ</b> — nhầm nhỏ thì họa lớn, nhầm lớn thì đại họa",
+       "<b>Làm gì cũng phải biết đích</b> — biết đích mới làm, để không lãng phí thời gian và công sức",
+       "<b>Chọn đích đáng nhất</b> — thời gian có hạn 24 giờ/ngày",
+       "<b>Luôn luôn bám đích</b> — để tròn việc, tròn nhân duyên, triệt để"]},
+
+  {ma:"NLCĐ 8", ten:"Điểm tựa — 5 điểm tựa", nhan:"qc",
+   noi:"Với mỗi điểm tựa cần hiểu 2 việc: <b>điểm tựa ban gì cho ta?</b> và <b>ta cần làm gì để báo ơn?</b>",
+   ds:["<b>Trời Phật</b> — ban: chứng giám, hóa độ, độ trì hộ trì, ban tài lộc theo phúc đức. Báo ơn: sống chuẩn mực theo Trí tuệ để giữ cốt mệnh và chân mệnh",
+       "<b>Hồn thiêng sông núi, hồn thiêng dân tộc</b> — ban: các vua hiền, danh tướng, danh nhân, anh hùng liệt sỹ đã hy sinh cho ta có hòa bình. Báo ơn: biết ơn",
+       "<b>Đất nước</b> — ban: hệ thống pháp quyền, đất để đi lại và chôn gia tiên, an sinh xã hội, giao thương. Báo ơn: bảo vệ, vun vén, phục vụ, cống hiến",
+       "<b>Gia tiên tiền tổ</b> — ban: để lại phúc đức, dẫn đường chỉ lối, nâng đỡ khi hoạn nạn. Báo ơn: quan trọng nhất là giúp gia tiên được <b>siêu thoát</b>",
+       "<b>Gia đình</b> — ban: điểm tựa đầu tiên đón ta ra đời, nuôi dưỡng, che chở. Báo ơn: vun vén, chăm lo, yêu thương và <b>không bị nợ gia đình</b>",
+       "⚠ <b>Lưu ý</b>: <em>Tứ đại trọng ơn</em> (Trời Phật · Thầy Tổ · Hồn thiêng sông núi–dân tộc · Gia tiên tiền tổ, ông bà bố mẹ) là <b>bộ khác</b> với 5 điểm tựa — dễ nhầm là một"]},
+
+  {ma:"MẢNG 2", ten:"ĐẠO — 7 Đạo làm người", nhan:"qc",
+   noi:"Đạo là gốc, là con đường. Tròn 7 đạo → lập đức → có đức mới giữ được phần.",
+   ds:["<b>Đạo Lý</b> — đạo làm người; làm gì cũng bám vào 8 Nguyên lý cuộc đời",
+       "<b>Đạo Sinh</b> — ai sinh ra ta · biết ơn ai (Trời Phật · Cha Thiên Mẹ Địa · anh sinh chị nở) · cần có <b>Đời – Đạo – Lợi tư</b> · <b>có phúc thì có phần</b> (7 Phần: Sức khỏe · Trí tuệ · Hạnh phúc gia đình · Tương lai con cái · Quan hệ · Tài chính · Công việc)",
+       "<b>Đạo Hiếu</b> — hiếu với ông bà bố mẹ · gia tiên tiền tổ · <b>cha mẹ 7 đời, bà con 10 kiếp</b> · <b>cộng đồng nhân dân</b> (chính là bà con quyến thuộc đã luân hồi quay lại)",
+       "<b>Đạo Trung</b> — <em>trung thành</em> (không trung thành để lại Nợ và Nghiệp) · <em>trung tín</em> (để trở về với tướng thật) · <em>trung trực</em> (để tròn mệnh, sống tận mệnh)",
+       "<b>Đạo Nghĩa</b> — 7 chữ TRỌNG: trọng ơn · trọng ân · trọng nghĩa · trọng tình · trọng tín · trọng thân · trọng nhân duyên",
+       "<b>Đạo Tình</b> — sống có tình với anh sinh, chị nở, vợ chồng, con cái, anh em, bạn bè · <b>vạn vật đều có linh</b> · giữ đạo tình bằng nhân tâm",
+       "<b>Đạo Luật</b> — gồm <b>5 LUẬT</b> (Nhà Thiên · Tự nhiên · Lương tâm · Pháp luật · Giới luật) và <b>GIA QUY</b> (7 nhóm)",
+       "<b>5 Giới</b>: không sát sinh · không nói dối · không ăn trộm · không tà dâm · không rượu bia, cờ bạc, tệ nạn xã hội",
+       "<b>18 Hạnh</b>: ăn · uống · nói · mặc · đầu tóc · ở · đi · đứng · ngồi · nằm · ngủ · giữ thân · Hiếu · Lễ · Nghĩa · đối nhân xử thế · làm · hoan hỷ — <em>bản gốc mới triển khai chi tiết 3 hạnh: ăn (16 điều), uống (6 điều), đi (4 điều)</em>"]},
+
+  {ma:"MẢNG 3–5", ten:"PHÁP · TÂM LINH · THỰC TẾ", nhan:"trong",
+   noi:"Ba mảng này <b>chưa xuất hiện thành chương riêng</b> trong bản Cốt dữ liệu Phần 1 — nội dung nằm rải trong các phần khác.",
+   ds:["<b>Pháp</b> → xem Phần 6 (18 ý pháp) · 3 pháp đối trị–hóa giải–xoay chuyển · 7 phương pháp hóa giải bất ổn",
+       "<b>Tâm linh</b> → 5 ý: xã hội mắc vào 2 nhóm (mê tín dị đoan / vô tâm thờ ơ) · là sự hướng tâm tới Trời Phật, các đấng anh linh, gia tiên · là sự kết nối <b>Thiên – Địa – Nhân</b> · là sự chuyển thể · có 2 vế: Cha Mẹ và các Ngài (ban chân lý) và các vong linh",
+       "<b>Thực tế</b> → <b>7 ý thực tế</b>: Thời thế · Con người · Xã hội · Công việc · Luật · Xu thế · Vận thế — dùng trong Công thức đối cảnh và giải cảnh"]}
+ ]},
+
+{so:2, ten:"Quy luật", hoi:"Cái gì bất biến, không ai đổi được?",
+ nhanh:[{ma:"6 QUY LUẬT", ten:"Tạo hóa · Trời Phật · Thời thế · Con người · Vạn vật · Thời gian", nhan:"qc",
+   noi:"Sống cần thuận quy luật tự nhiên vì các Ngài định vị tất cả mọi thứ ở cõi Ta Bà bằng <b>Nhân quả – Phúc đức – Nhân duyên</b>.",
+   ds:["<b>Luật vận hành</b>: mọi tâm ý, lời nói, hành động đều bị hút vào quỹ đạo; đến ngày giờ đủ nhân duyên sẽ <em>chiết xuất nhân quả</em> trả lại cho ta",
+       "<em>“Anh không thể mặc cả được với Quy luật — quyết định thế nào thì số phận cuộc đời của anh sẽ là thế đó.”</em>"]}]},
+
+{so:3, ten:"Hiếu – Lễ – Nghĩa", hoi:"Sống với gốc rễ và với người đi trước thế nào?",
+ nhanh:[
+  {ma:"HIẾU", ten:"3 cấp độ hiếu", nhan:"qc",
+   noi:"Với ông bà bố mẹ còn sống, và với gia tiên tiền tổ — mỗi bên có 3 cấp.",
+   ds:["<b>Tiểu hiếu</b> — với người sống: hiếu tâm, hiếu dưỡng. Với gia tiên: thờ cúng chuẩn · nhớ ngày kị · quan tâm phần mộ · làm lộ phí",
+       "<b>Trung hiếu</b> — với người sống: thêm hiếu hạnh. Với gia tiên: sống đúng gia quy · trung thành với những gì gia tiên để lại · giữ giới giữ hạnh · lễ phép với mọi người",
+       "<b>Đại hiếu</b> — với người sống: thêm chia sẻ Trí tuệ · đọc sám hối cho họ · tạo phúc trả nợ bằng công và của · nhớ ngày xá tội vong nhân để kêu cầu giảm tội giảm nghiệp. Với gia tiên: thêm tạo phúc trả nợ, đọc sám hối, phóng sinh, kêu cầu cho gia tiên <b>siêu thoát</b>"]},
+  {ma:"LỄ", ten:"Lễ phép · Lễ nghi · Nghi thức", nhan:"qc",
+   noi:"Làm chủ <b>8 bộ lễ Trí tuệ</b> (36 khóa lễ).",
+   ds:["8 bộ lễ: ① giữ cốt mệnh, chân mệnh ② tu tập tại gia ③ bốc bát hương ④ xây và sửa nhà ⑤ đám hỷ ⑥ đám hiếu ⑦ tạ mộ và đọc sám khi gặp hoạn nạn ⑧ tết cổ truyền",
+       "<b>Kính lễ ≠ Tu tập</b> — <em>Kính lễ</em>: ngày 1 và rằm, ngày của đất nước (10/3, 27/7, 2/9), ngày của dòng họ, ngày giỗ, tết. <em>Tu tập</em>: cầu nguyện sáng tối, sám hối 4 mùa, mùa Vu lan tháng 5–6–7 âm"]},
+  {ma:"NGHĨA", ten:"Trân trọng và biết ơn với con người và vạn vật", nhan:"qc",
+   noi:"Muốn có <b>ĐỨC LƯU QUANG</b> lưu truyền mãi thì con cháu phải biết trân trọng và biết ơn, mới không cắt đứt mạch nguồn phúc đức ông bà để lại.",
+   ds:["Gia đình nên ghi ra <b>danh sách cụ thể những người mà ông bà và bản thân mình mang ơn</b>",
+       "Trân trọng và biết ơn đến cả vạn vật, cỏ cây hoa lá",
+       "Trân trọng mọi tác sản, sản phẩm, công trình, ý tưởng — của Tạo hóa ban tặng và do con người tạo ra"]}]},
+
+{so:4, ten:"Biết gốc và Bám gốc", hoi:"Gốc của mọi vấn đề nằm ở đâu?",
+ nhanh:[
+  {ma:"5 GỐC", ten:"5 gốc phải bám khi làm bất kỳ việc gì", nhan:"qc",
+   noi:"<em>Bản gốc ghi “có 4 ý chính” nhưng liệt kê 5 gốc.</em>",
+   ds:["<b>Gốc Trí tuệ</b> — làm gì cũng quy chiếu vào 11 phần của Trí tuệ",
+       "<b>Gốc môi trường</b> — môi trường mở (nhà ga, quán ăn) / cố định (gia đình, cơ quan). Bám: bám đích đến đó để làm gì · tôn trọng môi trường và mọi người · thấu triệt",
+       "<b>Gốc thời điểm — đang làm việc với ai / tổ chức nào</b> — với cá nhân: thấu triệt, tôn trọng, phối hợp, thường xuyên trao đổi, tự sửa tính cách xấu của mình. Với tổ chức: thấu triệt văn hóa – quy định – nguyên tắc – quy trình. <b>Người mình hay làm việc cùng chính là Gốc của thời điểm đó</b>",
+       "<b>Gốc các tấm gương</b> — noi theo Đức Phật, Bồ Tát, Đức Chúa, Bác Hồ. Học: dấu ấn để lại · đức hạnh · các Ngài sống rất thực tế · cách báo hiếu · cách xả thân cho sứ mệnh. <b>Tấm gương để soi vào học theo, còn khi hành thì bám vào Trí tuệ</b>",
+       "<b>Gốc các vấn đề</b> — 11 gốc vấn đề (xem dưới)"]},
+  {ma:"11 GỐC", ten:"Gốc của từng vấn đề", nhan:"qc",
+   noi:"Bảng này rất đáng thuộc — mọi bất ổn đều truy về đây.",
+   ds:["Con người → <b>Cốt Phật, cốt Tiên · Tư lương</b>",
+       "Bản thân → <b>Phúc đức · Căn cơ cốt mệnh</b>",
+       "Gia đình → <b>Điểm tựa</b> (còn người trong gia đình là <em>nợ đồng lần</em> với nhau)",
+       "Công việc → <b>Phương tiện</b>",
+       "Xã hội → <b>Nợ đồng lần</b>",
+       "Đất nước → <b>Điểm tựa</b> (nên cần báo ơn)",
+       "Tài chính → <b>Phúc đức</b>",
+       "Bất ổn → Nhầm · không biết điểm tựa · không biết gốc · không biết thời thế · làm ngược nguyên lý",
+       "Khổ đau → <b>Tham ái · tham sở hữu</b>",
+       "Giải thoát → Ta là <b>con Trời con Phật</b>",
+       "Bệnh tật → <b>Thân bệnh · Tâm bệnh · Nghiệp bệnh</b>"]}]},
+
+{so:5, ten:"Nguyên tắc", hoi:"Làm sao để không lệch khỏi đường ray Trí tuệ?",
+ nhanh:[{ma:"5 NGUYÊN TẮC", ten:"Cái khóa giữ con người không lệch khỏi đường ray Trí tuệ", nhan:"qc",
+   noi:"",
+   ds:["<b>Đúng luật</b> — đúng cả 5 luật; đã đúng luật thì không mặc cả <em>rằng, thì, là, mà</em> → <em>không tạo hệ quả</em>",
+       "<b>Chuẩn mực</b> — chuẩn mực 100%, từ lời nói đến hành động → <em>được người khác tin tưởng</em>",
+       "<b>Rõ ràng</b> — không mập mờ. Ai nhận việc gì cũng phải hỏi rõ có chắc chắn không; mình nhận việc gì phải nói rõ làm được bao nhiêu % → <em>để lại ấn tượng</em>",
+       "<b>Có trước có sau</b> — quay lại gốc ban đầu, ai giúp mình từ đầu thì trân trọng biết ơn; trong công việc phải báo cáo trước sau → <em>được ghi nhận</em>",
+       "<b>Tinh tế uyển chuyển</b> — tinh tế nhận diện thực tế rồi uyển chuyển theo thời điểm, căn cơ, hoàn cảnh. Nhưng <b>vẫn bám đích</b>, vẫn dùng pháp Trí tuệ, không chuyển sang thói thường. Chỉ uyển chuyển khi bất khả kháng"]}]},
+
+{so:6, ten:"Ý pháp mở rộng và Tâm từ bi", hoi:"Nhận diện nhanh vấn đề rồi đưa pháp trực chỉ, đa chiều",
+ nhanh:[
+  {ma:"§1", ten:"6 nguyên nhân bất ổn", nhan:"qc", noi:"",
+   ds:["<b>Nhầm</b> — nhầm tưởng kiến thức/tri thức/trí thức là Trí tuệ · nhầm khả năng (chữ Tôi càng cao) · nhầm đích cuộc đời (chức vụ, địa vị, tiền bạc)",
+       "<b>Không biết Điểm tựa</b> — chưa tròn được đạo · chưa tròn chữ Hiếu",
+       "<b>Không biết Gốc</b> — không biết báo ơn · không làm đúng mệnh",
+       "<b>Không biết đến Thời thế</b> — không biết thế nào là họa, thế nào là phúc",
+       "<b>Làm ngược nguyên lý do thiếu Trí tuệ</b> — không nguyên tắc · không kiểm soát · sống thiếu trọng · luộm thuộm · che đậy · bao biện · thiếu trách nhiệm · quá nhu nhược · hành xử kém",
+       "<b>Bất ổn về Hiếu – Lễ – Nghĩa</b> — thờ tự không chuẩn · lên nhà mới không đúng cách · bốc bát hương không đủ cửu huyền thất tổ · không tạ mộ hằng năm"]},
+  {ma:"§2", ten:"7 phương pháp hóa giải bất ổn", nhan:"ud", noi:"",
+   ds:["<b>Không đối đầu, đối nghịch, đối kháng</b> — <em>bản gốc để trống phần “tại sao” và “cách nhận diện ân oán trong quan hệ”</em>",
+       "<b>Sử dụng Trí tuệ</b> — bám nguyên lý, đạo, nguyên tắc; có cảnh thì dùng pháp để giải; có việc phải xin Điểm tựa",
+       "<b>Tạo phúc, trả nợ chuẩn</b> — bằng công và bằng của",
+       "<b>Thờ cúng chuẩn</b>",
+       "<b>Kính lễ, tu sửa tại gia</b>",
+       "<b>Giải nghiệp</b> — không ai giải nghiệp thay mình được. 4 bước: <b>Dừng nghiệp → Hóa nghiệp → Đón nghiệp → Chuyển nghiệp</b>",
+       "<b>Sửa thân, tâm, khẩu, ý</b> — <em>tu sửa thân</em>: không đến nơi uế tạp, không ăn uống vô độ, không lao tâm khổ tứ, không đam mê sắc dục. <em>Tu sửa tâm</em>: không tà tâm, không mưu mô, không toan tính. <em>Tu sửa khẩu</em>: nói rõ ràng chuẩn mực đúng lúc đúng chỗ, đủ câu đủ ý đủ từ, trước sau như một, không trêu đùa, không hứa việc chưa chắc chắn, không khuyên người khác, không kiếm chuyện làm quà. <em>Tu sửa ý</em>: không suy tưởng, suy diễn, suy tính, suy đoán — <b>nghe đâu biết đấy, nghe đâu bỏ đấy; khi nào làm thì dùng Trí tuệ</b>"]},
+  {ma:"§3", ten:"Đời – Đạo – Lợi tư — kiềng 3 chân", nhan:"qc",
+   noi:"<b>Lợi tư là phần ta được hưởng NẾU có Phúc và Đức. Muốn có phúc đức thì cần có Đời và Đạo.</b>",
+   ds:["<b>LỢI TƯ</b> (ứng với <em>trả nghiệp</em>) — bản thân · gia đình · quan hệ · công việc · tài chính",
+       "<b>ĐỜI</b> (ứng với <em>thực hiện sứ mệnh</em>) — cống hiến vô danh vô lợi để có Phúc đức, Công đức, Lập công",
+       "<b>ĐẠO</b> (ứng với <em>tu tiếp</em>) — học Trí tuệ (được học, tự học, đàm đạo) và tu đức (đúng đạo, tròn đạo, cầu đạo, hành đạo, tu đạo)",
+       "<em>“Trời sinh ra Đạo Đời bỏ phí / Xuống cõi trần chỉ nghĩ lợi tư / Chẳng hiểu gì bổn đạo nhân từ / Chẳng hiểu gì thiên thư Trời Phật”</em>"]},
+  {ma:"§4", ten:"Cõi Ta Bà", nhan:"qc", noi:"",
+   ds:["<b>5 dạng tái sinh</b>: quỷ · súc sinh · người · atula · cõi trời → đầu thai làm người",
+       "<b>2 nhóm xuống trần hành đạo</b>: nhóm có mệnh Bồ Tát · nhóm có mệnh cửa Thiên",
+       "<b>3 lần Mẹ Phật Mẫu Địa hạ thế</b>: ① tách Trời Đất, định vị âm dương cho 4 loài vào sinh sống ② hóa thành Mẫu Âu Cơ sinh bọc trứng Tiên Rồng để loài người có cốt Phật cốt Tiên ③ vào thời đáy của đại Mạt, xin Vua Cha chuyển diệt vong thành sàng lọc, ban Trí tuệ xuống trần",
+       "<b>5 nền văn minh</b>: săn bắn hái lượm · lúa nước · công nghiệp · công nghệ thông tin · khoa học, vũ trụ và tâm linh — <em>con người đang ở cuối nền văn minh 4, bắt đầu chuyển sang 5</em>"]},
+  {ma:"§5", ten:"Mệnh và Sứ mệnh", nhan:"qc",
+   noi:"<b>Mệnh</b> = cái mình có. <b>Sứ mệnh</b> = cái mình cho đi.",
+   ds:["<b>Căn cơ</b> — mỗi người có một căn cơ ứng với một ngành nghề, công việc",
+       "<b>Cốt mệnh</b> — bộ khung: khung chắc → mệnh tốt; khung yếu → mệnh yếu",
+       "<b>Mệnh người làm chủ</b> — bám được chuyên môn · nhiều ý tưởng sáng kiến · biết quản lý, kiểm soát, suy xét đa chiều · có tầm nhìn, khát vọng, ý chí · có tâm đức · giữ được đạo",
+       "<b>Mệnh người làm thuê</b> — không ý tưởng, không sáng kiến · giao việc gì làm việc đó · không hoạt bát",
+       "<b>Tài riêng</b> — tài được ban ngoài công việc; có người tài ẩn, có người tài lộ",
+       "<b>Sứ mệnh</b> = cống hiến vô danh vô lợi. Mỗi thời kỳ một sứ mệnh khác nhau; <b>sứ mệnh đáng nhất thời này là Lan tỏa Trí tuệ</b>"]},
+  {ma:"§6", ten:"4 dạng Tâm", nhan:"qc",
+   noi:"Biết 4 dạng tâm để ① <b>kiểm soát nội tâm</b> ② <b>xét người</b>.",
+   ds:["<b>Tâm thú</b> — việc gì không hài lòng thì phản ứng ngay: sân hận · tiêu cực · thù địch · độc ác",
+       "<b>Tâm ma</b> — si mê · mê mờ · mê muội. <em>Người thiên về cảm xúc rất dễ bị tâm ma dẫn dắt</em>",
+       "<b>Tâm người</b> — tham lam · tính toán · bon chen · ganh ghét · đố kỵ · hẹp hòi ích kỷ · khéo léo · che đậy · nịnh bợ → vòng luẩn quẩn <em>Tham – Sân – Si → Khổ đau</em>",
+       "<b>Tâm Phật</b> — <b>Đại từ</b> (hiền từ, lành như đất) · <b>Đại bi</b> (cứu khổ cứu nạn, yêu thương vô điều kiện) · <b>Đại hỉ</b> (hoan hỉ) · <b>Đại xả</b> (xả bỏ 3 tâm kia)",
+       "<b>Cách luyện tâm Phật</b>: chậm lại để suy xét và quy chiếu vào Trí tuệ rồi mới trả lời hoặc hành động · học theo tấm gương các Ngài · <b>ấn định tâm Phật 24/24 tiếng</b>"]},
+  {ma:"§7", ten:"Gốc Phật", nhan:"qc",
+   noi:"Đức tin Gốc Phật tại Việt Nam · dấu ấn cây đèn dầu · Ngài Thích Ca hạ thế · pháp bị tổn.",
+   ds:["<b>Cây đèn dầu</b> — của vị Phật đắc đạo đầu tiên ở Việt Nam, niên hiệu <b>Nhiên Đăng Cổ Phật</b>. Ngài để lại <em>ngọn đăng</em>; thờ ngọn đăng là thờ ánh sáng quang minh của Phật và được khai tuệ. Con người rước ngọn đăng vào đèn dầu để giữ, và thờ cả ngày cả đêm <b>để xóa màn u minh, tăm tối</b>",
+       "<b>Không dùng vàng mã</b> — vàng mã đốt đi là hết; đốt quần áo giả là lừa gia tiên; chỉ có các Ngài mới biết gia tiên đang ở cõi nào",
+       "<b>Không cúng mặn</b> — vạn vật đều có linh; sát sinh một con gà thì mình mắc tội và gia tiên bị đọa. Chỉ dùng thanh bông hoa quả, xôi chè; không có điều kiện thì chén nước, thẻ hương các Ngài cũng chứng — <b>các Ngài chứng tâm không chứng lễ</b>",
+       "<b>Không cúng hình nhân thế mạng</b> — cô hồn nhập vào hình nhân và chết thay; đến ngày cô hồn muốn luân hồi sẽ bắt người nhà chết thay",
+       "<b>Bát hương phải một bên rồng, một bên phượng</b> — để thờ cả Cha và Mẹ; thờ hai bên rồng là mới thờ một vế của Cha"]},
+  {ma:"§8", ten:"Đích của hành sứ mệnh", nhan:"qc", noi:"",
+   ds:["Báo <b>Tứ đại trọng ơn</b>: ơn Trời Phật · ơn Thầy Tổ đã đưa đạo xuống đời · ơn Hồn thiêng sông núi, hồn thiêng dân tộc · ơn gia tiên tiền tổ, ông bà bố mẹ",
+       "Hóa giải ân oán · Tạo phúc trả nợ báo ơn báo hiếu · Cống hiến vô danh vô lợi · Giữ chân mệnh · Luyện Trí tuệ"]},
+  {ma:"§9", ten:"10 liệu pháp y thuật", nhan:"qc",
+   noi:"5 liệu pháp đầu là khoa học/y học, 5 liệu pháp sau là tâm linh — đúng với <em>Trí tuệ là Thực tế – Khoa học – Tâm linh</em>.",
+   ds:["<b>Thân bệnh</b> — do ngủ nghỉ không hợp lý, chế độ ăn uống, độc tố, rối loạn chuyển hóa, kinh lạc bị bó. Chữa: bệnh viện và bác sỹ · tâm lý liệu pháp · điều chỉnh ăn uống sinh hoạt · đả thông kinh lạc · hồi phục cơ thể",
+       "<b>Tâm bệnh</b> — do cuộc sống bất ổn, không có Trí tuệ để giải nên lo lắng nhiều → tâm loạn, u uất, bó tâm → ăn không hấp thụ được → suy nhược. Chữa: <em>“Muốn chữa bệnh ở thân thì tập cho tâm lành trước đã”</em> — tâm thánh thiện · tạo môi trường Trí tuệ · suy nghĩ tích cực · <b>tìm ra Đích Đáng Nhất cuộc đời</b> · thoát tâm",
+       "<b>Nghiệp bệnh</b> — do tập khí nhiều kiếp → tính cách → hành động tạo nghiệp, khẩu nghiệp, ý nghiệp, oan gia trái chủ. Chữa: cầu nguyện sám hối · niệm Phật · tạo phúc trả nợ · giải nghiệp · tu luyện thân tâm",
+       "<em>Bản gốc để trống: “quy luật con người có âm dương, ngũ hành” và “một số bệnh thường gặp”</em>"]},
+  {ma:"§10", ten:"6 nấc căn cơ cốt mệnh", nhan:"qchieu",
+   noi:"Gắn thẳng khả năng dành thời gian cho Đời và Đạo với căn cơ cốt mệnh.",
+   ds:["<b>Nấc 1 · Mòn</b> — sinh ở nơi biên địa · gia đình kiết trược không tin nhân quả · hay ốm đau từ nhỏ · người yếu thế, nghèo đói, tàn tật · sống lệ thuộc hoàn toàn",
+       "<b>Nấc 2 · Đang mòn nhiều</b> — nhân viên làm thuê hoặc công chức · quá bận việc gia đình con cái · phải đi làm mới đủ ăn tiêu · <b>rất thích Trí tuệ nhưng không dành được ngày nào cho Đời và Đạo</b>",
+       "<b>Nấc 3 · Đang mòn ít</b> — nhân viên, công chức, chủ doanh nghiệp hoặc chủ cửa hàng · <b>dành được 1–2 ngày</b>",
+       "<b>Nấc 4 · Có mệnh nhưng không biết mình là ai</b> — làm sai mệnh dẫn đến lỗi mệnh, phá mệnh · không biết bồi phúc, lập đức, làm sứ mệnh · <b>có thể dành nhiều thời gian nhưng tâm không định</b>",
+       "<b>Nấc 5 · Tốt</b> — có tiền nhưng chưa đủ ung dung tự tại · vẫn phụ thuộc công việc · <b>dành được 3 ngày</b>",
+       "<b>Nấc 6 · Rất tốt</b> — đầy đủ, tài chính dư thừa · <b>dành được 5 ngày cho Đời và Đạo, 2 ngày cho lợi tư</b>"]},
+  {ma:"§11", ten:"Hành xử và Đối nhân xử thế", nhan:"qc",
+   noi:"<b>Hành xử</b> = chủ động trước. <b>Đối nhân xử thế</b> = khi người khác chủ động trước hoặc việc đến với mình.",
+   ds:["Chuỗi: <b>Nới rộng hiểu biết → Thấu triệt → Kiểm soát → Hành xử tốt</b>",
+       "<b>Kiểm soát trước khi nhận việc</b>: mình có đủ sức khỏe, thời gian, chuyên môn, tài chính để làm không? Trước khi giao việc cho ai cũng phải kiểm soát tương tự",
+       "<em>Bản gốc để trống: “Đối nhân là gì? Xử thế là gì?” và “Đối nhân xử thế cần bám vào gì?”</em>"]},
+  {ma:"§12", ten:"Nới rộng hiểu biết", nhan:"qc",
+   noi:"<b>“Hiểu biết đến đâu thì hành xử đến đó.”</b> Không nới rộng thì luôn hành xử bằng hiểu biết hạn hẹp, khiến người khác khó chịu, để lại hệ quả.",
+   ds:["Nới rộng về: gia đình · đất nước · xã hội · công việc · con người · thực tế · thời thế"]},
+  {ma:"§13", ten:"Cốt Phật, cốt Tiên, cốt Phàm", nhan:"qc", noi:"",
+   ds:["<b>Cốt Phật, cốt Tiên nhiều</b> — khai mở Trí tuệ rất nhanh, đón Trí tuệ hào hứng, nhiều tư tưởng tốt, sáng kiến hay",
+       "<b>Cốt phàm nhiều</b> — chỉ đón Trí tuệ đủ cho mình họ, không nghĩ đến lan tỏa",
+       "<b>Chỉ có cốt phàm</b> — vui là đến, đông là hùa vào, không lập trường · nghe việc gì không phân biệt được tốt xấu đúng sai · nghe câu từ Trí tuệ thì không hiểu, đau đầu, chế giễu là viển vông; nhưng nghe câu từ thói thường thì nhập rất nhanh",
+       "<b>Nghiệp nặng</b> — cả đời không được ai nói cho nghe Trí tuệ · nghe thì hiểu lúc đó nhưng sau lại không hiểu · thấy hay nhưng sau lại không nhớ gì · hiểu nhưng quá bận rộn không có thời gian làm gì cả"]},
+  {ma:"§14", ten:"Đức tin vào chính mình", nhan:"qc",
+   noi:"Có đức tin vào <b>Cha Mẹ và các Ngài · Trí tuệ · bản thân</b> thì mới dừng lại những việc làm sai để xoay chuyển.",
+   ds:["Đức Phật dạy: <em>“Mọi thứ phải trông chờ từ chính mình.”</em>"]},
+  {ma:"§15", ten:"5 cặp câu từ dễ nhầm", nhan:"qc",
+   noi:"Phân biệt để dùng cho đúng.",
+   ds:["<b>Họa ≠ Nhân quả</b> — <em>Họa</em>: cám dỗ, cạm bẫy, đồng lõa, cộng nghiệp, cảnh cuốn (đến từ ngoài). <em>Nhân quả</em>: do con người chủ động khởi tâm, hành động tạo ra nhân",
+       "<b>Nhân duyên ≠ Tràn duyên</b> — <em>Nhân duyên</em>: đã tạo từ quá khứ, nay đủ phúc đức thì các Ngài se lại; duyên lành hay duyên nghiệp đều là phước báu. <em>Tràn duyên</em>: do mình chủ động tạo ra, sẽ khiến mình mắc vào, không diệt trừ được thì không giải thoát được",
+       "<b>Tùy duyên ≠ Vô tâm</b> — <em>Tùy duyên</em>: <b>đã khởi tâm mạnh mẽ, đã phát tâm hành động chuẩn theo Trí tuệ</b> rồi mới tùy duyên với kết quả. <em>Vô tâm</em>: không khát vọng, không khởi tâm cầu, không hành động, chỉ ngồi chờ, không đạt thì tưởng là tùy duyên",
+       "<b>Tu tập ≠ Kính lễ</b> — xem Phần 3",
+       "<b>Tu sửa thân–tâm–khẩu–ý ≠ Tu thân–tâm</b> — <em>Tu sửa</em>: sửa những gì đang tạo nghiệp. <em>Tu thân–tâm</em>: nấc cao hơn sau khi đã sửa xong — tu thân cho sạch sẽ, thanh tịnh, nhẹ nhàng, thư thái, ung dung, tự tại; tu tâm cho định tâm, trụ tâm, hoan hỷ, xả bỏ, từ bi"]},
+  {ma:"§16", ten:"Tròn chức năng, vai trò, bổn phận, trách nhiệm", nhan:"qc",
+   noi:"Làm bất kỳ việc gì cũng tròn cả 4 để <b>không bị nợ và có được Phúc Đức</b>.",
+   ds:["<b>Chức năng</b> — làm tròn việc mình cần làm. <em>Trong gia đình</em>: kiếm tiền · đi chợ · nấu ăn · rửa bát · quét nhà dọn dẹp · giặt quần áo · chăm sóc con",
+       "<b>Vai trò</b> — đảm nhiệm việc gì thì nghiên cứu, suy ngẫm để làm tốt nhất, khiến người khác hoan hỷ và mang lại lợi lạc",
+       "<b>Bổn phận</b> — trong gia đình: làm con, làm vợ, làm chồng, làm bố, làm mẹ. Trong công việc: lãnh đạo hay nhân viên. Với đất nước: công dân hay công chức",
+       "<b>Trách nhiệm</b> — làm đến khi xong việc mới thôi. <b>Trách nhiệm càng cao thì tâm từ bi càng lớn</b>",
+       "<b>Nghĩa vụ</b> (ngoài chức năng) — việc thể hiện nghĩa cử, nghĩa đạo, <b>bắt buộc mình phải làm</b> để báo ơn và trả nợ các điểm tựa, <b>không phân cho ai khác được</b>"]},
+  {ma:"§17", ten:"Nhận diện cảnh — 3 dạng cảnh đổ về", nhan:"qc",
+   noi:"Khi có việc xấu xảy ra, đọc dấu hiệu để biết mình đang ở dạng cảnh nào.",
+   ds:["<b>Cha Mẹ và các Ngài thử tâm</b> — dấu hiệu: <b>9 cửa đóng, 1 cửa mở</b>. Ứng: hoan hỷ + nhìn đa chiều để tinh tấn <b>nhận ra cửa sinh</b>",
+       "<b>Ma Chướng phá</b> — dấu hiệu: <b>tất cả các cửa đều đóng</b>. Ứng: luôn <b>định tâm</b> và <b>làm đúng luật</b>. <b>Lùi một bước để tiến ba bước</b>",
+       "<b>Nhân quả cá nhân</b> — nhân quả tiền kiếp · nhân quả hiện tiền · oan gia trái chủ đòi nợ. Ứng: dùng pháp hóa giải trực tiếp cho góc độ tác động chính",
+       "<em>Bản gốc để trống: “Đưa ra pháp giải cho từng cảnh” — đây là mắt xích nối nhận diện với hành động</em>"]},
+  {ma:"§18", ten:"Công thức đối cảnh và giải cảnh", nhan:"qc",
+   noi:"<b>Đối cảnh</b> = ta chủ động lập kế hoạch → cho ra <b>pháp đối trị</b>, mà pháp đối trị chính là PHỐI HỢP. <b>Giải cảnh</b> = cảnh đổ về, ta phải giải → cho ra <b>pháp hóa giải</b>, nằm ở “Đích sử dụng Trí tuệ”.",
+   ds:["<b>Đối cảnh</b> — thứ tự: ĐÍCH → THỰC TẾ → PHƯƠNG PHÁP → PHỐI HỢP → KẾ HOẠCH",
+       "<b>Giải cảnh</b> — thứ tự: THỰC TẾ → ĐÍCH → PHƯƠNG PHÁP → PHỐI HỢP → KẾ HOẠCH",
+       "Trước khi viết công thức cần <b>Quy chiếu</b> (Trí tuệ · Thực tế) và <b>Thấu triệt</b> (Con người · Môi trường · Công việc)"]},
+  {ma:"❖", ten:"Tâm từ bi", nhan:"qc",
+   noi:"Chân lý gồm <b>Trí tuệ</b> và <b>Từ bi</b>.",
+   ds:["<b>17 trạng thái của Tâm</b>: khởi tâm · nhất tâm · chuyên tâm · đưa tâm · phát tâm · tâm bồ đề · trụ tâm · tâm vô trụ sứ · định tâm · tâm bất nhị · tâm yên ổn · mở tâm · tâm cầu · tâm trọng · nhân tâm · tâm vô thường · chân tâm",
+       "<b>5 hành động của tâm từ bi</b>: yêu thương · quan tâm · giúp đỡ · bảo vệ · giữ gìn — cho mình và người khác"]}]},
+
+{so:7, ten:"Xoay chuyển cuộc sống Trí tuệ", hoi:"Đổi từ cuộc sống thói thường sang cuộc sống Trí tuệ bằng cách nào?",
+ nhanh:[
+  {ma:"①", ten:"Rà soát quá khứ", nhan:"ud",
+   noi:"<b>Đích</b>: khoanh lại quá khứ · đối diện với thực tế · xoay chuyển từng thứ một · <b>biết trước hệ quả sẽ xảy ra để không bị sốc</b>.",
+   ds:["Rà soát để <b>định vị phúc nghiệp</b> · tìm góc độ tác động chính · biết bất ổn tiềm ẩn để chủ động trả nghiệp trước · biết <b>dương phần và âm phần</b> tốt hay kém",
+       "<b>Phương pháp</b>: quy chiếu vào <b>quy chuẩn của Trí tuệ</b> để trả lời câu hỏi rà soát — không rà soát theo tư duy. <em>Ví dụ: để trả lời “thờ tự có chuẩn không” thì quy chiếu vào 4 ý — Thờ cúng chuẩn · Gốc Phật · Lễ Nghi · Gia quy</em>",
+       "<b>Rà soát gia tiên</b>: nghề nghiệp (có làm nghề sát sinh không? có làm quan xử sai cho ai chết oan không?) · cách sống (có làm phúc không? có phá đền chùa? có ăn trộm của chùa, của đất nước, của người khác? có nuôi âm binh? có làm thầy cúng hình nhân thế mạng?) · Hiếu–Lễ–Nghĩa (có đưa tâm thờ tự không? thờ tự có chuẩn mực không?)",
+       "<em>Bản gốc để trống: “Bài rà soát quá khứ” — công cụ chẩn đoán số 1 chưa có form cụ thể</em>"]},
+  {ma:"②", ten:"Xoay chuyển tâm · đích · công việc", nhan:"qc", noi:"",
+   ds:["<b>Xoay chuyển tâm</b> — trước đây làm gì cũng chỉ hướng đến tạo công đức phúc đức <em>cho mình</em>; bây giờ phải <b>phát tâm bồ đề nhiều hơn nữa cho chúng sinh</b> thì mới có tâm vô trụ sứ và chân tâm. Nếu chỉ quan tâm lợi ích của mình thì tâm bị lệch, rơi vào so đo tính toán → mất duyên",
+       "<b>Tâm khởi đến đâu thì Luật vận hành hút vào quỹ đạo đến đó</b>, đến ngày đến giờ chiết xuất thành nhân quả",
+       "<b>Xoay chuyển công việc</b> — để có thời gian cho cả Đời – Đạo – Lợi tư",
+       "<em>Bản gốc để trống: “Xoay chuyển đích”</em>"]},
+  {ma:"③", ten:"Lập kế hoạch thời gian Đời – Đạo – Lợi tư", nhan:"ud",
+   noi:"Không có thời gian Đời–Đạo–Lợi tư thì rất khó bứt phá, không xoay chuyển được tâm và đích, không trở về chính mình được.",
+   ds:["Bám vào nguyên tắc <b>chuẩn mực và rõ ràng</b> để lập: ngày nào/giờ nào cho Đời · cho Đạo · cho Lợi tư"]},
+  {ma:"④", ten:"Đưa khuôn Trí tuệ vào cuộc sống", nhan:"ud", noi:"",
+   ds:["<b>Khuôn bên trong</b> — 7 khối: Bản thân · Gia đình · Công việc · Tài chính · Quan hệ · Xã hội · Đất nước → <b>để dừng nghiệp</b>",
+       "<b>Khuôn bên ngoài</b> — Nói · Làm · Hành xử · Đối nhân xử thế → để tránh thân nghiệp, ý nghiệp, khẩu nghiệp, hệ quả, ân oán"]}]},
+
+{so:8, ten:"Hành", hoi:"Cống hiến ra bên ngoài thế nào?",
+ nhanh:[
+  {ma:"①", ten:"Hành thiện", nhan:"qc",
+   noi:"<b>Hành thiện ≠ Tạo phúc trả nợ</b> — đây là cặp rất hay bị nhầm.",
+   ds:["<b>Hành thiện</b> — phát tâm bồ đề <em>theo thực tế thời điểm</em>. Không có kế hoạch trước · <b>không cần tấu trình</b>, Trời Phật chứng tâm và ban phúc luôn · tiền lấy từ khoản <b>chi tiêu cá nhân</b> · <b>có thể làm cho người thân, họ hàng</b>",
+       "<b>Tạo phúc, trả nợ</b> — là <em>bổn phận, trách nhiệm</em>. Có kế hoạch, <b>định kỳ 6 tháng/lần</b> · <b>phải tấu trình</b> trước và báo cáo sau · tiền lấy từ khoản <b>tạo phúc trả nợ</b> · <b>phải làm ra ngoài cộng đồng</b>, không làm cho người trong họ"]},
+  {ma:"②", ten:"Hành đạo", nhan:"qc", noi:"",
+   ds:["<b>Hành 7 đạo mọi lúc mọi nơi</b> — thấy người khác hành xử lỗi đạo thì trung trực chia sẻ để họ sửa. Cần tinh tế xét thực tế xem người nào chia sẻ được, người nào không, tránh để lại ân oán",
+       "<b>Khai tuệ</b> — với người chưa biết Trí tuệ: chia sẻ các ý trong 7 ý thực tế · khai thác các ý Trí tuệ · dùng nới rộng hiểu biết để định hướng tư tưởng họ tiếp cận dần",
+       "<b>Hành Bồ tát đạo</b> — không phải bất chấp thực tế lao ra làm mọi việc, mà là giúp người trần biết đến Trí tuệ và giúp vong linh siêu thoát. <b>Để hành được thì trước hết bản thân phải tu đức — có đức mới độ được cho người khác</b>"]},
+  {ma:"③", ten:"Hành sứ mệnh — Khuôn hành", nhan:"qc",
+   noi:"<b>4 vị trí</b>: Gieo duyên và chăm sóc HTTĐ cá nhân · Gia đình chia sẻ · Trợ duyên · Truyền.",
+   ds:["<b>Hành cần gì?</b> — phương pháp · quy trình · chọn đích đáng theo căn cơ · tâm từ bi · triệt để · trọng · tròn · vô danh vô lợi · tinh tế · xả thân · tùy duyên",
+       "<b>Hành gặp gì?</b> — chướng bồ đề tâm/nguyện/hạnh · oan gia trái chủ · Ma vương phá · Cha Mẹ và các Ngài thử tâm",
+       "<b>Hành vấp gì?</b> — cảnh dẫn · thân sơ · kiêu mạn, cái Tôi · danh lợi · cám dỗ và cạm bẫy · ẩu, cẩu thả, đại khái, chủ quan, vô nguyên tắc · cả nể · lỗi đạo · phạm giới · lỗi hạnh",
+       "<b>Hành bám gì?</b> — Trí tuệ · công thức và quy chiếu · 5 Gốc · Đích · Nguyên tắc · Quy luật và Luật vận hành · chiến lược tư tưởng tinh thần theo thời điểm · Luật Nhà Thiên"]}]},
+
+{so:9, ten:"Luyện và Sửa", hoi:"Rèn bản thân ra sao?",
+ nhanh:[
+  {ma:"LUYỆN", ten:"Luyện Trí tuệ — 5 thứ và đích của từng thứ", nhan:"qc", noi:"",
+   ds:["<b>Luyện tâm</b> → kiểm soát nội tâm",
+       "<b>Luyện tầm</b> → quan sát, nhận diện được thực tế — <b>quan trọng nhất</b>",
+       "<b>Luyện tài</b> → đưa ra pháp đa chiều để xử lý tình huống",
+       "<b>Luyện chí</b> → vượt quá chính mình, thay đổi mình. <b>Dám đối diện để chiến thắng mình chứ không đổ lỗi cho tính cách của mình nó thế</b>",
+       "<b>Luyện tuệ</b> → khai thác Trí tuệ và luyện văn hóa con người Trí tuệ",
+       "<b>Luyện 5 thứ</b>: luyện viết · luyện Trí tuệ · luyện thế pháp · luyện ý thức hằng ngày · luyện thành cao nhân",
+       "<b>Luyện Tâm không</b>: cõi Ta Bà là giả tạm · <b>không chấp – không sân – không nản</b> · vô khứ vô lai",
+       "<b>10 thế pháp</b>: tâm · nguyên lý · đạo · nguyên tắc · công thức · tinh tế · giới · hạnh · chiêm tinh · linh khôn. <em>Đích: cùng một thế pháp thì nói ra hiểu giống nhau, hành động giống nhau — bản gốc mới có tên, chưa diễn giải</em>"]},
+  {ma:"SỬA", ten:"Tại sao phải sửa? Sửa gì?", nhan:"qc", noi:"",
+   ds:["<b>Tại sao?</b> — sửa để giữ cốt mệnh cho <b>cốt không mòn</b> · giữ gốc đạo và báo ơn Cha Mẹ và các Ngài · loại bỏ <b>tập khí sâu dày</b>",
+       "<b>Sửa gì?</b> — sửa tư duy · sửa thói thường · sửa tham, sân, si",
+       "<b>Kết quả</b>: <b>sửa đến đâu thì thói thường mất đi đến đó · sửa đến đâu thì phúc đức tăng lên đến đó</b>"]}]},
+
+{so:10, ten:"Tu", hoi:"Tu là tu những gì, để đạt gì?",
+ nhanh:[
+  {ma:"?", ten:"Tại sao cần tu · Tu để đạt gì", nhan:"qc", noi:"",
+   ds:["<b>Tại sao?</b> — ta là con Trời con Phật, tu để báo <b>Tứ đại trọng ơn</b>. Ta sinh ra làm 3 việc, trong đó có <em>tu tiếp</em>",
+       "<b>Tu để đạt gì?</b> — cốt sáng → linh sáng → linh khôn → linh cảm → linh ứng → linh thông → lục thông → thông toàn năng toàn giác · tu thoát tập khí để xoay chuyển vận mệnh · <b>đón được năng lượng sạch mạnh của Cha Mẹ và các Ngài, để khi chuyển cõi linh của ta chọn được luồng ánh sáng mạnh mà trở về chính đẳng chính giác</b>"]},
+  {ma:"5 BẬC", ten:"Tu đức — Đúng · Tròn · Hành · Cầu · Tu đạo", nhan:"qc", noi:"",
+   ds:["<b>Đúng đạo</b> — hành xử chuẩn mực: đúng quan hệ · đúng vai vế · đúng tuổi tác · đúng phép tắc · giữ giới giữ hạnh",
+       "<b>Tròn đạo</b> — tròn 7 đạo làm người",
+       "<b>Hành đạo</b> — hành 7 đạo mọi lúc mọi nơi · khai tuệ · hành Bồ tát đạo",
+       "<b>Cầu đạo</b> — không chỉ là cầu được học, được hành, mà là <b>mọi cảnh đến đều ý thức giữ đạo để lập đức</b>",
+       "<b>Tu đạo</b> — tu tiên · <b>tu thoát 7 thứ</b> (thoát tâm · nợ · nghiệp · tham ái · sở hữu · ân oán · thù hận) · tu thoát nghiệp của mình · hình thành nếp tu · <b>tu là thu mình lại</b> · tu tập, tu thân, tu tâm, tu sửa, tu trì, tu phát nguyện"]}]},
+
+{so:11, ten:"Kế thừa cho thế hệ tương lai", hoi:"Truyền lại cho con cháu và nhân loại thế nào?",
+ nhanh:[
+  {ma:"①", ten:"Tại sao bố mẹ cần chia sẻ Trí tuệ cho con", nhan:"qc",
+   noi:"Trí tuệ khác kinh nghiệm, kiến thức — và để <b>hóa giải mầm ân oán trong gia đình</b>.",
+   ds:["Con đến <b>báo ơn</b> · con đến <b>đòi nợ</b> — nên con cái là <em>nợ đời, là mầm họa tiềm ẩn</em>, cần đưa Trí tuệ vào gia đình",
+       "<b>Con mình thì trực chỉ, con người khác thì định hướng Trí tuệ</b> — vì sau này con mình có thể lấy chính con nhà đó"]},
+  {ma:"②", ten:"Định hướng cho con — 5 vốn", nhan:"qc", noi:"",
+   ds:["<b>Vốn Trí tuệ</b> · <b>Vốn kiến thức</b> (phổ thông + chuyên ngành) · <b>Vốn sinh tồn</b> (điện nước trong nhà · đi chợ nấu ăn, phối hợp và kiêng kỵ món ăn · thuốc thông thường và đồ y tế gia đình · vật dụng trong nhà · bơi lội, lái xe, đi rừng đi biển · ứng phó thiên tai hỏa hoạn) · <b>Vốn từ</b> · <b>Vốn hiểu biết đa chiều nhiều mặt</b>",
+       "<b>5 độ tuổi</b>: 0–3 · 4–6 · 7–10 · 11–17 · 18–25 <em>(bản Phần 11 ghi 6–10, 11–16, 17–25 — chồng lấn tuổi 6; nên dùng bộ 7–10/11–17/18–25)</em>",
+       "<em>Bản gốc để trống: nội dung cụ thể cho từng độ tuổi</em>"]},
+  {ma:"③", ten:"Phương pháp chia sẻ — 4 nấc", nhan:"ud", noi:"",
+   ds:["① Chia sẻ vốn sống Trí tuệ theo từng độ tuổi",
+       "② Chia sẻ ứng dụng cụ thể vào 7 khối",
+       "③ <b>Hằng tuần gia đình luyện cùng con</b> từng ý đã chia sẻ",
+       "④ Kết nối các ý đã chia sẻ, đã ứng dụng thành <b>nét văn hóa</b> để tạo thành nếp",
+       "<b>Công phu</b>: phải <b>nghiên cứu con mình</b> — tính cách · hành động · mệnh của con · nhân duyên của con với mình → để đưa ra pháp trong từng thời điểm, <b>lúc mềm lúc rắn</b>"]},
+  {ma:"④", ten:"6 nét văn hóa → 6 giá trị", nhan:"qc", noi:"Khi ứng dụng đủ lâu, các khuôn kết nối lại thành nét văn hóa — thành nếp sống, không còn phải cố gắng nữa.",
+   ds:["<b>Hiếu – Lễ – Nghĩa</b> → giá trị cho <b>bản thân</b>",
+       "<b>Tạo phúc, trả nợ, báo ơn, báo hiếu</b> → <b>gia đình và dòng họ</b>",
+       "<b>Chia sẻ Trí tuệ trong gia đình và kế thừa</b> → <b>công việc và tài chính</b>",
+       "<b>Cống hiến</b> → <b>quan hệ</b>",
+       "<b>Người Trí tuệ</b> → <b>đất nước</b>",
+       "<b>Tu đức cá nhân để lập đức</b> → <b>cộng đồng, nhân loại</b>",
+       "<b>Văn hóa người Trí tuệ</b> — làm bất kỳ việc gì cũng bám vào: 5 mảng của Trí tuệ · quy luật · biết gốc và bám gốc · nguyên tắc · khuôn pháp · Công–Dung–Ngôn–Hạnh · hành xử và đối nhân xử thế · thấu triệt · nhân duyên và tùy duyên"]}]}
+];
+
+/* ── 7 KHỐI + bộ khai thác ─────────────────────────────────── */
+const KHOI = [
+{id:"bt", ten:"Bản thân", mo:"Sức khỏe · tư tưởng, tinh thần",
+ vande:["Sức khỏe kém, hay ốm đau, bệnh không rõ nguyên nhân","Tư tưởng, tinh thần bất ổn — lo lắng, mất phương hướng","Làm gì cũng thấy mệt mỏi, lao tâm khổ tứ","Không có động lực, hay nản, dễ bỏ cuộc"],
+ khaithac:[
+  {y:"NLCĐ 1 · Ta là ai? Ta có gì?", chi:"Ta là con Trời con Phật; trong ta có cốt Phật cốt Tiên, thân tứ đại, tần sóng, năng lượng, tư lương", lam:"Bái yết Cha Mẹ hằng ngày để Cha biết mặt Mẹ biết tên; làm khóa lễ giữ cốt mệnh, chân mệnh"},
+  {y:"NLCĐ 2 · Ta sinh ra để làm gì?", chi:"Sinh ra để trả nghiệp (5 loại), tu tiếp, thực hiện sứ mệnh", lam:"Nhận diện mình đang trả nghiệp gì; dừng không tạo nghiệp mới"},
+  {y:"NLCĐ 3 · Thời thế", chi:"Thời này là thời mạt, thời suy — không phải thời làm giàu", lam:"Rốt ráo trả nghiệp · tu tiếp · thực hiện sứ mệnh"},
+  {y:"NLCĐ 5 · Kiểm soát", chi:"6 lĩnh vực cần kiểm soát: sức khỏe, cảm xúc, hành động, quan hệ, tài chính, chi tiêu", lam:"Trọng thân: chọn việc đáng mới làm; dinh dưỡng cân bằng; vận động sinh hoạt hợp lý"},
+  {y:"NLCĐ 6 · Xoay chuyển vận mệnh", chi:"Tập khí → tính cách → hành động → vận mệnh", lam:"Rà soát tính cách xấu để sửa: kiêu mạn, ẩu cẩu thả đại khái, chủ quan, xuề xòa"},
+  {y:"NLCĐ 7 · Đích", chi:"Đích đáng nhất là trở về với Gốc", lam:"Ấn định đích; làm gì cũng biết đích; luôn bám đích"},
+  {y:"10 liệu pháp y thuật", chi:"3 gốc bệnh: thân bệnh · tâm bệnh · nghiệp bệnh", lam:"5 liệu pháp khoa học + 5 liệu pháp tâm linh, tùy gốc bệnh mà dùng"},
+  {y:"6 nấc căn cơ cốt mệnh", chi:"Cốt là bộ khung — cốt tốt thì trụ chắc, cốt yếu thì mệnh kém", lam:"Định vị mình ở nấc nào để biết dành được bao nhiêu thời gian cho Đời và Đạo"},
+  {y:"Ý pháp: tham – sân – si · tập khí · phúc nghiệp", chi:"Vòng luẩn quẩn Tham–Sân–Si dẫn đến khổ đau", lam:"Sửa tham sân si; xét lại căn cơ, chuyên môn, tài riêng, phúc đức, nhân duyên, hoàn cảnh của mình để không so sánh đố kỵ"}]},
+
+{id:"gd", ten:"Gia đình", mo:"Gia tiên · ông bà bố mẹ · vợ chồng · con cái · anh chị em",
+ vande:["Mâu thuẫn với bố mẹ, ông bà","Vợ chồng bất hòa","Con cái hư, không nghe lời, không định hướng được","Anh chị em bất hòa, tranh chấp","Gia tiên — thờ tự, phần mộ có vấn đề","Trong nhà lục đục, rối ren không rõ nguyên nhân"],
+ khaithac:[
+  {y:"NLCĐ 2 · Nợ đời", chi:"Người trong gia đình là nợ đồng lần với nhau; nợ gia đình là nợ nặng nhất", lam:"Tròn chức năng, vai trò, bổn phận, trách nhiệm; biết trả nợ đồng lần"},
+  {y:"NLCĐ 4 · Xét người", chi:"Con người rất phức tạp — 4 dạng tâm, 5 dạng tái sinh, 4 dạng tập khí", lam:"Thấu triệt từng người trong nhà: tính cách, thói quen, sở thích, nguyên tắc"},
+  {y:"NLCĐ 5 · Kiểm soát", chi:"Cảm xúc · hành động · quan hệ · tài chính", lam:"Khi có dấu hiệu mất kiểm soát cảm xúc thì xin phép rời đi vài phút để ngắt nhân duyên"},
+  {y:"NLCĐ 8 · Điểm tựa gia đình và gia tiên", chi:"Gia đình là điểm tựa đầu tiên đón ta ra đời; gia tiên để lại phúc đức, dẫn đường, nâng đỡ", lam:"Vun vén, chăm lo, không bị nợ gia đình; giúp gia tiên siêu thoát"},
+  {y:"7 Đạo — nhất là Đạo Hiếu", chi:"Hiếu với ông bà bố mẹ, gia tiên tiền tổ, cha mẹ 7 đời bà con 10 kiếp", lam:"Tròn đại hiếu: chia sẻ Trí tuệ, đọc sám hối, tạo phúc trả nợ bằng công và của"},
+  {y:"Ý pháp: nhân quả · nợ công nợ của · oan gia trái chủ · oan khiên tích kiết · lục đạo luân hồi", chi:"Con đến báo ơn hoặc con đến đòi nợ", lam:"Hóa giải mầm ân oán bằng tạo phúc trả nợ và chia sẻ Trí tuệ cho con"},
+  {y:"Hiếu – Lễ – Nghĩa", chi:"Thờ tự chuẩn thì gia tiên mới về được; thờ tự lỗi thì các vong khác vào làm gia đình lục đục", lam:"Rà lại tiêu chí thờ cúng chuẩn; làm lộ phí gia tiên hằng tháng"},
+  {y:"Kế thừa Trí tuệ cho con cháu", chi:"Trí tuệ khác kinh nghiệm, kiến thức", lam:"Chia sẻ theo độ tuổi; hằng tuần luyện cùng con; tạo nếp nhà"}]},
+
+{id:"cv", ten:"Công việc", mo:"Nghề nghiệp · đồng nghiệp · cơ quan, doanh nghiệp",
+ vande:["Làm nhiều mà không có kết quả, không được ghi nhận","Bị chướng cản, bị phá trong công việc","Mâu thuẫn với sếp, đồng nghiệp, đối tác","Không biết công việc hiện tại có đúng mệnh mình không","Ôm quá nhiều việc, hết việc nọ đến việc kia, không thu gom được"],
+ khaithac:[
+  {y:"NLCĐ 2 · Nghiệp đời", chi:"Nghiệp đời sinh ra từ việc không trung thành với công việc: làm không tròn tâm/đạo/việc/nhân duyên, dùng kỹ năng kỹ xảo, ăn bớt việc bớt giờ mà hưởng đủ", lam:"Làm tròn tâm – tròn đạo – tròn việc – tròn nhân duyên"},
+  {y:"NLCĐ 7 · Đích", chi:"Làm gì cũng phải biết đích của việc đấy; chọn đích đáng nhất", lam:"Xét đích của việc đó — đáng mới làm"},
+  {y:"NLCĐ 8 · Điểm tựa Trời Phật, Đất nước, Gia tiên", chi:"Công việc là phương tiện, không phải đích", lam:"Tấu trình để các Ngài lấy tư lương ra cho mình; tạo phúc trả nợ ở cơ quan"},
+  {y:"Gốc của công việc là PHƯƠNG TIỆN", chi:"Công việc để kiếm tiền, tiền là phương tiện để đạt đích cuộc đời", lam:"Không lấy công việc làm đích cuộc đời"},
+  {y:"Mệnh và sứ mệnh", chi:"Làm công việc đúng mệnh = công việc mang lại 80% giá trị cho cộng đồng, 20% cho mình", lam:"Xét lại căn cơ cốt mệnh, chuyên môn, tài riêng để chọn việc đúng mệnh"},
+  {y:"Ý pháp: oan gia trái chủ · phúc đức · học tài thi phận · tham sân si", chi:"Bị chướng cản trong công việc thường do oan gia hoặc phúc đức cạn", lam:"Tạo phúc trả nợ cho các thần linh, vong linh vất vưởng, nhân viên đồng nghiệp ở cơ quan"},
+  {y:"Thực tế: thời thế · xu thế · luật · công việc", chi:"7 ý thực tế cho ta biết trước về trần gian hiện nay", lam:"Xét thực tế trước khi hành động để tránh họa, tránh nhân quả, tránh hệ quả"},
+  {y:"Tròn chức năng, vai trò, bổn phận, trách nhiệm", chi:"Chức năng = chuyên môn cụ thể; vai trò = vị trí; bổn phận = nhân viên/quản lý/chủ; trách nhiệm = làm đến khi xong việc", lam:"Với việc đã nhận lời thì phải tròn cả 4 để không bị trả nghiệp đời"}]},
+
+{id:"qh", ten:"Quan hệ", mo:"Bạn bè · đối tác · người xung quanh",
+ vande:["Hay bị người khác nói xấu, hại, phản bội","Không biết chọn bạn mà chơi, hay bị nhầm người","Bị lôi kéo vào việc không đáng","Mâu thuẫn kéo dài với một người cụ thể","Sống khép kín, ngại giao tiếp, ngại nhờ vả"],
+ khaithac:[
+  {y:"NLCĐ 2 · Nợ đời", chi:"Bà con quyến thuộc và cộng đồng là nợ đồng lần với nhau", lam:"Trả nợ bằng công và bằng của; hồi hướng công đức"},
+  {y:"NLCĐ 4 · Xét người", chi:"Xét qua ánh mắt · lời nói · hành động · thần khí. Đích: xét người để xét chính mình", lam:"Phân rõ 3 loại quan hệ: bất biến · tâm giao · xã giao — mỗi loại một cách hành xử"},
+  {y:"Ý pháp Tập khí", chi:"Tính cách người ta là do tập khí sâu dày nhiều đời nhiều kiếp", lam:"Không kỳ vọng người khác đổi ngay; thấu triệt để hành xử không mắc tâm, không chấp"},
+  {y:"4 dạng tâm", chi:"Tâm thú · tâm ma · tâm người · tâm Phật", lam:"Nhận diện người đối diện đang ở dạng tâm nào để chọn cách ứng xử"},
+  {y:"Cõi Ta Bà — 5 dạng tái sinh và 2 nhóm xuống trần hành đạo", chi:"Cõi Ta Bà vô cùng hỗn tạp, con người cực kỳ phức tạp", lam:"Không thấu triệt mà hành xử thì rất dễ gặp họa, để lại hậu quả"},
+  {y:"Nguyên tắc 3 lần", chi:"Có những người mình quan hệ theo nguyên tắc 3 lần của Trí tuệ", lam:"Nếu vượt quá 3 lần thì không chơi nữa"},
+  {y:"Ân oán tiền kiếp", chi:"Giúp người mà bị hại, bị nói xấu — gốc là do ÂN OÁN, không phải “làm phúc phải tội”", lam:"Trước khi làm phúc thì tạo phúc bằng của và hồi hướng bằng công để hóa giải trước"}]},
+
+{id:"tc", ten:"Tài chính", mo:"Thu nhập · chi tiêu · nợ · tiết kiệm",
+ vande:["Làm nhiều mà không có tiền, tiền vào rồi lại ra","Bị lừa, mất tiền, vỡ nợ","Không kiểm soát được chi tiêu","Cho vay không đòi được / đang mắc nợ","Kiếm tiền từ công việc không chắc là tiền sạch"],
+ khaithac:[
+  {y:"Gốc của tài chính là PHÚC ĐỨC", chi:"Tài chính không phải do giỏi hay chăm, mà do phúc đức", lam:"Rốt ráo bồi vào phúc đức: tròn đạo, hành sứ mệnh, tạo phúc trả nợ"},
+  {y:"NLCĐ 2 · Nghiệp đời", chi:"Làm nhiều mà không có tiền vì kiếp trước làm không tròn hoặc làm ít hưởng nhiều — kiếp này làm bù", lam:"Làm tròn tâm, tròn việc, tròn nhân duyên; trả nghiệp trước"},
+  {y:"NLCĐ 5 · Kiểm soát chi tiêu", chi:"Chia thu nhập thành 5 khoản", lam:"① Chi tiêu gia đình ② Tiết kiệm phòng rủi ro ③ Tạo phúc trả nợ ④ Tái đầu tư tiêu dùng ⑤ Chi tiêu cá nhân"},
+  {y:"Tiền sạch", chi:"Tiền sạch = làm việc tròn 4 thứ + kiếm từ công việc đúng 4 luật (Pháp · Giới luật · Tự nhiên · Lương tâm)", lam:"Rà lại công việc của mình có phạm luật nào không"},
+  {y:"Ý pháp: nợ công nợ của · oan gia trái chủ", chi:"Nợ của mà không trả thì kiếp sau bị đòi lại", lam:"Lập danh sách người mình nợ; trả nợ bằng công và bằng của"},
+  {y:"NLCĐ 3 · Thời thế", chi:"Thời này không phải thời làm giàu", lam:"Tăng cường tiết kiệm và thu gom, không lao tâm khổ tứ để kiếm thêm"},
+  {y:"Ý pháp tham – sân – si", chi:"Không biết dùng tiền để đạt đích cuộc đời mà lại đi giữ tiền thì làm nô lệ cho đồng tiền", lam:"Dùng tiền đúng giá trị để phát huy hạnh nguyện của đồng tiền"}]},
+
+{id:"xh", ten:"Xã hội", mo:"Cộng đồng · vạn vật · môi trường ngoài",
+ vande:["Hay kêu ca, phàn nàn, tiêu cực về xã hội","Bị cuốn theo trào lưu, đám đông","Rơi vào cám dỗ, cạm bẫy","Không biết ứng xử với các nhóm người khác nhau"],
+ khaithac:[
+  {y:"NLCĐ 4 · Xét người — 3 nhóm người trong xã hội", chi:"Người thuần lương · người mưu mô tính toán · người lúc thường không quan tâm, khi cần thì nịnh bợ", lam:"Nhận diện nhóm để chọn cách ứng xử phù hợp"},
+  {y:"NLCĐ 6 · Môi trường quyết định vận mệnh", chi:"Chọn môi trường tích cực để được cộng hưởng tốt", lam:"Chủ động tạo môi trường Trí tuệ xung quanh mình, đi đến đâu tạo đến đó"},
+  {y:"5 loại họa cần tránh", chi:"Đồng lõa · cộng nghiệp · rơi vào cám dỗ · rơi vào cạm bẫy · cảnh cuốn", lam:"Bám vào thực tế, quy luật, quy chuẩn Trí tuệ để tránh"},
+  {y:"Ý pháp: hoan hỷ · xả bỏ · tùy duyên · diệt trừ · triệt để", chi:"Tùy duyên khác vô tâm — tùy duyên là đã khởi tâm và hành động chuẩn rồi mới tùy duyên với kết quả", lam:"Hoan hỷ đón nhận, xả bỏ, không chấp"},
+  {y:"Gốc của xã hội là NỢ ĐỒNG LẦN", chi:"Cộng đồng chính là bà con quyến thuộc đã luân hồi chuyển kiếp quay lại", lam:"Báo ơn, báo hiếu, trả nợ; sống có nhân tâm với con người và vạn vật"},
+  {y:"Nới rộng hiểu biết", chi:"Hiểu biết đến đâu thì hành xử đến đó", lam:"Nới rộng về các nhóm người, vùng miền, lối sống, thời thế, xu thế, vận thế"}]},
+
+{id:"dn", ten:"Đất nước", mo:"Nghĩa vụ công dân · luật pháp · cống hiến",
+ vande:["Tiêu cực về đất nước, hay chê bai chính sách","Không nắm được luật liên quan đến mình","Trốn thuế, lách luật, ăn cắp giờ cơ quan","Không biết mình cần làm gì cho đất nước"],
+ khaithac:[
+  {y:"NLCĐ 8 · Điểm tựa Đất nước", chi:"Đất nước ban cho ta: hệ thống pháp quyền, đất để đi lại và chôn gia tiên, an sinh xã hội, giao thương", lam:"Bảo vệ, vun vén, phục vụ, cống hiến để báo ơn và trả nợ"},
+  {y:"Gốc của đất nước là ĐIỂM TỰA", chi:"Nên ta cần báo ơn, không phải đòi hỏi", lam:"Không đòi hỏi đất nước không đúng"},
+  {y:"NLCĐ 2 · Nợ đời với đất nước", chi:"Trốn thuế · ăn cắp giờ cơ quan · tham ô tham nhũng · làm công chức không tròn tâm tròn việc · đòi hỏi đất nước không đúng", lam:"Rà lại và dừng; nộp thuế đầy đủ"},
+  {y:"Đạo Luật — Luật Pháp", chi:"Với đất nước thì LUẬT PHÁP là cao nhất", lam:"Thấu triệt Hiến pháp và Pháp luật; luật do con người lập nên cần cập nhật thường xuyên"},
+  {y:"Điểm tựa Hồn thiêng sông núi, hồn thiêng dân tộc", chi:"Các vua hiền, danh tướng, danh nhân, anh hùng liệt sỹ đã hy sinh để ta có hòa bình", lam:"Biết ơn; kính lễ ngày 10/3, 27/7, 2/9; kêu cầu cho anh hùng liệt sỹ siêu thoát"},
+  {y:"Tròn chức năng, vai trò, bổn phận, trách nhiệm + NGHĨA VỤ", chi:"Nghĩa vụ là việc bắt buộc mình phải làm để báo ơn, không phân cho ai khác được", lam:"Tuân thủ hiến pháp và pháp luật"}]}
+];
+
+/* ── Biểu hiện hiện tượng → gợi ý góc độ (truy quả tầm nhân) ── */
+const BIEUHIEN = [
+ {t:"Nhân duyên đến với mình, nhưng cứ chuẩn bị được thì lại tụt mất — hoặc được rồi lại mất", g:["khuyetduc","hanhxu","loidao","hln"], n:"Biểu hiện bị MẤT PHẦN → khuyết đức"},
+ {t:"Làm bất kỳ việc gì cũng bị người khác chướng cản, cản phá", g:["oangia"], n:"Nếu luôn là một người → người đó chính là oan gia trái chủ. Nếu mỗi việc một người khác nhau, cản xong lại bình thường → vong linh oan gia ứng vào họ"},
+ {t:"Trong nhà lục đục, rối ren; gia tiên hình như không về được", g:["tamlinh","hln"], n:"Thờ tự không chuẩn nên không được các Thần trông nom, các vong khác vào được"},
+ {t:"Sắc khí khuôn mặt đi xuống, bị tối lại", g:["tamlinh","nghiep"], n:"Thường do phần mộ có vấn đề · phần âm gia tiên có vấn đề · gần đây suy nghĩ lo lắng quá nhiều"},
+ {t:"Con cháu chết trẻ, bệnh nan y, thần kinh, tuyệt tự dòng họ", g:["tamlinh","nghiep"], n:"Có thể do đời trước gia tiên làm nghề sát sinh, làm thầy cúng hình nhân thế mạng, hoặc điều khiển âm binh"},
+ {t:"Làm nhiều mà không có tiền; hoặc đã đủ tài chính vẫn không dừng được", g:["nghiep","phucduccan"], n:"Biểu hiện trả nghiệp đời quá khứ"},
+ {t:"Bị đòi nợ công, nợ của; phải lo làm cho người ngoài", g:["nocong"], n:"Biểu hiện trả nợ đời quá khứ"},
+ {t:"Người nhà không hài lòng dù mình đã làm chuẩn Trí tuệ", g:["nocong","oangia"], n:"Biểu hiện nợ đời quá khứ — cần trả nợ đồng lần"},
+ {t:"Ôm quá nhiều việc, hết việc nọ đến việc kia, không thu gom được", g:["nghiep","hanhxu"], n:"Biểu hiện nghiệp đời hiện tiền"},
+ {t:"Mắc bệnh từ nhỏ không rõ nguyên nhân; hay ốm đau", g:["nghiep","tamlinh"], n:"Biểu hiện trả nghiệp thân quá khứ"},
+ {t:"Bán đất của gia tiên để lại; hoặc đời trước ăn trộm của chùa, đền, đình", g:["tamlinh","hln"], n:"Con cháu thường làm ăn kém, tan đàn xẻ nghé, đầu óc lơ ngơ chậm chạp"},
+ {t:"Không thấy biểu hiện nào rõ rệt — chỉ thấy bất ổn chung chung", g:[], n:"Vẫn tiếp tục được: bước sau sẽ khai thác dữ liệu và rà soát quá khứ để tìm gốc"}
+];
+
+/* ── 9 góc độ tác động chính ───────────────────────────────── */
+const GOCDO = [
+ {id:"hanhxu",     ten:"Hành xử kém",        mo:"Không chủ động hành xử trước; hành xử không chuẩn mực, không đúng vai vế, tuổi tác, quan hệ, phép tắc"},
+ {id:"loidao",     ten:"Lỗi đạo",            mo:"Chưa tròn một hoặc nhiều trong 7 đạo làm người"},
+ {id:"nguyentac",  ten:"Vô nguyên tắc",      mo:"Không đúng luật · không chuẩn mực · không rõ ràng · không có trước có sau · cứng nhắc hoặc tùy tiện"},
+ {id:"hln",        ten:"Lỗi Hiếu – Lễ – Nghĩa", mo:"Thờ tự không chuẩn · chưa tròn đại hiếu · không biết trân trọng và biết ơn · lỗi gia quy"},
+ {id:"tamlinh",    ten:"Tâm linh",           mo:"Gia tiên chưa siêu thoát, phần mộ có vấn đề, vô tâm với Trời Phật và gia tiên, có bùa chú trong nhà"},
+ {id:"oangia",     ten:"Oan gia trái chủ",   mo:"Người trần hoặc vong linh có ân oán từ tiền kiếp nay đến đòi nợ, chướng cản"},
+ {id:"nghiep",     ten:"Nghiệp đổ về",       mo:"Nghiệp thân · nghiệp đời · nghiệp chướng · nghiệp cản đã thành nhân quả và đang trổ ra"},
+ {id:"phucduccan", ten:"Phúc đức cạn",       mo:"Dương phần của bản thân và/hoặc âm phần của gia tiên đều kém"},
+ {id:"nocong",     ten:"Nợ công, nợ của",    mo:"Nợ gia đình, cộng đồng, đất nước — bằng công sức hoặc bằng tiền của, chưa trả"},
+ {id:"khuyetduc",  ten:"Khuyết đức → mất phần", mo:"Tổng hợp của hành xử kém + lỗi đạo + lỗi Hiếu–Lễ–Nghĩa, dẫn đến mất phần và mất nhân duyên"}
+];
+
+/* ── 24 khuôn ứng dụng ─────────────────────────────────────── */
+const KHUON = [
+ {id:"thocung", so:1, ten:"Thờ cúng chuẩn – Kính lễ – Tu tập", nhom:"Nền tảng tâm linh",
+  giai:["Lỗi Hiếu–Lễ–Nghĩa","Thờ tự gia tiên","Vô tâm với Trời Phật và Gia tiên"],
+  nra:"<b>NLCĐ 1</b> — ta là con Trời con Phật nên cần bái yết Cha Mẹ và các Ngài hằng ngày để <b>Cha biết mặt, Mẹ biết tên</b>, các Ngài cho các thần đi hộ trì, độ trì. <b>NLCĐ 2</b> — ta sinh ra để tu tiếp, trong đó có tu tập. <b>NLCĐ 8</b> — ứng dụng này báo ơn được <b>cả 5 điểm tựa</b> cùng lúc. <b>7 Đạo</b> — tròn 7 đạo để lập đức, giữ phần. <b>Ý pháp oan gia</b> — hóa giải oan gia trái chủ.",
+  lam:["Rà lại tiêu chí thờ cúng chuẩn: phòng thờ khép kín · ban thờ án gian, không có dầm đè · bát hương rồng–phượng theo cung đỏ thước lỗ ban · không thờ Phật chung ban gia tiên · không có bùa chú, tro cốt trong nhà · không dùng vàng mã mà làm lộ phí","Kính lễ sáng tối hằng ngày","Nhớ ngày kị của các vong linh đang thờ ở nhà mình để làm giỗ, tạo phúc trả nợ, làm lộ phí, xin quần áo"]},
+ {id:"taophuc", so:2, ten:"Tạo phúc, trả nợ", nhom:"Xử lý nghiệp",
+  giai:["Nợ công, nợ của người trần","Tâm linh — gia tiên và các nhóm vong","Hóa giải oan gia","Phúc đức cạn"],
+  nra:"<b>NLCĐ 2</b> — ta sinh ra để trả nghiệp. <b>NLCĐ 8</b> — báo ơn được 5 điểm tựa. <b>Ý pháp oan gia trái chủ</b> — hóa giải oan gia. <b>Ý pháp nợ công, nợ của</b> — trả nợ và <b>dừng không tạo ra các nợ mới</b>.",
+  lam:["Tạo phúc, trả nợ để <b>dừng nghiệp</b> — 6 tháng/lần, lấy từ khoản tạo phúc trả nợ","Làm <b>lộ phí cho gia tiên hằng tháng</b>","Tạo phúc trả nợ để <b>giải nghiệp</b> theo góc độ tác động chính — trích từ khoản tiết kiệm, làm liên tục đến khi hết bất ổn","Tấu trình Trời Phật và gia tiên trước, mang đi làm công đức nơi địa linh hoặc giúp người khó khăn <b>ngoài cộng đồng</b>, xong quay về báo cáo","<b>Không</b> đi vay tiền hoặc xin tiền bố mẹ để làm — như vậy là nợ lại tiếp tục nợ"]},
+ {id:"tranghiep", so:3, ten:"Trả nghiệp", nhom:"Xử lý nghiệp",
+  giai:["Nghiệp đổ về","Oan gia trái chủ","Phúc đức cạn"],
+  nra:"Trả nghiệp là <b>chủ động trả trước</b> cho những nghiệp đã tạo ra nhưng chưa đổ về. <em>“Trả nghiệp là Gốc — trả không hết để nghiệp đổ về thì mới phải giải nghiệp.”</em> Giải nghiệp mới chỉ là bề nổi; tảng băng chìm là nghiệp vô thủy kiếp trước tích lại.",
+  lam:["<b>3 tháng/lần</b>: tấu trình trả nghiệp trước bằng của — cho oan gia của bản thân, của gia tiên, của các thành viên trong gia đình, cho nhóm mình nợ, cho cô bé đỏ cậu bé đỏ","<b>3 tháng/lần, mỗi lần 1 tuần</b>: hồi hướng công đức trả nghiệp trước","<b>3 tháng/lần</b>: phóng sinh trả nghiệp trước","Tiền lấy từ <b>khoản tiết kiệm</b> — <em>“Trích 1 đồng ra trả trước, tránh khi họa đổ về thì mất cả 100 đồng”</em>"]},
+ {id:"giainghiep", so:4, ten:"Giải nghiệp", nhom:"Xử lý nghiệp",
+  giai:["Nghiệp đổ về","Oan gia trái chủ","Tâm linh"],
+  nra:"Không ai giải nghiệp thay mình được. 4 bước: <b>Dừng nghiệp → Hóa nghiệp → Đón nghiệp → Chuyển nghiệp</b>.",
+  lam:["<b>Đọc sám</b> — với trường hợp nặng, cấp bách thì làm riêng cho người đó hoặc vong linh đó","<b>Phóng sinh</b> — khi chưa gieo duyên được thì tăng cường phóng sinh để có công đức","<b>Hồi hướng công đức</b> — cho người trần để trả nợ công; cho vong linh để họ siêu thoát","Làm <b>trực tiếp</b> cho người trần và vong linh đang gây ra góc độ tác động chính, không rải đều cho tất cả các nhóm"]},
+ {id:"hanhxu", so:7, ten:"Hành xử", nhom:"Đối nhân",
+  giai:["Lỗi đạo","Hành xử kém","Vô nguyên tắc","Khuyết đức → mất phần"],
+  nra:"<b>NLCĐ 1</b> — là con Trời con Phật nên phải hành xử chuẩn mực để giữ <b>cốt cách thanh cao</b>. <b>NLCĐ 2</b> — hành xử chuẩn để <b>dừng nghiệp, không tạo nghiệp mới</b>. <b>7 Đạo</b> — tròn 7 đạo để lập đức, giữ phần. <b>Ý pháp oan gia</b> — <b>không tạo ra</b> oan gia trái chủ mới.",
+  lam:["Hành xử <b>đúng nguyên lý · đúng đạo · đúng nguyên tắc · đúng quy luật</b>","Hành xử <b>quảng đại, bao dung</b> — thấu triệt con người để không mắc tâm, không chấp","Hành xử <b>chuẩn mực</b>: đúng vai vế · đúng tuổi tác · đúng giới hạnh · đúng mối quan hệ · đúng phép tắc","<b>Chủ động hành xử trước</b> — xem thế mạnh của mình là gì để luôn thể hiện trước","Nới rộng hiểu biết trước khi hành xử — <em>hiểu biết đến đâu thì hành xử đến đó</em>"]},
+ {id:"dnxt", so:8, ten:"Đối nhân xử thế", nhom:"Đối nhân",
+  giai:["Lỗi đạo","Hành xử kém","Vô nguyên tắc"],
+  nra:"<b>Đối nhân</b> = đối xử · đối đáp · đối đãi. <b>Xử thế</b> = xử lý tình huống. Cần bám vào Trí tuệ và quy luật tự nhiên — mọi việc đều định vị bởi <b>Nhân quả – Phúc đức – Nhân duyên</b>.",
+  lam:["Xét người và sử dụng pháp phù hợp: với kẻ tiểu nhân · với người kém · với người tài","Khi có việc đến với mình thì xét thực tế trước — liên quan đến con người hay sự việc","Với con người: xét tâm trạng của họ lúc đó, vì mỗi người mỗi thời điểm mỗi khác"]},
+ {id:"tron4", so:11, ten:"Tròn chức năng, vai trò, bổn phận, trách nhiệm", nhom:"Làm việc & thời gian",
+  giai:["Nợ công, nợ của","Hành xử kém","Lỗi đạo","Nghiệp đổ về"],
+  nra:"<b>NLCĐ 2</b> — sinh ra để trả nghiệp; cần tròn 4 thứ trong gia đình và trong công việc để <b>dừng và trả nợ đời, nghiệp đời</b>. <b>NLCĐ 8</b> — tròn 4 thứ để báo ơn điểm tựa gia đình và điểm tựa đất nước.",
+  lam:["<b>Chức năng</b> — làm tròn việc mình cần làm; không để người khác phải đi dọn theo sau thì mới không bị nợ","<b>Vai trò</b> — nghiên cứu, suy ngẫm để làm tốt nhất, khiến người khác hoan hỷ","<b>Bổn phận</b> — giữ đúng đạo trong lúc tròn chức năng, làm tốt nhưng không kiêu mạn","<b>Trách nhiệm</b> — làm đến khi xong việc mới thôi","Ngoài chức năng còn phải tròn <b>NGHĨA VỤ</b> với gia đình, công việc, đất nước — việc bắt buộc mình phải làm, không phân cho ai khác được"]},
+ {id:"sumenh", so:6, ten:"Hành sứ mệnh", nhom:"Cống hiến",
+  giai:["Nợ công người trần","Hóa giải oan gia","Phúc đức cạn","Nợ công, nợ của"],
+  nra:"Hành sứ mệnh <b>Lan tỏa Trí tuệ là công đức lớn nhất</b>. Đích: báo Tứ đại trọng ơn · giữ chân mệnh · cống hiến vô danh vô lợi · tạo phúc trả nợ báo ơn báo hiếu · hóa giải ân oán · luyện Trí tuệ.",
+  lam:["<b>Gieo duyên</b> — lập danh sách theo nhóm quan hệ; dùng pháp đối trị trước khi gieo duyên; 4 bước: quan sát và lắng nghe để thấu triệt → khai mở một số câu Trí tuệ → đồng cảm để họ mở tâm → gieo khát vọng","<b>Chăm sóc HTTĐ cá nhân</b> theo 5 bước","<b>Không</b> lôi kéo, mồi chài, nài nỉ người mới","<em>Gốc của danh lợi là phúc đức — gieo duyên có phúc đức thì mới giữ được phần danh lợi, không sợ ảnh hưởng đến danh lợi</em>"]},
+ {id:"ddlt", so:10, ten:"Lập kế hoạch thời gian Đời – Đạo – Lợi tư", nhom:"Làm việc & thời gian",
+  giai:["Phúc đức cạn","Nghiệp đổ về"],
+  nra:"<b>NLCĐ 2</b> — ta sinh ra làm 3 việc, ứng với <b>3 công trình</b> Đời – Đạo – Lợi tư. <b>Đạo Sinh</b> — lập kế hoạch thời gian để tròn Đạo Sinh. Quan trọng nhất: <b>có thời gian để Hành sứ mệnh thì mới có phúc đức và công đức</b>.",
+  lam:["Xét thực tế của mình: căn cơ cốt mệnh, đích và khát vọng, điều kiện hoàn cảnh","Xét thực tế gia đình, công việc và cách mình đang dùng thời gian trong ngày, trong tuần","Sắp xếp để có được thời gian cho Đời và Đạo — <em>tham chiếu 6 nấc căn cơ cốt mệnh để biết mình dành được mấy ngày</em>","Bám đích để <b>trì</b> kế hoạch"]},
+ {id:"thautriet", so:16, ten:"Thấu triệt", nhom:"Đối nhân",
+  giai:["Hành xử kém","Vô nguyên tắc"],
+  nra:"<b>NLCĐ 5 Kiểm soát</b> — <b>thấu triệt thì mới kiểm soát được</b>: thấu triệt con người mới kiểm soát được quan hệ, thấu triệt công việc mới kiểm soát được công việc. <b>Tâm từ bi</b> — thấu triệt bản thân và người khác thì mới yêu thương, giúp đỡ được.",
+  lam:["<b>Con người</b> — căn cơ cốt mệnh · phúc nghiệp · tập khí, tính cách · thói quen, sở thích · nguyên tắc · điều kiện hoàn cảnh","<b>Môi trường</b> — luật · chiến lược, tư tưởng, tinh thần · văn hóa – quy định – nguyên tắc","<b>Công việc</b> — luật · chiến lược, tư tưởng, tinh thần · quy trình · nguyên tắc"]},
+ {id:"hln", so:17, ten:"Tròn Hiếu – Lễ – Nghĩa", nhom:"Giữ mình",
+  giai:["Lỗi Hiếu – Lễ – Nghĩa","Tâm linh","Khuyết đức → mất phần"],
+  nra:"Tròn Hiếu–Lễ–Nghĩa là điều kiện để giữ được <b>mạch nguồn phúc đức</b> ông bà để lại — <em>ĐỨC LƯU QUANG</em>.",
+  lam:["<b>Hiếu</b> — tròn đại hiếu với ông bà bố mẹ còn sống và với gia tiên tiền tổ (3 cấp: tiểu · trung · đại hiếu)","<b>Lễ</b> — lễ phép · kính lễ tại gia và tại nơi địa linh · làm chủ 8 bộ lễ Trí tuệ","<b>Nghĩa</b> — ghi ra danh sách cụ thể những người mà ông bà và bản thân mình mang ơn; trân trọng và biết ơn cả vạn vật, cỏ cây hoa lá"]},
+ {id:"giugioi", so:12, ten:"Giữ giới, giữ hạnh", nhom:"Giữ mình",
+  giai:["Lỗi đạo","Vô nguyên tắc","Khuyết đức → mất phần"],
+  nra:"Giữ 5 giới và 18 hạnh là <b>Giới luật</b> — một trong 5 luật của Đạo Luật. Không giữ thì lỗi đạo, khuyết đức, mất phần.",
+  lam:["<b>5 giới</b>: không sát sinh · không nói dối · không ăn trộm · không tà dâm · không rượu bia, cờ bạc, tệ nạn xã hội","<b>18 hạnh</b>: ăn · uống · nói · mặc · đầu tóc · ở · đi · đứng · ngồi · nằm · ngủ · giữ thân · Hiếu · Lễ · Nghĩa · đối nhân xử thế · làm · hoan hỷ"]},
+ {id:"suadoi", so:15, ten:"Sống cần sửa", nhom:"Giữ mình",
+  giai:["Hành xử kém","Vô nguyên tắc","Nghiệp đổ về"],
+  nra:"<b>Sửa đến đâu thì thói thường mất đi đến đó · sửa đến đâu thì phúc đức tăng lên đến đó.</b>",
+  lam:["<b>Sửa tư duy</b> — không suy diễn, suy đoán, suy luận, suy tưởng, không mặc định, không tự nghĩ tự làm; mà <b>xét thực tế rồi đưa ra pháp</b>","<b>Sửa thói thường</b> — sống chuẩn mực theo Trí tuệ, sống có đạo","<b>Sửa tham, sân, si</b> — xét lại căn cơ cốt mệnh, chuyên môn, tài riêng, phúc đức, nhân duyên, hoàn cảnh của mình để không so sánh, đố kị, ghen ghét"]}
+];
+
+/* ── Ánh xạ: góc độ tác động chính → khuôn nên dùng ────────── */
+const ANHXA = {
+ hanhxu:     ["hanhxu","dnxt","tron4","thautriet","suadoi"],
+ loidao:     ["hanhxu","dnxt","tron4","giugioi","hln"],
+ nguyentac:  ["hanhxu","thautriet","giugioi","suadoi"],
+ hln:        ["thocung","hln","taophuc"],
+ tamlinh:    ["thocung","taophuc","giainghiep","hln"],
+ oangia:     ["taophuc","tranghiep","giainghiep","sumenh"],
+ nghiep:     ["tranghiep","giainghiep","tron4","ddlt","suadoi"],
+ phucduccan: ["taophuc","sumenh","ddlt","tranghiep"],
+ nocong:     ["taophuc","tron4","sumenh"],
+ khuyetduc:  ["hanhxu","hln","giugioi","taophuc"]
+};
+
+const PHAP = [
+ {id:"doitri", ten:"Pháp đối trị", khi:"Luôn đi trước", mo:"Trả nghiệp trước để việc mình định làm không bị chướng cản.",
+  lam:["Tạo phúc, trả nợ trước · hồi hướng công đức trước · phóng sinh trước — cho những vong linh và người trần liên quan trực tiếp đến việc mình định triển khai","Nói chuyện trước với người có liên quan để họ hiểu giá trị việc mình làm","<em>Lưu ý: không đối trị với những người không liên quan — sẽ khiến họ tưởng mình có quyền can thiệp và gây chướng cản</em>"]},
+ {id:"hoagiai", ten:"Pháp hóa giải", khi:"Song song", mo:"Hóa giải trực chỉ vào góc độ tác động chính khi cảnh đã đổ về.",
+  lam:["Đọc sám · phóng sinh · hồi hướng công đức · tạo phúc trả nợ — <b>trực tiếp cho góc độ tác động chính</b>","Khi mình làm sai khiến người khác bực tức thì phải xin lỗi","Làm <b>liên tục</b> cho đến khi hết bất ổn thì thôi"]},
+ {id:"xoaychuyen", ten:"Pháp xoay chuyển", khi:"Song song", mo:"Đưa khuôn Trí tuệ vào cuộc sống để dừng nghiệp.",
+  lam:["Ứng dụng các khuôn Trí tuệ trong từng việc, cho <b>tất cả các nhóm</b> — người trần và mọi nhóm vong linh","Chuyển từ cuộc sống thói thường trước đây sang cuộc sống có Trí tuệ","Không chờ hết bất ổn mới làm — chạy song song với pháp hóa giải"]}
+];
+
+const BAM14 = ["Nguyên lý","Đạo","Ý pháp","Thực tế","Quy luật","Gốc","Nguyên tắc","Tâm từ bi","Thật","Tròn","Trọng","Nhìn Trí tuệ","10 liệu pháp y thuật","Công thức"];
+
+const THUCTE7 = [
+ {t:"Thời thế", h:"Thời này là thời mạt — họa gì, phúc gì?"},
+ {t:"Con người", h:"Người liên quan thuộc nhóm nào? Họ đang quan tâm điều gì?"},
+ {t:"Xã hội", h:"Xã hội hiện nay đang lỗi gì, đạt được gì?"},
+ {t:"Công việc", h:"Công việc đang khó khăn thế nào?"},
+ {t:"Luật", h:"Việc này liên quan đến luật nào? Luật đang thế nào?"},
+ {t:"Xu thế", h:"Đang có trào lưu gì?"},
+ {t:"Vận thế", h:"Vận thế đang đi lên hay đi xuống?"}
+];
+
+/* ── TỪ ĐIỂN THUẬT NGỮ ─────────────────────────────────────── */
+const TUDIEN = [
+{nhom:"Cấu trúc kiến thức", tu:[
+ ["Quy chuẩn","Ý chuẩn <b>bất biến</b> — thước đo để so chiếu. Có 2 loại: <b>quy chuẩn của dữ liệu</b> (để quy chiếu và khai thác) và <b>quy chuẩn của ứng dụng</b> (để hành động theo)."],
+ ["Cốt / Lõi","<b>Cốt</b> = ý chính. <b>Lõi</b> = ý chi tiết. “Viết cốt của cốt” = rút gọn đến mức tinh nhất."],
+ ["Khuôn","Bộ hành động chuẩn cho một lĩnh vực. <b>Khuôn bên trong</b> = 7 khối. <b>Khuôn bên ngoài</b> = nói, làm, hành xử, đối nhân xử thế."],
+ ["Pháp","Cách xử lý. 3 pháp: <b>đối trị · hóa giải · xoay chuyển</b>."],
+ ["Ý pháp","Một đơn vị kiến thức dùng để <b>nhận diện nhanh</b> vấn đề rồi đưa pháp vào — 18 ý pháp trong Phần 6."],
+ ["Thế pháp","Cách thức chuẩn hóa để mọi người <b>hiểu giống nhau, hành động giống nhau</b> — 10 thế pháp."],
+ ["Trực chỉ","Trí tuệ chỉ <b>thẳng, cụ thể</b> phải làm gì → <b>y hành theo</b>."],
+ ["Định hướng","Trí tuệ chỉ <b>hướng</b>, còn cách làm cụ thể thì mình phải chủ động nới rộng hiểu biết. <em>Ví dụ: khuôn gia đình không có mục “xây nhà, sửa nhà” → phải tự tìm hiểu về thiết kế, vật liệu, nội thất, thợ, giá cả, thủ tục.</em>"]]},
+{nhom:"Hành động học tập", tu:[
+ ["Khai thác","Đọc dữ liệu và hỏi: <b>ý này chỉ cho ta biết gì và cần làm gì?</b>"],
+ ["Quy chiếu","Soi ra thực tế / soi vào bản thân để đối chiếu với quy chuẩn. 2 dạng, 4 loại: hình ảnh · chứng thực · hiện tượng · bản thân."],
+ ["Bám","Giữ mình trong hành lang Trí tuệ khi hành động — <b>14 ý bám</b>."],
+ ["Hệ thống","Sắp xếp lại xem mình đã học được những gì — theo 5 trục: 5 bước · dữ liệu 11 phần · câu từ Trí tuệ · bổ trợ · Học–Sống–Hành–Tu–Luyện."],
+ ["Kết nối","Ghép các ý được mở ra ở nhiều lần / nhiều ý tương đồng / nhiều ý trong lúc khai thác."],
+ ["Thu gom","Chốt lại xem mình đã <b>chắc</b> được gì. <em>Khác hệ thống — hệ thống là liệt kê, thu gom là xác nhận đã chắc.</em>"],
+ ["Rà soát","Kiểm tra — 3 loại: sau giai đoạn học · quá khứ · hằng ngày."],
+ ["Reset","Quay lại guồng khi bị cuốn hoặc mất phương hướng. Cách: ngồi viết lại <em>đã học được gì · kế hoạch là gì · đã triển khai được gì · kết quả đạt gì</em>."],
+ ["Rỗng","Chỗ mình <b>không viết ra được</b> khi rà soát → cần bù: xin học lại · đọc lại sách · hỏi người mình tin tưởng."]]},
+{nhom:"Tâm linh & nghiệp", tu:[
+ ["Tư lương","Vốn liếng các Ngài ban khi ta xuống trần: <b>Trí tuệ · Phúc đức · Căn cơ cốt mệnh · Nhân duyên · Hạnh nguyện</b>."],
+ ["Dương phần / Âm phần","<b>Dương phần</b> = phúc đức của bản thân người sống. <b>Âm phần</b> = phúc đức phía gia tiên. Rà soát để biết cả hai tốt hay kém."],
+ ["Góc độ tác động chính","Yếu tố <b>chính</b> gây ra một bất ổn cụ thể — tìm ra nó thì mới đưa pháp đúng được."],
+ ["Oan gia trái chủ","Người hoặc vong linh có ân oán với mình từ tiền kiếp, nay đến đòi nợ."],
+ ["Nợ công / Nợ của","Nợ bằng <b>công sức</b> / nợ bằng <b>tiền của</b>. Trả nợ cũng bằng công và bằng của."],
+ ["Trả nghiệp / Giải nghiệp / Dừng nghiệp","<b>Trả nghiệp</b> = chủ động trả trước cho nghiệp đã tạo nhưng chưa đổ về. <b>Giải nghiệp</b> = xử lý khi nghiệp đã đổ về. <b>Dừng nghiệp</b> = không tạo nghiệp mới, bằng cách đưa khuôn Trí tuệ vào cuộc sống."],
+ ["Tấu trình","Trình bày rõ với Trời Phật và gia tiên trước khi làm (làm cho ai, bao nhiêu), làm xong thì báo cáo lại."],
+ ["Hồi hướng công đức","Chuyển công đức mình có được cho người trần (trả nợ công) hoặc cho vong linh (để họ siêu thoát)."],
+ ["Lộ phí cho gia tiên","Tiền làm hằng tháng để gia tiên có phúc bay qua các vùng đất, cầu phà do các thần cai quản — <b>thay cho vàng mã</b>."],
+ ["Gieo duyên","Giúp người khác biết đến Trí tuệ."],
+ ["HTTĐ","<b>Hệ thống Tâm đạo</b> — nhóm người học Trí tuệ mà mình chăm sóc."],
+ ["Cửu huyền thất tổ","Các đời gia tiên cần thỉnh <b>đủ</b> khi bốc bát hương."],
+ ["Cô bé đỏ, cậu bé đỏ","Vong linh thai nhi."]]},
+{nhom:"Chất lượng hành động", tu:[
+ ["Tròn","Làm đến nơi đến chốn. <b>4 chữ tròn</b>: tròn tâm · tròn đạo · tròn việc · tròn nhân duyên."],
+ ["Trọng","Coi trọng, nâng niu. <b>7 chữ trọng</b> trong Đạo Nghĩa: trọng ơn · ân · nghĩa · tình · tín · thân · nhân duyên."],
+ ["Thấu triệt","Hiểu tường tận 3 đối tượng: <b>Con người · Môi trường · Công việc</b>."],
+ ["Triệt để","Làm đến khi xong việc mới thôi."],
+ ["Rốt ráo","Làm khẩn trương, dứt điểm, không trì hoãn."],
+ ["Đưa tâm","Dốc tâm vào việc, không làm qua loa."],
+ ["Phát tâm bồ đề","Khởi lòng làm việc thiện lành. Phát tâm bằng: <b>Hiểu biết · Công sức · Tiền của</b>."],
+ ["Cầu, trọng","Thái độ khiêm nhường, cầu thị và coi trọng người khác khi giao tiếp."],
+ ["Thật","<b>3 “thật” cần có</b>: thật Trí tuệ · thật tinh tế · thật sâu sắc. <b>7 “thật KHỔ” cần tránh</b>: thật đần · thô · dại · thà · ngu · khôn · khéo."]]},
+{nhom:"Thời gian & chu kỳ", tu:[
+ ["Hằng ngày","Kính lễ sáng tối · hồi hướng công đức cuối ngày · rà soát hằng ngày."],
+ ["Hằng tháng","Lộ phí cho gia tiên · kính lễ ngày mùng 1 và ngày rằm."],
+ ["3 tháng/lần","Trả nghiệp trước bằng của · hồi hướng công đức trả nghiệp (mỗi lần 1 tuần) · phóng sinh trả nghiệp · <b>rà soát các mối quan hệ</b> — vì cứ 3 tháng vong linh được mở cửa lên trần 1 lần."],
+ ["6 tháng/lần","Tạo phúc, trả nợ để <b>dừng nghiệp</b>."],
+ ["4 mùa","Sám hối Xuân – Hạ – Thu – Đông, mỗi mùa một khóa 7 ngày."],
+ ["Tháng 5–6–7 âm","Mùa Vu lan: T5 Lương hoàng sám · T6 kinh Địa tạng · T7 Nghi thức cầu siêu · khao gia tiên trước rằm · cầu siêu rằm tháng 7."],
+ ["Tháng 10 → 15/12 âm","Tạ mộ cuối năm — tạ tại mộ và tạ mộ vọng."]]}
+];
+
+
+/* ── TỪ ĐIỂN Ý BÁM — mỗi ý bám mở được ngay tại chỗ ───────── */
+const BAMY = {
+ nguyenly:{t:"Nguyên lý", n:"Đúng 5 Nguyên lý Trí tuệ · 8 Nguyên lý Cuộc đời · 3 Nguyên lý Sống.", p:1},
+ dao:{t:"Đạo", n:"Tròn 7 đạo làm người: Đạo Lý · Đạo Sinh · Đạo Hiếu · Đạo Trung · Đạo Nghĩa · Đạo Tình · Đạo Luật.", p:1},
+ yphap:{t:"Ý pháp", n:"18 ý pháp mở rộng — dùng để nhận diện nhanh vấn đề rồi đưa pháp trực chỉ.", p:6},
+ thucte:{t:"Thực tế", n:"Xét 7 ý thực tế: Thời thế · Con người · Xã hội · Công việc · Luật · Xu thế · Vận thế. Không dùng tư duy, không mặc định trước trong tâm.", p:1},
+ quyluat:{t:"Quy luật", n:"6 quy luật: Tạo hóa · Trời Phật · Thời thế · Con người · Vạn vật · Thời gian. Mọi thứ định vị bằng Nhân quả – Phúc đức – Nhân duyên.", p:2},
+ goc:{t:"Gốc", n:"5 gốc phải bám: Gốc Trí tuệ · Gốc môi trường · Gốc thời điểm · Gốc các tấm gương · Gốc các vấn đề (11 gốc).", p:4},
+ nguyentac:{t:"Nguyên tắc", n:"5 nguyên tắc — cái khóa giữ không lệch đường ray: Đúng luật · Chuẩn mực · Rõ ràng · Có trước có sau · Tinh tế uyển chuyển.", p:5},
+ tamtubi:{t:"Tâm từ bi", n:"Chân lý gồm Trí tuệ và Từ bi. 5 hành động: yêu thương · quan tâm · giúp đỡ · bảo vệ · giữ gìn — cho mình và người khác.", p:6},
+ that:{t:"Thật", n:"3 thật cần có: thật Trí tuệ · thật tinh tế · thật sâu sắc. 7 thật KHỔ cần tránh: thật đần · thô · dại · thà · ngu · khôn · khéo.", p:0},
+ tron:{t:"Tròn", n:"Tròn tâm · tròn đạo · tròn việc · tròn nhân duyên. Và tròn chức năng · vai trò · bổn phận · trách nhiệm.", p:6},
+ trong:{t:"Trọng", n:"7 chữ trọng trong Đạo Nghĩa: trọng ơn · trọng ân · trọng nghĩa · trọng tình · trọng tín · trọng thân · trọng nhân duyên.", p:1},
+ nhintt:{t:"Nhìn Trí tuệ", n:"Nhìn mọi việc, mọi người bằng con mắt Trí tuệ chứ không bằng tư duy, quan điểm hay cái tôi.", p:1},
+ lieuphap:{t:"10 liệu pháp y thuật", n:"5 liệu pháp khoa học (bệnh viện–bác sỹ · tâm lý liệu pháp · đả thông kinh lạc · ăn uống sinh hoạt · hồi phục cơ thể) + 5 liệu pháp tâm linh (cầu nguyện sám hối · niệm Phật · tạo phúc trả nợ · giải nghiệp · tu luyện thân tâm).", p:6},
+ congthuc:{t:"Công thức", n:"7 công thức: sử dụng Trí tuệ · đối cảnh · giải cảnh · ứng dụng · sống · học · Trí tuệ.", p:6},
+ kiemsoat:{t:"Kiểm soát", n:"6 lĩnh vực: sức khỏe · cảm xúc · hành động · quan hệ · tài chính · chi tiêu. Thấu triệt thì mới kiểm soát được.", p:1},
+ dungdao:{t:"Sống đúng đạo", n:"Hành xử chuẩn mực: đúng vai vế · đúng tuổi tác · đúng quan hệ · đúng phép tắc · giữ giới giữ hạnh.", p:10},
+ thoithe:{t:"Hợp thời thế và xu thế", n:"Thời này là thời mạt — không phải thời làm giàu, mà là thời rốt ráo Tạo phúc – Trả nghiệp – Tu.", p:1},
+ dungluat:{t:"Đúng luật", n:"5 luật: Luật Nhà Thiên · Luật tự nhiên · Luật lương tâm · Luật pháp · Giới luật (5 giới, 18 hạnh).", p:1},
+ xetnguoi:{t:"Xét người", n:"Xét qua ánh mắt · lời nói · hành động · thần khí. Đích: xét người để xét chính mình, để có phương pháp giúp người, để chọn bạn mà chơi.", p:1},
+ hoanhi:{t:"Hoan hỉ", n:"Đón nhận mọi cảnh với tâm hoan hỉ — một trong 4 đức của tâm Phật (Đại hỉ).", p:6},
+ xabo:{t:"Xả bỏ", n:"Đại xả — xả bỏ tâm thú, tâm ma, tâm người. Không chấp vào cảnh của mình hay của người.", p:6},
+ tuyduyen:{t:"Tùy duyên", n:"Đã khởi tâm mạnh mẽ và hành động chuẩn theo Trí tuệ rồi mới tùy duyên với kết quả — khác hẳn vô tâm.", p:6},
+ trietde:{t:"Triệt để", n:"Làm đến khi xong việc mới thôi. Trách nhiệm càng cao thì tâm từ bi càng lớn.", p:6},
+ thautriet:{t:"Thấu triệt", n:"Hiểu tường tận 3 đối tượng: Con người · Môi trường · Công việc.", p:6}
+};
+const BAM14ID = ["nguyenly","dao","yphap","thucte","quyluat","goc","nguyentac","tamtubi","that","tron","trong","nhintt","lieuphap","congthuc"];
+
+/* ── 11 khuôn còn lại (đủ 24) ──────────────────────────────── */
+const KHUON_THEM = [
+ {id:"dungnghiep", so:5, ten:"Dừng nghiệp", nhom:"Xử lý nghiệp", giai:["Nghiệp đổ về","Nợ công, nợ của"],
+  bam:["nguyenly","goc","trietde","congthuc"], chuky:"Hằng ngày",
+  nra:"<b>NLCĐ 2</b> — nghiệp sinh ra từ việc không đưa Trí tuệ vào lợi tư. Muốn dừng thì phải <b>dám đối diện</b> với những việc mình đã làm sai và <b>xác định làm lại từ đầu</b>.",
+  lam:["<b>Rà soát lại tất cả</b> 7 khối để đối diện với những việc mình đã làm sai","<b>Viết ra 2 cột</b>: một bên là những cái mình đang làm · một bên là Trí tuệ chỉ mình cần làm gì","<b>Lập một cuốn sổ để hằng ngày tích ra</b>: hôm nay làm được việc gì mà Trí tuệ chỉ? Việc gì không làm được — đó chính là nghiệp chướng của mình, nhận diện để còn trả nghiệp","<em>Dám làm lại cuộc đời từ số 0 thì mới dừng được nghiệp</em>"]},
+ {id:"lamtt", so:9, ten:"Làm Trí tuệ", nhom:"Làm việc & thời gian", giai:["Hành xử kém","Nghiệp đổ về"],
+  bam:["nguyenly","dao","nguyentac","trietde","thautriet","congthuc"], chuky:"Mỗi việc",
+  nra:"<b>NLCĐ 2 · Nghiệp đời</b> — làm không tròn tâm, tròn đạo, tròn việc, tròn nhân duyên thì tạo nghiệp đời. Làm Trí tuệ là để dừng nghiệp đời ngay trong lúc làm.",
+  lam:["<b>Trong công việc</b>: làm đúng chuyên ngành · bám vào quy trình và phương pháp · bám vào quy định nơi làm việc","<b>Khi làm cần thấu triệt</b>: Con người → Môi trường → Công việc","<b>Làm công việc đúng mệnh</b> — công việc mang lại <b>80% giá trị cho cộng đồng, 20% cho mình</b>","<b>Người mở doanh nghiệp</b>: đưa ra ý tưởng và chiến lược · thấu triệt các bộ phận quan trọng · chia sẻ Trí tuệ cho nhân viên · hoạch định thời gian thu hồi vốn · tạo sản phẩm mới · chia thu nhập ra 11 khoản","<b>Nếu làm thuê</b>: xét công việc có tạo nghiệp không · làm đúng quy trình nguyên tắc · đúng chuyên môn, đúng căn cơ cốt mệnh · kiểm soát mọi việc trong vị trí của mình"]},
+ {id:"supháp", so:13, ten:"Sử dụng pháp", nhom:"Xử lý nghiệp", giai:["Nghiệp đổ về","Oan gia trái chủ","Tâm linh"],
+  bam:["yphap","thucte","goc","congthuc"], chuky:"Khi có cảnh",
+  nra:"Nhận diện được <b>cảnh nào</b> thì mới dùng đúng <b>pháp nào</b>. Nhận nhầm cảnh thì dùng sai pháp, càng làm càng bất ổn.",
+  lam:["<b>Cảnh do Cha Mẹ và các Ngài thử thách</b> — dấu hiệu: <b>9 cửa đóng, 1 cửa mở</b>. Ứng: hoan hỷ + nhìn đa chiều để tinh tấn nhận ra cửa sinh","<b>Cảnh do Ma Chướng phá</b> — dấu hiệu: <b>tất cả các cửa đều đóng</b>. Ứng: luôn định tâm và làm đúng luật. <b>Lùi một bước để tiến ba bước</b>","<b>Cảnh do nhân quả cá nhân</b> — nhân quả tiền kiếp · nhân quả hiện tiền · oan gia trái chủ. Ứng: pháp hóa giải (đọc sám · phóng sinh · hồi hướng · tạo phúc trả nợ) trực tiếp cho góc độ tác động chính; pháp đối trị để trả nghiệp trước; pháp xoay chuyển để dừng nghiệp","<b>Phân biệt cảnh trong lợi tư</b>: nếu là <em>trào lưu xã hội</em> thì thuận theo để lách qua; nếu là <em>nhân quả cá nhân</em> thì trực tiếp dùng pháp hóa giải"]},
+ {id:"bode", so:14, ten:"Phát tâm bồ đề", nhom:"Cống hiến", giai:["Phúc đức cạn","Nợ công, nợ của"],
+  bam:["tamtubi","kiemsoat","trong","tron"], chuky:"Mọi lúc, mọi nơi",
+  nra:"Chủ động phát tâm bồ đề chính là đang <b>luyện trong sống để vượt qua chính bản thân mình</b> — vượt qua chữ tôi, sự lười biếng, sự bao biện.",
+  lam:["<b>Ý thức liên tục phát tâm bồ đề mọi lúc mọi nơi</b> — ngay từ trong gia đình, đến công việc, ra ngoài xã hội","<b>Phát tâm bằng</b>: Hiểu biết · Công sức · Tiền của","<b>Để phát tâm được thì phải kiểm soát trước</b>: thời gian · chuyên môn · hiểu biết · tài chính · sức khỏe — <em>để khi gặp nhân duyên là phát tâm được luôn mà không phải tính toán</em>"]},
+ {id:"nhantam", so:18, ten:"Sống có nhân tâm với con người và vạn vật", nhom:"Đối nhân", giai:["Lỗi đạo","Khuyết đức → mất phần"],
+  bam:["dao","tamtubi","trong","thautriet"], chuky:"Hằng ngày",
+  nra:"<b>Đạo Tình</b> — vạn vật đều có linh, đều do các Ngài hóa hiện. Sống vô tâm với vạn vật là lỗi đạo tình.",
+  lam:["<b>Với con người</b>: thấu triệt người mình quan hệ · hành xử và đối nhân xử thế đúng đạo · sống chan hòa thân thiện","Quan tâm <b>vừa đủ</b> đến vạn vật; mua sắm đồ <b>vừa đủ dùng</b>","Khi sử dụng xong bất kỳ vật gì cũng <b>nói lời cảm ơn</b>; rơi, hỏng thì <b>xin lỗi</b>","Sắp xếp các phòng và đồ đạc <b>đúng chức năng</b>","<b>Tiêu tiền vào việc đáng</b> để phát huy hạnh nguyện của đồng tiền","Bảo vệ, giữ gìn môi trường sống của con người và vạn vật","<b>Không</b> đối xử ác tâm, vô tâm với động vật, thực vật, tài nguyên, đồ vật","<b>Không</b> quá say mê, đắm đuối, lưu luyến với vật gì cả"]},
+ {id:"giaquy", so:19, ten:"Sống đúng gia quy", nhom:"Giữ mình", giai:["Lỗi Hiếu – Lễ – Nghĩa","Tâm linh"],
+  bam:["dao","dungluat","nguyentac"], chuky:"Khi nhà có việc",
+  nra:"<b>Đạo Luật</b> gồm 5 luật và <b>GIA QUY</b>. Rất nhiều bất ổn về Hiếu–Lễ–Nghĩa bắt nguồn từ việc làm sai gia quy mà không biết.",
+  lam:["<b>Gia quy về nhà cửa (9 ý)</b>: sửa nhà · mua nhà · xây nhà · lên nhà mới · nhập trạch và trấn trạch · nhà mình ở nhưng mang tên người khác · bố mẹ cho con xây nhà trên cùng mảnh đất · bố mẹ vợ cho con gái con rể nhà · nhà không được thông từ cửa trước ra cửa sau","<b>Gia quy về phần mộ (7 ý)</b>: đưa tro cốt ra khỏi chùa · mả kết · phần mộ có cây to đâm rễ vào · không xây mộ gió khi không có người chôn · không yểm bùa ở phần mộ khiến gia tiên không về nhà được · không chôn mộ tập thể · bốc bát hương khu vực phần mộ dòng họ","<b>Nhà có đám cưới (4 bước)</b>: chơi nhà → dạm ngõ → ăn hỏi và lễ xin cưới → đám cưới","<b>Gia quy về đám hiếu (3 ý)</b>: các khóa lễ khi người nhà mất · đám tang họ hàng xa mà ta có thể không đến · nhà đang có tang đen thì không xây nhà, không xây mộ, không bốc mộ","<em>Con trai/con gái chưa lập gia đình và đã lập gia đình cần làm gì — bản gốc có mục nhưng chưa triển khai chi tiết</em>"]},
+ {id:"hoctt", so:20, ten:"Học Trí tuệ", nhom:"Học & rèn", giai:[],
+  bam:["congthuc","nguyentac","trong"], chuky:"Hằng tuần",
+  nra:"Học đến đâu <b>hệ thống dữ liệu</b> đến đó thì mới biết mình đã học được gì, để định hình, hình dung — và biết mình cần <b>khởi cầu để được học tiếp</b>.",
+  lam:["<b>Được học</b>: Giai đoạn 1 → Giai đoạn 2 → Giai đoạn 3","<b>Tự học (7 ý)</b>: học thuộc (viết cốt của cốt) · khai thác · quy chiếu · hệ thống · suy ngẫm · kết nối · học cho hành","<b>Đàm đạo</b>: khi vào giai đoạn 2 thì xin đàm đạo để hiểu đúng, hiểu chuẩn, hiểu sâu sắc từng ý","Cá nhân chủ động sắp xếp thời gian tự học theo thực tế của bản thân; <b>cần có không gian học</b>"]},
+ {id:"viettt", so:21, ten:"Viết Trí tuệ", nhom:"Học & rèn", giai:[],
+  bam:["nguyentac","congthuc","trietde"], chuky:"Sau mỗi buổi học",
+  nra:"Viết là cách <b>giữ lại nguyên vẹn</b> những gì được truyền — và là nền của <b>Luyện viết</b> trong 5 thứ cần luyện.",
+  lam:["<b>Viết cốt</b> = ý chính · <b>Viết lõi</b> = ý chi tiết · <b>Kết nối</b> = một ý được mở ra nhiều lần","Ghi rõ: được ai chia sẻ? thời gian? địa điểm? tiêu đề buổi chia sẻ?","Phần <b>cốt</b> viết lên đầu bài; phần <b>lõi</b> tách rõ ràng từng ý","Câu từ quan trọng viết nổi bật để người đọc lưu tâm","<b>Nghe truyền như thế nào thì viết như thế đó — không thêm không bớt theo tư duy, suy luận của bản thân</b>"]},
+ {id:"luyen", so:22, ten:"Sống cần luyện", nhom:"Học & rèn", giai:["Hành xử kém"],
+  bam:["nguyenly","dao","nguyentac","congthuc","trong"], chuky:"Hằng ngày",
+  nra:"Luyện phải <b>công phu</b> và muốn luyện thì phải <b>trì</b>. Luyện tầm — quan sát và nhận diện được thực tế — là <b>quan trọng nhất</b>.",
+  lam:["<b>Luyện 5 thứ</b>: luyện viết · luyện Trí tuệ (tâm–tầm–tài–chí–tuệ) · luyện thế pháp (10 thế pháp) · luyện ý thức hằng ngày · luyện thành cao nhân","<b>Luyện Tâm đạo – Tâm chí – Tâm pháp</b> — tâm chí gồm 7 ý: bản lĩnh ý chí · khát vọng · đức hy sinh · cầu, trọng · tâm từ bi · nội lực · trách nhiệm","<b>Luyện tâm không</b>: cõi Ta Bà là giả tạm · không chấp – không sân – không nản · vô khứ vô lai","<b>Luyện quan sát đa chiều</b> về: con người · sự việc · thực tế thời điểm"]},
+ {id:"tuduc", so:23, ten:"Tu đức", nhom:"Học & rèn", giai:["Lỗi đạo","Khuyết đức → mất phần","Phúc đức cạn"],
+  bam:["dao","nguyenly","goc","nguyentac"], chuky:"Suốt đời",
+  nra:"<b>Có đức thì mới độ được cho người khác, mới nói có người nghe.</b> Tu đức là để <b>lập đức</b> — mà có đức thì mới giữ được 7 phần.",
+  lam:["<b>Đúng đạo</b> — hành xử chuẩn mực: đúng vai vế · đúng tuổi tác · đúng quan hệ · đúng phép tắc · giữ giới giữ hạnh","<b>Tròn đạo</b> — tròn 7 đạo làm người","<b>Hành đạo</b> — hành 7 đạo mọi lúc mọi nơi · khai tuệ · hành Bồ tát đạo","<b>Cầu đạo</b> — không chỉ cầu được học được hành, mà <b>mọi cảnh đến đều ý thức giữ đạo để lập đức</b>","<b>Tu đạo</b> — tu tiên · tu thoát 7 thứ (tâm · nợ · nghiệp · tham ái · sở hữu · ân oán · thù hận) · hình thành nếp tu · <b>tu là thu mình lại</b>"]},
+ {id:"kethua", so:24, ten:"Kế thừa cho tương lai", nhom:"Truyền lại", giai:["Nợ công, nợ của","Oan gia trái chủ"],
+  bam:["tamtubi","thautriet","tron","trong"], chuky:"Hằng tuần",
+  nra:"Chia sẻ Trí tuệ cho con là để <b>hóa giải mầm ân oán trong gia đình</b> — con đến báo ơn hoặc con đến đòi nợ. <b>Con mình thì trực chỉ, con người khác thì định hướng.</b>",
+  lam:["<b>Bước 1</b> — chia sẻ Trí tuệ theo độ tuổi: 0–3 · 4–6 · 7–10 · 11–17 · 18–25 <em>(bản gốc chưa triển khai nội dung từng độ tuổi)</em>","<b>Bước 2</b> — chia sẻ cho con khuôn đưa Trí tuệ vào cuộc sống: bản thân · gia đình · công việc · tài chính · quan hệ","<b>Bước 3</b> — kết nối và giúp con thực hiện tạo ra thành quả các nét văn hóa Trí tuệ","<b>Phải nghiên cứu con mình</b>: tính cách · hành động · mệnh của con · nhân duyên của con với mình → để đưa ra pháp trong từng thời điểm, <b>lúc mềm lúc rắn</b>","Đồng hành cùng con trong từng bước, dần dần cho con độc lập"]}
+];
+
+/* Bổ sung trường bám + chu kỳ cho 13 khuôn đã có */
+const BAM_CU = {
+ thocung:{bam:["dao","dungluat","trong","tamtubi"], chuky:"Hằng ngày · hằng tháng"},
+ taophuc:{bam:["goc","nguyentac","trong","tamtubi"], chuky:"6 tháng/lần"},
+ tranghiep:{bam:["yphap","goc","nguyentac","congthuc"], chuky:"3 tháng/lần"},
+ giainghiep:{bam:["yphap","thucte","congthuc","trietde"], chuky:"Khi có cảnh · 4 mùa"},
+ hanhxu:{bam:["nguyenly","dao","nguyentac","quyluat","kiemsoat","thautriet"], chuky:"Mọi lúc"},
+ dnxt:{bam:["nguyenly","dao","quyluat","xetnguoi","tamtubi"], chuky:"Mọi lúc"},
+ tron4:{bam:["dao","trietde","tron","tamtubi"], chuky:"Hằng ngày"},
+ sumenh:{bam:["nguyenly","goc","congthuc","dao","trong","tron","trietde"], chuky:"Theo kế hoạch Đời"},
+ ddlt:{bam:["nguyentac","thucte","congthuc"], chuky:"Hằng tuần"},
+ thautriet:{bam:["kiemsoat","tamtubi","thucte","xetnguoi"], chuky:"Trước mỗi việc"},
+ hln:{bam:["dao","trong","dungluat","tamtubi"], chuky:"Hằng ngày · theo mùa"},
+ giugioi:{bam:["dungluat","dao","nguyentac"], chuky:"Mọi lúc"},
+ suadoi:{bam:["nguyenly","dao","kiemsoat","nguyentac"], chuky:"Hằng ngày"}
+};
+KHUON.forEach(k => { const b = BAM_CU[k.id]; if(b){ k.bam = b.bam; k.chuky = b.chuky; } });
+KHUON.push(...KHUON_THEM);
+KHUON.sort((a,b) => a.so - b.so);
+
+/* Bổ sung ánh xạ cho các khuôn mới */
+ANHXA.nghiep.push("dungnghiep","supháp","lamtt");
+ANHXA.oangia.push("supháp","kethua");
+ANHXA.tamlinh.push("giaquy","supháp");
+ANHXA.hln.push("giaquy");
+ANHXA.phucduccan.push("bode","tuduc");
+ANHXA.loidao.push("nhantam","tuduc");
+ANHXA.khuyetduc.push("nhantam","tuduc");
+ANHXA.hanhxu.push("lamtt","luyen");
+ANHXA.nocong.push("bode","kethua");
+ANHXA.nguyentac.push("lamtt");
+
+/* ── Khuôn cho 6 khối còn lại ──────────────────────────────── */
+const KHUONKHOI = [
+ {id:"gd", ten:"Gia đình", ud:[
+   "<b>Thấu triệt</b> <em>(chỉ cần một lần)</em> — <b>Gia đình</b>: định vị gia đình (phúc đức · nghiệp chướng · hoàn cảnh) · văn hóa · quy định · nguyên tắc. <b>Người trong gia đình</b>: tính cách · thói quen, sở thích · nguyên tắc",
+   "<b>Tròn chức năng, vai trò, bổn phận, trách nhiệm với gia đình</b> <em>(hằng ngày)</em>",
+   "<b>Tạo nếp nhà</b> <em>(thường xuyên)</em> — chia sẻ Trí tuệ cho mọi người trong nhà · giữ giới giữ hạnh · sắp xếp phòng ăn, phòng ngủ, phòng khách, phòng thờ · sống đúng quy định gia đình về giờ giấc, ăn uống nghỉ ngơi, quần áo trang phục, quan hệ",
+   "<b>Tròn Hiếu – Lễ – Nghĩa</b> — hằng ngày: thờ tự chuẩn, kính lễ sáng tối · đại hiếu · trọng · lễ phép. Khi nhà có việc: gia quy · làm chủ các khóa lễ",
+   "<b>Kế thừa Trí tuệ cho con cháu</b>"], bam:["kiemsoat","dungdao","nguyentac"]},
+ {id:"cv", ten:"Công việc", ud:[
+   "<b>Thấu triệt công việc</b> — môi trường · luật · quy định · văn hóa · quy trình · nguyên tắc",
+   "<b>Làm công việc đúng mệnh</b>",
+   "<b>Hành xử và đối nhân xử thế</b> — <em>người làm chủ</em>: lắng nghe ý tưởng của nhân viên, biết sắp xếp đúng người đúng việc. <em>Nhân viên làm thuê</em>: phát huy đúng chuyên môn, phát huy cái tài của mình",
+   "<b>Trân trọng và biết ơn</b>",
+   "<b>Tạo phúc, trả nợ ở cơ quan</b> — cho các thần linh · cho các vong linh vất vưởng · cho nhân viên, đồng nghiệp <em>(để không bị phá, bị chướng cản trong công việc)</em>",
+   "<b>Tròn chức năng, vai trò, bổn phận, trách nhiệm trong công việc</b> — với việc đã nhận lời thì cần tròn tâm, tròn việc, tròn đạo, tròn nhân duyên để không bị trả nghiệp đời",
+   "<b>Kiểm soát</b> <em>(hằng ngày)</em> — cảm xúc · hành động · tài chính"],
+  bam:["nguyenly","thoithe","tron","dungdao","nguyentac","goc","dungluat"]},
+ {id:"qh", ten:"Quan hệ", ud:[
+   "<b>Thấu triệt con người</b> — tính cách · thói quen, sở thích · nguyên tắc. Có những người ta không thể chơi được; có những người quan hệ theo <b>nguyên tắc 3 lần</b> của Trí tuệ, vượt quá 3 lần thì không chơi nữa",
+   "<b>Phân ra từng mối quan hệ rõ ràng</b> — quan hệ gia đình / quan hệ xã hội, và 3 loại: <b>Bất biến</b> (không bao giờ tính toán · sẵn sàng bảo vệ · sẵn sàng hy sinh · luôn giữ đạo · hành xử cao hơn một bậc) · <b>Tâm giao</b> (luôn giữ đạo · chia sẻ được các vấn đề trong cuộc sống) · <b>Xã giao</b> (dĩ hòa vi quý và đúng đạo)",
+   "<b>Cần trọng các mối quan hệ</b> để không bị lỗi đạo",
+   "<b>Rà soát thường xuyên</b> — cứ <b>3–6 tháng</b> rà soát một lần để định vị lại các mối quan hệ"],
+  bam:["kiemsoat","xetnguoi","nguyentac"]},
+ {id:"tc", ten:"Tài chính", ud:[
+   "<b>Thấu triệt</b> — tiền sạch / tiền bẩn · thời thế"],
+  bam:["kiemsoat","nguyentac"],
+  them:["<b>Kiểm soát chi tiêu</b>: chia 5 khoản · tăng cường tiết kiệm · có tiền tiết kiệm thì gửi ngân hàng, mua vàng, mua đô la",
+        "<b>Kiểm soát tài chính</b>: dù vay ngoài lãi suất cao hay vay ngân hàng thì đều cần thu gom để trả · làm đúng 5 luật · khi làm việc phải tròn",
+        "<b>Kiểm soát hành động</b>: hạn chế cho vay; nếu có người hỏi vay thì có thể cho họ một khoản nhỏ tùy theo thực tế"]},
+ {id:"xh", ten:"Xã hội", ud:[
+   "<b>Thấu triệt môi trường ngoài xã hội</b> — luật · quy định · văn hóa · nguyên tắc",
+   "<b>Đối nhân xử thế</b>",
+   "<b>Đối xử bằng nhân tâm với con người và vạn vật</b>",
+   "<b>Báo ơn, báo hiếu, trả nợ</b>"],
+  bam:["kiemsoat","xetnguoi","dungdao","hoanhi","xabo","tuyduyen","trietde"]},
+ {id:"dn", ten:"Đất nước", ud:[
+   "<b>Thấu triệt</b> — Hiến pháp · Pháp luật",
+   "<b>Cống hiến</b>", "<b>Phục vụ</b>", "<b>Bảo vệ</b>", "<b>Vun vén</b>",
+   "<b>Tròn chức năng, vai trò, bổn phận, trách nhiệm, nghĩa vụ với đất nước</b>"],
+  bam:["dungdao","nguyentac"]}
+];
+
+/* ── Khuôn bên ngoài ───────────────────────────────────────── */
+const KHUONNGOAI = {
+ dich:["Tránh thân nghiệp","Tránh ý nghiệp","Tránh khẩu nghiệp","Tránh hệ quả","Tránh ân oán"],
+ mat:[
+  {t:"Nói", n:"Đúng người, đúng việc, đúng lúc, đúng chỗ · <b>đủ câu, đủ ý, đủ nghĩa, đủ từ</b> · đúng nguyên lý, đúng đạo, đúng nguyên tắc. Dùng <b>vốn từ Trí tuệ</b> thay vốn từ thói thường."},
+  {t:"Làm", n:"Đúng chuyên môn · bám quy trình và phương pháp · thấu triệt Con người → Môi trường → Công việc · bám chiến lược, tư tưởng, tinh thần."},
+  {t:"Hành xử", n:"<b>Chủ động trước</b> với con người và sự việc. Chuỗi: nới rộng hiểu biết → thấu triệt → kiểm soát → hành xử."},
+  {t:"Đối nhân xử thế", n:"Khi người khác chủ động trước hoặc việc đến với mình. Xét người và có pháp đối trị phù hợp: với kẻ tiểu nhân · với người kém · với người tài."}],
+ buoc4:["Hiểu biết","Sử dụng vốn từ","Nói giá trị của người khác và giá trị của mình","Cầu, trọng"],
+ hanhdong8:["Trao đổi, bàn bạc","Chào, hỏi","Xin","Mời","Báo cáo","Chia sẻ","Ngắt lời","Thông báo"]
+};
+
+/* ── LỘ TRÌNH: 5 bước ──────────────────────────────────────── */
+const NAMBUOC = [
+ {n:1, ten:"Giao lưu – Chia sẻ sách", mach:"BIẾT", tt:"Nhận ra vấn đề và giá trị của Trí tuệ",
+  dich:"Nhận diện vấn đề và nhận ra giá trị vĩ đại của Trí tuệ",
+  ds:["<b>Buổi giao lưu giúp ta</b>: đặt được tên các vấn đề · biết gốc vấn đề bất ổn do đâu · khẳng định giá trị vĩ đại của Trí tuệ là <b>có Quy chuẩn, có Pháp</b>",
+      "Gieo tư tưởng, tinh thần: <b>khi có Trí tuệ thì làm chủ cuộc đời, làm thầy chính mình, làm lãnh tụ tinh thần, làm chủ mọi phương diện</b>",
+      "<b>Chia sẻ sách</b>: 3 góc độ (Nguyên lý · Quy luật · Thực tế) · Quy chuẩn 11 phần · Trí tuệ là trực chỉ và định hướng · Biết Gốc · Có Pháp · Trí tuệ là gì – có gì – để làm gì",
+      "<em>Mục “Định hướng cách đọc sách” — bản gốc để trống</em>"]},
+ {n:2, ten:"Đàm đạo", mach:"HIỂU", tt:"Hiểu ý nghĩa và giá trị",
+  dich:"Ba đích của đàm đạo",
+  ds:["<b>Hiểu ý nghĩa và giá trị</b> của từng ý, từng phần trong kho tàng Trí tuệ",
+      "<b>Biết cách quy chiếu</b> — quy chiếu thực tế và quy chiếu bản thân",
+      "<b>Biết cách sử dụng 7 công thức</b>: sử dụng Trí tuệ · đối cảnh · giải cảnh · ứng dụng · sống · học · Trí tuệ",
+      "<em>Cả 3 phần trong bản gốc mới ở dạng khung, chưa triển khai nội dung</em>"]},
+ {n:3, ten:"Ứng dụng", mach:"LÀM", tt:"Đưa vào thực tế",
+  dich:"Bốn nội dung chính",
+  ds:["<b>Ý nghĩa và giá trị của việc hệ thống dữ liệu</b> — học đến đâu hệ thống đến đó để biết mình đã học được gì",
+      "<b>Tại sao cần dùng công thức sử dụng Trí tuệ</b> — tại sao cần Khai thác · Quy chiếu · Ứng dụng · Bám",
+      "<b>Giá trị của công thức sống</b> — nhận ra gì mà ứng dụng?",
+      "<b>Thể hiện ứng dụng uyên thâm</b>: <em>Tinh tế</em> (nói đúng lúc, đúng chỗ, đúng người, đúng việc) · <em>Sâu sắc</em> (tránh 7 thật KHỔ, cần 3 thật) · <em>Bao trùm</em> (khai thác cả kho tàng, dùng bao trùm 3 pháp) · <em>Đa chiều</em> (nới rộng hiểu biết, phối hợp chuyên môn)"]},
+ {n:4, ten:"Nét văn hóa", mach:"THÀNH NẾP", tt:"Văn hóa hóa thành lối sống",
+  dich:"Hình thành 6 nét văn hóa Trí tuệ trong đời sống",
+  ds:["<b>Văn hóa Hiếu – Lễ – Nghĩa</b> — ghi rõ ngày giỗ chạp, thờ tự những ai · ghi ra gia quy phải giữ · báo đại hiếu · ghi danh sách những người mình mang ơn",
+      "<b>Văn hóa gia đình</b> — hình thành nếp nhà và hướng dẫn con cháu · hướng dẫn chia sẻ dữ liệu Trí tuệ",
+      "<b>Văn hóa tạo phúc, trả nợ, báo ơn, báo hiếu</b> — kiểm soát chi tiêu · tạo phúc trả nợ cho gia tiên, người trong nhà, người từng giúp mình, người mình nợ",
+      "<b>Văn hóa cống hiến</b> — lập kế hoạch thời gian Đời – Đạo – Lợi tư · gieo duyên · chăm sóc HTTĐ cá nhân",
+      "<b>Văn hóa người Trí tuệ</b> — làm gì cũng bám vào 5 mảng · quy luật · biết gốc bám gốc · nguyên tắc · khuôn pháp · Công–Dung–Ngôn–Hạnh · hành xử và ĐNXT · thấu triệt · nhân duyên và tùy duyên",
+      "<b>Văn hóa tu đức cá nhân</b> — đúng đạo · tròn đạo · hành đạo · cầu đạo · tu đạo"]},
+ {n:5, ten:"Đàm đạo sâu", mach:"THÂM SÂU", tt:"Truy về gốc của nguyên lý",
+  dich:"Nguyên lý gốc và gốc của nguyên lý",
+  ds:["<b>Nguyên lý gốc</b> — nguyên lý nào chỉ cho ta gốc gì: NLCĐ 1 → gốc của <em>con người</em> · NLCĐ 2 → gốc của <em>bản thân</em> · NLCĐ 3–8 → gốc của <em>các vấn đề</em>",
+      "<b>Gốc của nguyên lý</b> — nguyên lý đó có do đâu. Ví dụ <em>gốc của nguyên lý Xoay chuyển vận mệnh</em>: con người có mệnh; không thay đổi được quy luật, không thay đổi được thời thế, <b>nhưng xoay chuyển được vận mệnh</b>",
+      "<b>Mấu chốt của từng ý, từng phần</b> — được chia sẻ khi đàm đạo",
+      "<b>Phân khúc để dễ nhớ, dễ thuộc</b> · <b>Luyện viết cốt của cốt của cốt dữ liệu</b>",
+      "<em>Bảng tra ghi “7 gốc nguyên lý” nhưng nội dung chỉ triển khai 6 — cần đối chiếu</em>"]}
+];
+
+/* ── LỘ TRÌNH: 11 mục Bổ trợ — bảng điều hướng ─────────────── */
+const BOTRO = [
+ {n:1, ten:"Rà soát quá khứ", loai:"Chẩn đoán", khi:"Làm một lần khi bắt đầu, rồi rà lại khi có bất ổn mới",
+  lam:"Định vị phúc nghiệp · tìm góc độ tác động chính · biết bất ổn tiềm ẩn để trả nghiệp trước · biết dương phần và âm phần tốt hay kém",
+  di:{che:"wizard", nhan:"Trạm 2 của Giải vấn đề bất ổn"}, trong:true},
+ {n:2, ten:"Thờ cúng chuẩn – Kính lễ", loai:"Khuôn có chu kỳ", khi:"Hằng ngày (kính lễ sáng tối) · hằng tháng (mùng 1, rằm)",
+  lam:"Nền tảng tâm linh — điều kiện cần cho mọi pháp về sau. Gia tiên có về được thì mới độ được cho mình",
+  di:{che:"khuon", nhan:"Khuôn 01 trong Thư viện khuôn"}},
+ {n:3, ten:"Phương pháp gieo duyên", loai:"Hành sứ mệnh", khi:"Theo kế hoạch thời gian Đời",
+  lam:"Giúp người khác biết đến Trí tuệ — là công đức lớn nhất, và là cách bồi phúc đức nhanh nhất",
+  di:{che:"khuon", nhan:"Khuôn 06 — Hành sứ mệnh"}},
+ {n:4, ten:"Chăm sóc Hệ thống Tâm đạo cá nhân", loai:"Hành sứ mệnh", khi:"Theo kế hoạch thời gian Đời",
+  lam:"Chăm sóc những người mình đã gieo duyên, theo 5 bước",
+  di:{che:"khuon", nhan:"Khuôn 06 — Hành sứ mệnh"}},
+ {n:5, ten:"Tạo phúc, trả nợ", loai:"Khuôn có chu kỳ", khi:"6 tháng/lần (dừng nghiệp) · liên tục khi đang giải bất ổn",
+  lam:"Trả nợ công, nợ của cho người trần và vong linh; hóa giải oan gia; bồi phúc đức",
+  di:{che:"khuon", nhan:"Khuôn 02 trong Thư viện khuôn"}},
+ {n:6, ten:"Sử dụng khuôn bên ngoài để giao tiếp", loai:"Công cụ", khi:"Mỗi lần giao tiếp ra bên ngoài",
+  lam:"4 bước × 8 hành động giao tiếp — để tránh thân nghiệp, ý nghiệp, khẩu nghiệp, hệ quả, ân oán",
+  di:{che:"hangngay", nhan:"Mục Khuôn bên ngoài trong Sống hằng ngày"}},
+ {n:7, ten:"Trả nghiệp", loai:"Khuôn có chu kỳ", khi:"3 tháng/lần",
+  lam:"Chủ động trả trước cho nghiệp đã tạo nhưng chưa đổ về — <em>trích 1 đồng ra trả trước, tránh khi họa đổ về thì mất cả 100 đồng</em>",
+  di:{che:"khuon", nhan:"Khuôn 03 trong Thư viện khuôn"}},
+ {n:8, ten:"Tu tập", loai:"Khuôn có chu kỳ", khi:"Hằng ngày (cầu nguyện sáng tối) · 4 mùa (sám hối) · tháng 5–6–7 âm (Vu lan)",
+  lam:"Tu tập khác kính lễ — tu tập là cầu nguyện sáng tối, sám hối 4 mùa cho người sống, mùa Vu lan báo hiếu",
+  di:{che:"khuon", nhan:"Khuôn 01 trong Thư viện khuôn"}},
+ {n:9, ten:"Hướng dẫn sử dụng Công thức học", loai:"Công cụ", khi:"Mỗi lần học một ý Trí tuệ mới",
+  lam:"4 cột: Nhận ra → Quy chuẩn → Quy chiếu → Ứng dụng (hướng đi). Dùng ngược lại để xây hướng đi cho bản thân, gia đình, con cái, công việc, tài chính",
+  di:{che:"lotrinh", nhan:"Mục Công thức học ngay bên dưới"}},
+ {n:10, ten:"Giải quyết vấn đề bất ổn", loai:"Công cụ", khi:"Khi có cảnh đổ về",
+  lam:"<b>Công thức ứng dụng Trí tuệ + Công thức giải cảnh</b> — pháp hóa giải, trực chỉ vào góc độ tác động chính",
+  di:{che:"wizard", nhan:"Chế độ Có vấn đề bất ổn"}},
+ {n:11, ten:"Hằng ngày viết đưa khuôn Trí tuệ vào cuộc sống", loai:"Công cụ", khi:"Mỗi ngày — tối lập kế hoạch cho ngày mai",
+  lam:"<b>Công thức sử dụng Trí tuệ + Công thức đối cảnh</b> — pháp xoay chuyển, làm cho tất cả các nhóm, để dừng nghiệp",
+  di:{che:"hangngay", nhan:"Chế độ Sống hằng ngày"}}
+];
+
+const NHOMHOC = [
+ {n:1, t:"Vừa nắm được tổng quan, vừa nắm được chi tiết", g:"Dùng app như sổ tra cứu — vào thẳng Cây kiến thức và Thư viện khuôn."},
+ {n:2, t:"Nắm được tổng quan nhưng không học chi tiết", g:"Bắt đầu từ Thư viện khuôn — làm trước, hiểu sau. Mỗi khuôn có phần <em>nhận ra gì mà ứng dụng</em> để bù phần chi tiết."},
+ {n:3, t:"Không nắm được tổng quan, chỉ học được chi tiết từng ý nhưng rất chậm", g:"Đọc Lộ trình này trước để có bức tranh, rồi mới vào Cây kiến thức. Đây là nhóm bản dựng này phục vụ chính."},
+ {n:4, t:"Không nắm được tổng quan, chỉ nắm được một số ý đang cần", g:"Vào thẳng chế độ Có vấn đề bất ổn — giải xong một việc thật rồi sẽ có động lực học tiếp."}
+];
+
+/* ── SỐNG HẰNG NGÀY ────────────────────────────────────────── */
+const CHUKY = [
+ {t:"Hằng ngày", v:["Kính lễ sáng và tối","Hồi hướng công đức (cuối ngày)","Rà soát hằng ngày: hôm nay làm được gì? bám được khuôn nào? mắc vào gì?","Ghi sổ tay phúc đức","Lập kế hoạch cho ngày mai"]},
+ {t:"Hằng tháng", v:["Làm lộ phí cho gia tiên","Kính lễ ngày mùng 1 và ngày rằm"]},
+ {t:"3 tháng/lần", v:["Trả nghiệp trước bằng của","Hồi hướng công đức trả nghiệp — mỗi lần một tuần","Phóng sinh trả nghiệp","Rà soát các mối quan hệ <em>(vì cứ 3 tháng vong linh được mở cửa lên trần một lần)</em>"]},
+ {t:"6 tháng/lần", v:["Tạo phúc, trả nợ để dừng nghiệp","Rà soát lại các mối quan hệ"]},
+ {t:"4 mùa", v:["Sám hối Xuân – Hạ – Thu – Đông, mỗi mùa một khóa 7 ngày"]},
+ {t:"Tháng 5–6–7 âm", v:["Tháng 5: Lương hoàng sám","Tháng 6: kinh Địa tạng","Tháng 7: Nghi thức cầu siêu · khao gia tiên trước rằm · cầu siêu rằm tháng 7"]},
+ {t:"Tháng 10 → 15/12 âm", v:["Tạ mộ cuối năm — tạ tại mộ và tạ mộ vọng"]}
+];
+
+const PHANXA = {
+ nguoi:{t:"Với CON NGƯỜI", b:["Xét <b>tâm trạng của họ lúc đó</b> — mỗi người mỗi thời điểm mỗi khác","Xét người → Thấu triệt → Đúng nguyên lý → Chuẩn Đạo → Đúng 5 luật","Hành xử và đối nhân xử thế chuẩn mực","Triệt để: <b>tròn tâm · tròn đạo · tròn việc · tròn nhân duyên</b>"]},
+ viec:{t:"Với SỰ VIỆC", b:["Việc đó ta đã <b>đủ nhân duyên và phúc đức</b> chưa? Chưa đủ thì <b>thêm thời gian để bồi</b>, không làm ngay","Xét <b>Đích</b> của việc đó — <b>đáng mới làm</b>","Thấu triệt sự việc → Đúng nguyên lý → Chuẩn Đạo → Đúng 5 luật","<b>Đúng</b>: đúng thời điểm, đúng khuôn. <b>Đủ</b>: đủ phúc đức, đủ thời gian, bám đủ 14 ý"]}
+};
+
+const CANHPHATSINH = [
+ {t:"Cảnh phá Tâm Bồ Đề", dh:"Người ta mời mình, cho mình tiền bạc, danh lợi, vị trí cao hơn — để kéo mình rời khỏi con đường Hành sứ mệnh; hoặc rủ mình theo một con đường Đạo khác",
+  ung:"<b>Không cần danh lợi và vị trí</b> thì mới thoát được cảnh. Đích của ta chỉ là <b>Tu Luyện</b>."},
+ {t:"Cảnh chướng cản từ người thân", dh:"Bố mẹ, người thân chướng cản, không liên quan danh lợi, khiến kế hoạch không thực hiện tiếp được",
+  ung:"<b>Lấy vốn từ ra để đặt tên cảnh</b>: cảnh này ta đang nợ họ bằng <b>công</b> hay bằng <b>của</b>? → tạo phúc trả nợ bằng công hoặc của cho họ. <b>Trả đủ rồi mới làm được việc của mình.</b>"}
+];
+
+const DATTENCANH = ["Cảnh này ta gặp để <b>trả ơn</b>","Cảnh này ta gặp để <b>trả nợ</b>","Cảnh này để ta <b>phát tâm bồ đề</b>"];
+
+const CTHOC = [
+ {c:"Nhận ra", h:"Viết <b>cốt</b> — tên ý mình nhận được"},
+ {c:"Quy chuẩn", h:"Viết <b>cốt của cốt</b> — đủ câu, đủ ý, đủ nghĩa, đủ từ: ý này chỉ cho ta biết gì và cần làm gì?"},
+ {c:"Quy chiếu", h:"① Thực tế hiện tượng: người chưa biết / chưa dùng Trí tuệ đang bất ổn gì? ② Bản thân: mình chưa làm gì, thiếu gì, lỗi gì?"},
+ {c:"Ứng dụng", h:"Ứng dụng khuôn nào trong 24 khuôn — đây chính là <b>hướng đi</b>"}
+];
+
+/* ═══════════════════════════════════════════════════════════════
+   ỨNG DỤNG
+   ═══════════════════════════════════════════════════════════════ */
+const $ = s => document.querySelector(s);
+const vung = $("#vung"), oTim = $("#oTim"), thanhDem = $("#thanhDem");
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const boDau = s => String(s).normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/\u0111/g,"d").replace(/\u0110/g,"d").toLowerCase();
+const loTag = s => String(s).replace(/<[^>]*>/g,"");
+const NHAN = {qc:["Quy chuẩn","n-qc"], qchieu:["Quy chiếu","n-qchieu"], ud:["Ứng dụng","n-ud"], trong:["Còn trống","n-trong"]};
+const veNhan = k => k && NHAN[k] ? `<span class="nhan ${NHAN[k][1]}">${NHAN[k][0]}</span>` : "";
+const tick = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5.5 5.5L20 6.5"/></svg>`;
+const mui = `<svg class="mui" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>`;
+
+/* ── Trạng thái ───────────────────────────────────────────── */
+const S = {
+  che:"modau",
+  moNut:new Set(),
+  moBuoc:new Set(),
+  moKhuon:new Set(),
+  bamMo:new Set(),
+  khuonNhom:null,
+  hnKhoi:null,
+  tim:"",
+  w:{buoc:1, khoi:null, vande:new Set(), bieuhien:new Set(), gocdo:new Set(), khaithacDaDoc:new Set()}
+};
+
+/* ── Chỉ mục tìm kiếm ─────────────────────────────────────── */
+const CHIMUC = [];
+CAY.forEach(p => {
+  CHIMUC.push({loai:"phan", duong:`Phần ${p.so}`, ten:p.ten, noi:p.hoi, so:p.so});
+  p.nhanh.forEach(n => {
+    CHIMUC.push({loai:"nhanh", duong:`Phần ${p.so} · ${n.ma}`, ten:n.ten, noi:loTag(n.noi), so:p.so});
+    (n.ds||[]).forEach(d => CHIMUC.push({loai:"y", duong:`Phần ${p.so} · ${n.ma} · ${n.ten}`, ten:loTag(d).slice(0,140), noi:"", so:p.so}));
+  });
+});
+TUDIEN.forEach(g => g.tu.forEach(([t,ng]) =>
+  CHIMUC.push({loai:"tu", duong:`Từ điển · ${g.nhom}`, ten:t, noi:loTag(ng)})));
+KHUON.forEach(k => CHIMUC.push({loai:"khuon", duong:`Khuôn ứng dụng ${k.so}`, ten:k.ten, noi:loTag(k.nra)}));
+KHOI.forEach(k => k.khaithac.forEach(x =>
+  CHIMUC.push({loai:"khaithac", duong:`Bộ khai thác · khối ${k.ten}`, ten:x.y, noi:`Chỉ: ${x.chi} — Cần làm: ${x.lam}`})));
+KHUON.forEach(k => (k.lam||[]).forEach(l =>
+  CHIMUC.push({loai:"viec", duong:`Khuôn ${k.so} · ${k.ten}`, ten:loTag(l).slice(0,140), noi:""})));
+KHUONKHOI.forEach(k => k.ud.concat(k.them||[]).forEach(u =>
+  CHIMUC.push({loai:"khuonkhoi", duong:`Khuôn khối ${k.ten}`, ten:loTag(u).slice(0,140), noi:""})));
+Object.values(BAMY).forEach(b => CHIMUC.push({loai:"bam", duong:"Ý bám", ten:b.t, noi:loTag(b.n), so:b.p||""}));
+NAMBUOC.forEach(b => {
+  CHIMUC.push({loai:"buoc", duong:`Lộ trình · Bước ${b.n}`, ten:b.ten, noi:b.dich});
+  b.ds.forEach(d => CHIMUC.push({loai:"buoc", duong:`Lộ trình · Bước ${b.n} · ${b.ten}`, ten:loTag(d).slice(0,140), noi:""}));
+});
+BOTRO.forEach(b => CHIMUC.push({loai:"botro", duong:`Bổ trợ · mục ${b.n}`, ten:b.ten, noi:`${loTag(b.lam)} — Khi nào: ${b.khi}`}));
+CHIMUC.forEach(c => c.tim = boDau(c.ten + " " + c.noi + " " + c.duong));
+
+/* ── Điều hướng ───────────────────────────────────────────── */
+const NHOMCHE = [
+  {g:null, items:[{id:"modau", ten:"Mở đầu", stt:"0"}]},
+  {g:"Làm gì hôm nay", items:[
+    {id:"lotrinh",  ten:"Đang học",          stt:"1"},
+    {id:"hangngay", ten:"Sống hằng ngày",    stt:"2"},
+    {id:"wizard",   ten:"Có vấn đề bất ổn",  stt:"3"}]},
+  {g:"Tra cứu", items:[
+    {id:"cay",    ten:"Cây kiến thức",    stt:"4"},
+    {id:"khuon",  ten:"Thư viện khuôn",   stt:"5"},
+    {id:"tudien", ten:"Từ điển thuật ngữ", stt:"6"}]}
+];
+$("#nav").innerHTML = NHOMCHE.map(n =>
+  `<div class="nav-nhom">${n.g ? `<div class="nav-nhan">${n.g}</div>` : ""}${n.items.map(c =>
+    `<b role="button" tabindex="0" data-che="${c.id}"><span class="stt">${c.stt}</span><span>${c.ten}</span></b>`).join("")}</div>`).join("");
+$("#nav").addEventListener("click", e => {
+  const b = e.target.closest("[data-che]"); if(!b) return;
+  doiChe(b.dataset.che);
+});
+$("#nav").addEventListener("keydown", e => {
+  if(e.key !== "Enter" && e.key !== " ") return;
+  const b = e.target.closest("[data-che]"); if(!b) return;
+  e.preventDefault(); doiChe(b.dataset.che);
+});
+function doiChe(id){
+  S.che = id; S.tim = ""; oTim.value = "";
+  document.querySelectorAll("[data-che]").forEach(b => b.setAttribute("aria-current", String(b.dataset.che === id)));
+  ve(); window.scrollTo({top:0});
+}
+
+/* ── Nền sáng / tối ───────────────────────────────────────── */
+const goc = document.documentElement;
+$("#doiNen").addEventListener("click", () => {
+  const toi = goc.getAttribute("data-theme") === "dark"
+    || (!goc.hasAttribute("data-theme") && matchMedia("(prefers-color-scheme:dark)").matches);
+  goc.setAttribute("data-theme", toi ? "light" : "dark");
+  capNhatNutNen();
+});
+function capNhatNutNen(){
+  const toi = goc.getAttribute("data-theme") === "dark"
+    || (!goc.hasAttribute("data-theme") && matchMedia("(prefers-color-scheme:dark)").matches);
+  $("#doiNenChu").textContent = toi ? "Nền sáng" : "Nền tối";
+}
+
+/* ── Tìm kiếm ─────────────────────────────────────────────── */
+let hen;
+oTim.addEventListener("input", () => {
+  clearTimeout(hen);
+  hen = setTimeout(() => { S.tim = oTim.value.trim(); ve(); }, 130);
+});
+
+function veTim(){
+  const q = boDau(S.tim);
+  const kq = CHIMUC.filter(c => c.tim.includes(q)).slice(0, 60);
+  thanhDem.textContent = `${kq.length}${kq.length === 60 ? "+" : ""} kết quả`;
+  const noiBat = t => {
+    const s = String(t), i = boDau(s).indexOf(q);
+    if(i < 0) return esc(s);
+    return esc(s.slice(0,i)) + "<mark>" + esc(s.slice(i, i+q.length)) + "</mark>" + esc(s.slice(i+q.length));
+  };
+  const LOAI = {phan:"Phần", nhanh:"Mục", y:"Ý", tu:"Thuật ngữ", khuon:"Khuôn", khaithac:"Khai thác",
+                viec:"Việc cần làm", khuonkhoi:"Khuôn khối", bam:"Ý bám", buoc:"Lộ trình", botro:"Bổ trợ"};
+  return `<div class="trang">
+    <h1 class="tieu">Kết quả cho “${esc(S.tim)}”</h1>
+    <p class="dan">Tìm trong cây kiến thức, từ điển thuật ngữ, bộ khuôn ứng dụng và bộ khai thác 7 khối.</p>
+    ${kq.length ? `<div class="kq">${kq.map(c => `
+      <button class="kq-mot" data-nhay="${c.so || ""}">
+        <div class="kq-duong">${LOAI[c.loai]} · ${esc(c.duong)}</div>
+        <div class="kq-ten">${noiBat(c.ten)}</div>
+        ${c.noi ? `<div class="kq-noi">${noiBat(c.noi.slice(0,200))}${c.noi.length > 200 ? "…" : ""}</div>` : ""}
+      </button>`).join("")}</div>`
+    : `<p class="rong">Không tìm thấy. Thử từ khác — ví dụ: <em>nghiệp · điểm tựa · oan gia · tùy duyên · thấu triệt · phúc đức</em>.</p>`}
+  </div>`;
+}
+
+/* ── Mở đầu ───────────────────────────────────────────────── */
+function veMoDau(){
+  return `<div class="trang mo-dau">
+    <div class="mo-tren">
+      <div class="mo-nhan">Bản dựng thử · dữ liệu từ 7 tài liệu trong project</div>
+      <h1 class="mo-de">Kho Trí tuệ, sắp lại thành <span>một cây thước</span> dùng được</h1>
+      <p class="mo-tha">Tài liệu gốc rất lớn — một người bình thường đọc hết phải tính bằng năm. Bản dựng này không rút gọn kiến thức; nó chỉ làm hai việc: cho bạn <b>thấy toàn cảnh</b> trước khi đi vào chi tiết, và khi gặp một vấn đề thật thì <b>dẫn bạn đi từ vấn đề đến hành động cụ thể</b> theo đúng mạch mà Trí tuệ chỉ.</p>
+    </div>
+
+    <h2 class="muc">Hôm nay bạn đang ở tình huống nào?</h2>
+    <div class="luoi luoi-3">
+      <button class="cua" data-che="lotrinh">
+        <div class="cua-so">ĐANG HỌC</div>
+        <div class="cua-ten">Lộ trình</div>
+        <div class="cua-mo"><b>5 bước</b> của chương trình, <b>3 giai đoạn</b>, và bảng chỉ đường cho <b>11 mục Bổ trợ</b> — mục nào xem ở đâu, khi nào cần. Kèm <b>Công thức học</b> 4 cột.</div>
+        <div class="cua-di">Xem lộ trình →</div>
+      </button>
+      <button class="cua" data-che="hangngay">
+        <div class="cua-so">ĐANG SỐNG HẰNG NGÀY</div>
+        <div class="cua-ten">Đưa khuôn vào cuộc sống</div>
+        <div class="cua-mo">Chế độ <b>chủ động</b> — đích là <b>dừng nghiệp</b>, không phải hóa giải. Một ngày chạy thế nào, khuôn bên ngoài khi giao tiếp, phản xạ, và <b>chu kỳ việc gì làm lúc nào</b>.</div>
+        <div class="cua-di">Mở chế độ →</div>
+      </button>
+      <button class="cua" data-che="wizard">
+        <div class="cua-so">ĐANG CÓ VẤN ĐỀ</div>
+        <div class="cua-ten">Giải bất ổn</div>
+        <div class="cua-mo">Bốn trạm theo <b>Công thức ứng dụng</b>: nhận diện vấn đề → tìm góc độ tác động chính → chọn pháp → ra bộ khuôn. Kết thúc là một <b>phiếu in được</b>.</div>
+        <div class="cua-di">Bắt đầu →</div>
+      </button>
+    </div>
+
+    <h2 class="muc">Tra cứu</h2>
+    <div class="luoi luoi-3">
+      <button class="cua" data-che="cay">
+        <div class="cua-so">TRA CỨU</div>
+        <div class="cua-ten">Cây kiến thức</div>
+        <div class="cua-mo">Trọn <b>Quy chuẩn 11 phần</b>. Mỗi mục ghi rõ nhãn <em>Quy chuẩn · Quy chiếu · Ứng dụng</em>, và đánh dấu chỗ nào bản gốc còn trống.</div>
+        <div class="cua-di">Mở cây →</div>
+      </button>
+      <button class="cua" data-che="khuon">
+        <div class="cua-so">TRA CỨU</div>
+        <div class="cua-ten">Thư viện khuôn</div>
+        <div class="cua-mo">Đủ <b>24 khuôn</b> đưa Trí tuệ vào Bản thân, cộng <b>6 khuôn</b> cho 6 khối còn lại. Mỗi khuôn một thẻ 4 phần, <b>ý bám mở ngay tại chỗ</b>.</div>
+        <div class="cua-di">Mở thư viện →</div>
+      </button>
+      <button class="cua" data-che="tudien">
+        <div class="cua-so">TRA CỨU</div>
+        <div class="cua-ten">Từ điển thuật ngữ</div>
+        <div class="cua-mo">51 thuật ngữ chia theo nhóm chức năng — kể cả <b>5 cặp câu từ dễ nhầm</b> mà tài liệu dặn phải phân biệt cho đúng.</div>
+        <div class="cua-di">Tra từ →</div>
+      </button>
+    </div>
+    <p class="dan" style="margin-top:14px;margin-bottom:0"><b>Ô tìm ở trên luôn sẵn</b> — gõ không dấu cũng ra. Tìm xuyên qua cây kiến thức, từ điển, thư viện khuôn, bộ khai thác 7 khối, lộ trình và các mục Bổ trợ. Thử: <em>oan gia · tùy duyên · lộ phí</em>.</p>
+
+    <h2 class="muc">Trước khi bắt đầu — ba điều nên biết</h2>
+    <div class="luoi luoi-3">
+      <div class="the">
+        <div class="khuon-ten">Trí tuệ không phải một đạo</div>
+        <p class="khuon-vi">Tài liệu ghi rõ: <b>Trí tuệ là quy chuẩn · là pháp · là vốn sống</b>. Không phải “đạo Trí tuệ”, và khác kiến thức – trí thức – tri thức.</p>
+      </div>
+      <div class="the">
+        <div class="khuon-ten">Có hai chế độ dùng</div>
+        <p class="khuon-vi">Cùng một ý dữ liệu, nhưng <b>đích khác nhau thì pháp và khuôn cũng khác nhau</b>. Giải bất ổn dùng pháp hóa giải, trực chỉ. Đưa khuôn vào cuộc sống dùng pháp xoay chuyển, làm cho tất cả các nhóm.</p>
+      </div>
+      <div class="the">
+        <div class="khuon-ten">Động lực đến từ quy chiếu</div>
+        <p class="khuon-vi">Không phải từ ý chí. Quy chiếu ra thực tế thấy Trí tuệ chỉ đúng → có <b>đức tin</b>. Quy chiếu vào bản thân thấy mình đang thiếu, đang lỗi → có <b>động lực</b>.</p>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ── Cây kiến thức ────────────────────────────────────────── */
+function veCay(){
+  return `<div class="trang">
+    <h1 class="tieu">Cây kiến thức — Quy chuẩn 11 phần</h1>
+    <p class="dan">Đây là “kho chứa” của Trí tuệ. Mọi câu trả lời trong chế độ <b>Giải vấn đề bất ổn</b> đều lấy từ đây. Bấm vào một phần để mở.</p>
+    <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+      <button class="nut-phu" data-cay="mo">Mở tất cả</button>
+      <button class="nut-phu" data-cay="dong">Thu tất cả</button>
+    </div>
+    <div class="cay">${CAY.map(p => {
+      const mo = S.moNut.has(p.so);
+      return `<div class="nut ${mo ? "mo" : ""}">
+        <button class="dau" data-phan="${p.so}" aria-expanded="${mo}">
+          <span class="so">${String(p.so).padStart(2,"0")}</span>
+          <span class="dau-chu"><span class="dau-ten">${esc(p.ten)}</span><span class="dau-hoi">${esc(p.hoi)}</span></span>
+          ${mui}
+        </button>
+        ${mo ? `<div class="than-nut"><div class="nhanh">${p.nhanh.map(n => `
+          <div class="canh">
+            <div class="canh-ten"><span class="canh-ma">${esc(n.ma)}</span>${esc(n.ten)}${veNhan(n.nhan)}</div>
+            ${n.noi ? `<div class="canh-noi">${n.noi}</div>` : ""}
+            ${(n.ds && n.ds.length) ? `<ul class="ds">${n.ds.map(d => `<li>${d}</li>`).join("")}</ul>` : ""}
+          </div>`).join("")}</div></div>` : ""}
+      </div>`;
+    }).join("")}</div>
+  </div>`;
+}
+
+/* ── Từ điển ──────────────────────────────────────────────── */
+function veTuDien(){
+  return `<div class="trang hep">
+    <h1 class="tieu">Từ điển thuật ngữ cốt lõi</h1>
+    <p class="dan">Người mới vướng nhất ở <b>vốn từ</b>. Bảng này gom các từ xuất hiện nhiều nhất, xếp theo nhóm chức năng.</p>
+    ${TUDIEN.map(g => `
+      <h2 class="muc">${esc(g.nhom)}</h2>
+      <div class="the">${g.tu.map(([t,n]) => `
+        <div class="tu"><div class="tu-ten">${esc(t)}</div><div class="tu-nghia">${n}</div></div>`).join("")}
+      </div>`).join("")}
+    <h2 class="muc">5 cặp câu từ dễ nhầm</h2>
+    <div class="the">
+      <div class="tu"><div class="tu-ten">Họa ≠ Nhân quả</div><div class="tu-nghia"><b>Họa</b>: cám dỗ, cạm bẫy, đồng lõa, cộng nghiệp, cảnh cuốn — đến từ bên ngoài. <b>Nhân quả</b>: do con người chủ động khởi tâm, hành động tạo ra nhân.</div></div>
+      <div class="tu"><div class="tu-ten">Nhân duyên ≠ Tràn duyên</div><div class="tu-nghia"><b>Nhân duyên</b>: đã tạo từ quá khứ, nay đủ phúc đức thì các Ngài se lại — duyên lành hay duyên nghiệp đều là phước báu. <b>Tràn duyên</b>: do mình chủ động tạo ra, sẽ khiến mình mắc vào, không diệt trừ được thì không giải thoát được.</div></div>
+      <div class="tu"><div class="tu-ten">Tùy duyên ≠ Vô tâm</div><div class="tu-nghia"><b>Tùy duyên</b>: <em>đã khởi tâm mạnh mẽ, đã phát tâm hành động chuẩn theo Trí tuệ</em> rồi mới tùy duyên với kết quả — để thoát tâm tham ái. <b>Vô tâm</b>: không khát vọng, không khởi tâm cầu, không hành động, chỉ ngồi chờ; không đạt được thì lại tưởng là tùy duyên.</div></div>
+      <div class="tu"><div class="tu-ten">Tu tập ≠ Kính lễ</div><div class="tu-nghia"><b>Tu tập</b>: cầu nguyện sáng tối · sám hối 4 mùa cho người sống · mùa Vu lan tháng 5–6–7 âm. <b>Kính lễ</b>: ngày 1 và rằm · ngày của đất nước (10/3, 27/7, 2/9) · ngày của dòng họ · ngày giỗ, tết, các khóa lễ gia đình.</div></div>
+      <div class="tu"><div class="tu-ten">Tu sửa thân–tâm–khẩu–ý ≠ Tu thân–tâm</div><div class="tu-nghia"><b>Tu sửa T–T–K–Y</b>: sửa những gì đang tạo nghiệp — tâm mưu mô, tham sân si; ý suy diễn suy đoán; hành động thói thường kỹ xảo; khẩu nói tục nói tiêu cực. <b>Tu thân–tâm</b>: nấc cao hơn sau khi đã sửa xong — tu thân cho sạch sẽ, thanh tịnh, nhẹ nhàng, thư thái, ung dung, tự tại; tu tâm cho định tâm, trụ tâm, hoan hỷ, xả bỏ, từ bi.</div></div>
+    </div>
+  </div>`;
+}
+
+/* ── Wizard ───────────────────────────────────────────────── */
+const TRAM = [
+  {n:1, ten:"Nhận diện vấn đề",  mo:"Đặt tên bất ổn thuộc khối nào"},
+  {n:2, ten:"Khai thác",         mo:"Tìm góc độ tác động chính"},
+  {n:3, ten:"Sử dụng pháp",      mo:"Đối trị · hóa giải · xoay chuyển"},
+  {n:4, ten:"Ứng dụng khuôn",    mo:"Bộ khuôn + 14 ý bám"}
+];
+const khoiHienTai = () => KHOI.find(k => k.id === S.w.khoi);
+function moKhoa(n){
+  if(n === 1) return true;
+  if(n === 2) return !!S.w.khoi;
+  if(n === 3) return !!S.w.khoi && S.w.gocdo.size > 0;
+  if(n === 4) return !!S.w.khoi && S.w.gocdo.size > 0;
+  return false;
+}
+function veThuoc(){
+  return `<div class="thuoc">${TRAM.map(t => {
+    const tt = S.w.buoc === t.n ? "dang" : (S.w.buoc > t.n && moKhoa(t.n) ? "xong" : "cho");
+    let mo = t.mo;
+    if(t.n === 1 && S.w.khoi) mo = "Khối " + khoiHienTai().ten;
+    if(t.n === 2 && S.w.gocdo.size) mo = S.w.gocdo.size + " góc độ đã chọn";
+    if(t.n === 3 && S.w.buoc > 3) mo = "Đã xem 3 pháp";
+    if(t.n === 4 && S.w.buoc === 4) mo = "Phiếu đã lập";
+    return `<button class="tram" data-tram="${t.n}" data-tt="${tt}" ${moKhoa(t.n) ? "" : "disabled"}>
+      <span class="tram-so">Trạm ${t.n}</span>
+      <span class="tram-ten">${t.ten}</span>
+      <span class="tram-tt">${esc(mo)}</span>
+    </button>`;
+  }).join("")}</div>`;
+}
+
+function veW1(){
+  const k = khoiHienTai();
+  return `${veThuoc()}
+  <h2 class="buoc-de">Bất ổn của bạn thuộc khối nào?</h2>
+  <p class="buoc-dan">Tài liệu chia cuộc sống thành <b>7 khối</b>. Bước đầu tiên của Công thức ứng dụng là <b>đặt tên được vấn đề</b> — chưa đặt tên được thì chưa khai thác đúng chỗ.</p>
+  <div class="luoi luoi-3" style="margin-bottom:22px">${KHOI.map(x => `
+    <button class="chon" data-khoi="${x.id}" aria-pressed="${S.w.khoi === x.id}">
+      <span class="o">${tick}</span>
+      <span><span class="chon-ten">${esc(x.ten)}</span><span class="chon-mo">${esc(x.mo)}</span></span>
+    </button>`).join("")}</div>
+
+  ${k ? `<h2 class="muc">Cụ thể hơn — chọn những gì đúng với bạn</h2>
+    <div class="luoi" style="gap:7px">${k.vande.map((v,i) => `
+      <button class="chon" data-vande="${i}" aria-pressed="${S.w.vande.has(i)}">
+        <span class="o">${tick}</span><span class="chon-ten" style="font-weight:500">${esc(v)}</span>
+      </button>`).join("")}</div>` : ""}
+
+  <div class="canh-bao">
+    <b>Hai lưu ý khi đặt tên vấn đề.</b> ① Nếu tư tưởng – tinh thần bất ổn <em>do</em> khối khác (ví dụ tài chính), thì vấn đề vẫn là <b>khối kia</b>; giải xong khối kia thì tư tưởng tinh thần sẽ hết. ② <b>Phân biệt bất ổn của mình với bất ổn của người khác</b> — bố mẹ bị bệnh mà không ảnh hưởng đến công sức, thời gian, tiền bạc của mình thì đó là bất ổn <em>của bố mẹ</em>; ta không lập công thức giải thay được, mà báo hiếu bằng cách giúp bố mẹ tìm ra gốc và dùng pháp.
+  </div>
+
+  <div class="chan-buoc">
+    <button class="nut-hd" data-di="2" ${S.w.khoi ? "" : "disabled"}>Sang trạm 2 — Khai thác →</button>
+    <span class="chan-ghi">Công thức ứng dụng · Bước 1/4</span>
+  </div>`;
+}
+
+function veW2(){
+  const k = khoiHienTai();
+  const goiY = new Set();
+  S.w.bieuhien.forEach(i => (BIEUHIEN[i].g || []).forEach(g => goiY.add(g)));
+  return `${veThuoc()}
+  <h2 class="buoc-de">Khai thác để tìm góc độ tác động chính</h2>
+  <p class="buoc-dan">Tài liệu chỉ <b>ba cách</b> để tìm ra góc độ tác động chính: ① khai thác dữ liệu ② quan sát biểu hiện hiện tượng — <em>truy quả tầm nhân</em> ③ dựa vào kết quả rà soát quá khứ. Dùng đủ cả ba mới ra <b>đúng và đủ</b>.</p>
+
+  <h2 class="muc">① Khai thác dữ liệu — khối ${esc(k.ten)}</h2>
+  <p class="buoc-dan" style="margin-bottom:12px">Đọc từng ý và tự hỏi: <b>ý này chỉ cho ta biết gì, và ta cần làm gì?</b> Rồi <b>quy chiếu bản thân</b> — so với quy chuẩn, mình <em>không làm gì · làm nhưng thiếu gì · làm nhưng lỗi gì?</em></p>
+  <div>${k.khaithac.map((x,i) => {
+    const mo = S.w.khaithacDaDoc.has(i);
+    return `<div class="dieu" data-mo="${mo?1:0}">
+      <button class="dieu-dau" data-kt="${i}" aria-expanded="${mo}">
+        <span class="o">${tick}</span>
+        <span style="flex:1"><span class="chon-ten">${esc(x.y)}</span>
+        ${mo ? "" : `<span class="chon-mo">Bấm để mở — Trí tuệ chỉ gì, cần làm gì</span>`}</span>
+        ${mui}
+      </button>
+      ${mo ? `<div class="dieu-than">
+        <div class="hoi">Trí tuệ chỉ cho ta biết gì?</div><p>${x.chi}</p>
+        <div class="hoi">Vậy ta cần làm gì?</div><p>${x.lam}</p>
+      </div>` : ""}
+    </div>`;
+  }).join("")}</div>
+
+  <h2 class="muc">② Quan sát biểu hiện hiện tượng — truy quả tầm nhân</h2>
+  <p class="buoc-dan" style="margin-bottom:12px">Chọn những biểu hiện đang xảy ra với bạn. Mỗi biểu hiện sẽ <b>gợi ý</b> góc độ tác động chính ở mục ③.</p>
+  <div class="luoi" style="gap:7px">${BIEUHIEN.map((b,i) => `
+    <button class="chon" data-bh="${i}" aria-pressed="${S.w.bieuhien.has(i)}">
+      <span class="o">${tick}</span>
+      <span><span class="chon-ten" style="font-weight:500">${esc(b.t)}</span>
+      ${S.w.bieuhien.has(i) ? `<span class="chon-mo">→ ${esc(b.n)}</span>` : ""}</span>
+    </button>`).join("")}</div>
+
+  <div class="canh-bao" style="margin-top:18px">
+    <b>③ Rà soát quá khứ.</b> Phần này tài liệu gốc <em>để trống bài rà soát cụ thể</em>. Tạm thời hãy tự rà theo các trục mà tài liệu nêu: <b>bản thân, ông bà, bố mẹ, vợ chồng, con cái</b> — tính cách · phúc nghiệp · công việc · hành xử · Hiếu–Lễ–Nghĩa · tư duy · thói thường · kiểm soát · nguyên tắc · nợ công nợ của · lỗi đạo. Và <b>rà soát gia tiên</b> — nghề nghiệp (có làm nghề sát sinh không?), cách sống (có phá đền chùa, ăn trộm của chùa, nuôi âm binh, làm thầy cúng hình nhân thế mạng không?), Hiếu–Lễ–Nghĩa (thờ tự có chuẩn mực không?).
+  </div>
+
+  <h2 class="muc">Chọn góc độ tác động chính</h2>
+  ${goiY.size ? `<p class="buoc-dan" style="margin-bottom:12px">Từ biểu hiện bạn đã chọn, Trí tuệ gợi ý ${goiY.size} góc độ — được đánh dấu <span class="the-nho vang" style="padding:1px 8px">gợi ý</span> bên dưới. Bạn vẫn tự quyết định chọn góc độ nào.</p>` : ""}
+  <div class="luoi luoi-2" style="gap:7px">${GOCDO.map(g => `
+    <button class="chon" data-gd="${g.id}" aria-pressed="${S.w.gocdo.has(g.id)}">
+      <span class="o">${tick}</span>
+      <span><span class="chon-ten">${esc(g.ten)} ${goiY.has(g.id) ? `<span class="the-nho vang" style="padding:1px 7px;font-size:10.5px">gợi ý</span>` : ""}</span>
+      <span class="chon-mo">${esc(g.mo)}</span></span>
+    </button>`).join("")}</div>
+
+  <div class="chan-buoc">
+    <button class="nut-phu" data-di="1">← Trạm 1</button>
+    <button class="nut-hd" data-di="3" ${S.w.gocdo.size ? "" : "disabled"}>Sang trạm 3 — Sử dụng pháp →</button>
+    <span class="chan-ghi">Công thức ứng dụng · Bước 2/4</span>
+  </div>`;
+}
+
+function veW3(){
+  return `${veThuoc()}
+  <h2 class="buoc-de">Sử dụng pháp</h2>
+  <p class="buoc-dan">Ba pháp, và <b>thứ tự dùng là bất biến</b>: pháp đối trị <em>luôn đi trước</em>; pháp hóa giải và pháp xoay chuyển <em>triển khai song song</em>. Đây là chỗ nhiều người bỏ sót — chỉ hóa giải mà không xoay chuyển thì nghiệp không dừng, giải xong lại đổ về.</p>
+  <div class="luoi" style="gap:10px">${PHAP.map((p,i) => `
+    <div class="the">
+      <div class="khuon-ten"><span class="so" style="width:26px">${i+1}</span>${esc(p.ten)}
+        <span class="the-nho ${p.khi === "Luôn đi trước" ? "" : "xam"}">${esc(p.khi)}</span></div>
+      <p class="khuon-vi">${esc(p.mo)}</p>
+      <ul class="ds">${p.lam.map(x => `<li>${x}</li>`).join("")}</ul>
+    </div>`).join("")}</div>
+
+  <div class="canh-bao">
+    <b>Song song, không chờ.</b> Tài liệu ghi: <em>“Hóa giải bất ổn cần có thời gian nên trong khoảng thời gian đó thì song song 1 bên vẫn giải bất ổn, nhưng 1 bên thì ta vẫn xoay chuyển cuộc sống có Trí tuệ để dừng nghiệp.”</em>
+  </div>
+
+  <div class="chan-buoc">
+    <button class="nut-phu" data-di="2">← Trạm 2</button>
+    <button class="nut-hd" data-di="4">Lập phiếu ứng dụng →</button>
+    <span class="chan-ghi">Công thức ứng dụng · Bước 3/4</span>
+  </div>`;
+}
+
+function veW4(){
+  const k = khoiHienTai();
+  const ids = []; S.w.gocdo.forEach(g => (ANHXA[g] || []).forEach(id => { if(!ids.includes(id)) ids.push(id); }));
+  const ks = ids.map(id => KHUON.find(x => x.id === id)).filter(Boolean);
+  const gdTen = [...S.w.gocdo].map(g => GOCDO.find(x => x.id === g).ten);
+  const vd = [...S.w.vande].map(i => k.vande[i]);
+  return `${veThuoc()}
+  <h2 class="buoc-de">Phiếu ứng dụng</h2>
+  <p class="buoc-dan">Đây là kết quả của bốn trạm. Bấm <b>In phiếu</b> để giữ lại, hoặc chép sang sổ tay của bạn.</p>
+
+  <div class="phieu">
+    <div class="phieu-dau">
+      <div class="phieu-nhan">Công thức ứng dụng · trực chỉ góc độ tác động chính</div>
+      <div class="phieu-ten">Bất ổn khối ${esc(k.ten)}</div>
+    </div>
+    <div class="phieu-than">
+      ${vd.length ? `<div class="hang"><div class="hang-nhan">Vấn đề đã đặt tên</div>
+        <div class="vien">${vd.map(v => `<span class="the-nho xam">${esc(v)}</span>`).join("")}</div></div>` : ""}
+
+      <div class="hang"><div class="hang-nhan">Góc độ tác động chính</div>
+        <div class="vien">${gdTen.map(t => `<span class="the-nho">${esc(t)}</span>`).join("")}</div></div>
+
+      <div class="hang"><div class="hang-nhan">Pháp — thứ tự bất biến</div>
+        <div class="vien"><span class="the-nho vang">1 · Đối trị (đi trước)</span><span class="the-nho">2 · Hóa giải</span><span class="the-nho">3 · Xoay chuyển</span></div>
+        <p class="khuon-vi" style="margin-top:8px">Hóa giải và xoay chuyển <b>chạy song song</b>. Hóa giải làm <b>trực tiếp</b> cho người trần và vong linh đang gây ra góc độ tác động chính; xoay chuyển làm cho <b>tất cả các nhóm</b>.</p></div>
+
+      <div class="hang"><div class="hang-nhan">Bộ khuôn ứng dụng — ${ks.length} khuôn</div>
+        ${ks.map(x => `<div class="khuon">
+          <div class="khuon-ten"><span class="so" style="width:26px">${String(x.so).padStart(2,"0")}</span>${esc(x.ten)}
+            <span class="the-nho xam">${esc(x.nhom)}</span></div>
+          <div class="khuon-vi"><b>Hóa giải:</b> ${x.giai.map(esc).join(" · ")}</div>
+          <div class="vi-sao"><b>Nhận ra gì mà ứng dụng?</b> ${x.nra}</div>
+          <ul class="ds">${x.lam.map(l => `<li>${l}</li>`).join("")}</ul>
+        </div>`).join("")}
+      </div>
+
+      <div class="hang"><div class="hang-nhan">Khi hành động — bám 14 ý</div>
+        <div class="vien">${BAM14.map(b => `<span class="the-nho xam">${esc(b)}</span>`).join("")}</div>
+        <p class="khuon-vi" style="margin-top:8px"><b>Ứng dụng đúng khuôn mà không bám thì vẫn không thành công.</b> Ứng dụng mới chỉ là <em>hướng đi</em>; có hướng đi rồi thì phải bám vào nguyên lý, đạo, thực tế… để đi đến đâu chắc đến đó, không để lại hệ quả, không để lại ân oán.</p></div>
+
+      <div class="hang"><div class="hang-nhan">Song song — viết Công thức giải cảnh để bày binh bố trận</div>
+        <ul class="ds">
+          <li><b>Thực tế</b> — xét 7 ý: ${THUCTE7.map(t => esc(t.t)).join(" · ")}. Để nhận ra bất ổn do <em>mình thiếu hiểu biết về yếu tố nào</em>, hay do <em>nhân quả cá nhân</em> → <b>không đổ lỗi cho người khác hay hoàn cảnh nữa</b>.</li>
+          <li><b>Đích</b> — hóa giải bất ổn · đích sử dụng Trí tuệ mọi lúc mọi nơi · luôn bám đích.</li>
+          <li><b>Phương pháp</b> — đúng nguyên lý · tròn 7 đạo. <em>Vì gốc mọi bất ổn đều do thiếu hiểu biết hoặc nhân quả bản thân — vạn sự trách mình. Làm đúng nguyên lý đúng đạo thì bồi được vào phúc đức; đủ phúc đức thì xoay chuyển được tình thế.</em></li>
+          <li><b>Phối hợp</b> — điểm tựa Trời Phật (tấu trình để các Ngài lấy tư lương ra) · điểm tựa gia tiên (nếu gia tiên còn bị đọa thì chưa về độ được — phải giúp gia tiên siêu thoát trước, <b>không đốt cháy giai đoạn</b>) · con người (xét người trước — <b>nếu có ân oán thì phải hóa giải trước rồi mới phối hợp</b>) · máy móc.</li>
+          <li><b>Kế hoạch</b> — ngắn / trung / dài hạn. <em>Muốn biết chọn loại nào thì phải xem lại kết quả rà soát: nếu âm phần gia tiên và dương phần bản thân đều kém thì không thể là ngắn hạn.</em></li>
+        </ul></div>
+    </div>
+  </div>
+
+  <div class="canh-bao">
+    <b>Làm liên tục cho đến khi hết bất ổn thì thôi.</b> Và đừng dừng ở đây — song song với việc giải bất ổn, hãy bắt đầu <b>đưa khuôn Trí tuệ vào cuộc sống</b> ở cả 7 khối để <em>dừng nghiệp</em>, không tạo nghiệp mới. Giải bất ổn chỉ là <b>cái nhỏ nhất</b> trong Trí tuệ.
+  </div>
+
+  <div class="chan-buoc">
+    <button class="nut-phu" data-di="3">← Trạm 3</button>
+    <button class="nut-hd" id="inPhieu">In phiếu</button>
+    <button class="nut-phu" id="lamLai">Làm lại từ đầu</button>
+    <span class="chan-ghi">Công thức ứng dụng · Bước 4/4</span>
+  </div>`;
+}
+
+function veWizard(){
+  const than = [veW1, veW2, veW3, veW4][S.w.buoc - 1]();
+  return `<div class="trang">
+    <h1 class="tieu" style="margin-bottom:4px">Giải vấn đề bất ổn</h1>
+    <p class="dan">Bốn trạm theo đúng <b>Công thức ứng dụng</b> của Trí tuệ. Mỗi trạm chỉ hỏi những gì tài liệu yêu cầu — không thêm, không bớt.</p>
+    ${than}
+  </div>`;
+}
+
+
+/* ── Thẻ khuôn chuẩn 4 phần ───────────────────────────────── */
+function theKhuon(k, mo){
+  const bam = k.bam || [];
+  const chips = bam.map(id => {
+    const key = k.id + ":" + id, dang = S.bamMo.has(key), b = BAMY[id];
+    return `<button class="chip ${dang ? "sang" : ""}" data-bam="${key}">${esc(b ? b.t : id)}</button>`;
+  }).join("");
+  const hien = bam.filter(id => S.bamMo.has(k.id + ":" + id));
+  return `<div class="khuon-the ${mo ? "mo" : ""}" id="khuon-${k.id}">
+    <button class="khuon-dau" data-khuonmo="${k.id}" aria-expanded="${mo}">
+      <span class="so">${String(k.so).padStart(2,"0")}</span>
+      <span class="dau-chu">
+        <span class="dau-ten">${esc(k.ten)}</span>
+        <span class="dau-hoi">${esc(k.nhom)}${k.chuky ? ` · <b style="color:var(--dang)">${esc(k.chuky)}</b>` : ""}</span>
+      </span>
+      ${mui}
+    </button>
+    ${mo ? `<div class="khuon-noi">
+      <div class="phan"><div class="phan-nhan"><span class="phan-so">1</span>Nhận ra gì mà ứng dụng?</div>
+        <div class="vi-sao">${k.nra}</div></div>
+      <div class="phan"><div class="phan-nhan"><span class="phan-so">2</span>Việc cần làm</div>
+        <ul class="ds">${k.lam.map(x => `<li>${x}</li>`).join("")}</ul></div>
+      ${bam.length ? `<div class="phan"><div class="phan-nhan"><span class="phan-so">3</span>Khi làm thì bám vào <span style="color:var(--tro);font-weight:400">— bấm để mở ngay tại chỗ</span></div>
+        <div class="chip-hang">${chips}</div>
+        ${hien.length ? `<div class="bam-mo">${hien.map(id => {
+          const b = BAMY[id];
+          return `<div class="bam-mot"><b>${esc(b.t)}</b> — ${b.n}${b.p ? ` <button class="bam-di" data-nhay="${b.p}">Mở Phần ${b.p} trong cây kiến thức →</button>` : ""}</div>`;
+        }).join("")}</div>` : ""}</div>` : ""}
+      ${k.giai && k.giai.length ? `<div class="phan"><div class="phan-nhan"><span class="phan-so">4</span>Khuôn này hóa giải góc độ nào</div>
+        <div class="vien">${k.giai.map(g => `<span class="the-nho">${esc(g)}</span>`).join("")}</div></div>` : ""}
+    </div>` : ""}
+  </div>`;
+}
+
+/* ── CHẾ ĐỘ: LỘ TRÌNH HỌC ─────────────────────────────────── */
+function veLoTrinh(){
+  const LOAIMAU = {"Chẩn đoán":"", "Khuôn có chu kỳ":"vang", "Hành sứ mệnh":"vang", "Công cụ":"xam"};
+  return `<div class="trang">
+    <h1 class="tieu">Lộ trình học</h1>
+    <p class="dan">Trang này trả lời hai câu: <b>tôi sẽ đi qua những gì</b>, và <b>tôi đang ở đâu</b>. Mở lúc mới bắt đầu, sau mỗi buổi học, và những lúc thấy nản hoặc mất phương hướng — tài liệu gọi việc quay lại này là <b>RESET</b>.</p>
+
+    <h2 class="muc">Mạch xuyên suốt 5 bước</h2>
+    <div class="mach">${NAMBUOC.map((b,i) => `
+      <div class="mach-o">
+        <div class="mach-so">Bước ${b.n}</div>
+        <div class="mach-chu">${b.mach}</div>
+        <div class="mach-tt">${esc(b.tt)}</div>
+        ${i < 4 ? `<div class="mach-mui">→</div>` : ""}
+      </div>`).join("")}</div>
+
+    <h2 class="muc">Chương trình 5 bước</h2>
+    <div class="cay">${NAMBUOC.map(b => {
+      const mo = S.moBuoc.has(b.n);
+      return `<div class="nut ${mo ? "mo" : ""}">
+        <button class="dau" data-buoc="${b.n}" aria-expanded="${mo}">
+          <span class="so">B${b.n}</span>
+          <span class="dau-chu"><span class="dau-ten">${esc(b.ten)}</span><span class="dau-hoi">${esc(b.dich)}</span></span>
+          ${mui}
+        </button>
+        ${mo ? `<div class="than-nut"><ul class="ds">${b.ds.map(d => `<li>${d}</li>`).join("")}</ul></div>` : ""}
+      </div>`;
+    }).join("")}</div>
+
+    <h2 class="muc">Ba giai đoạn</h2>
+    <div class="luoi luoi-3">
+      <div class="the"><div class="khuon-ten"><span class="so" style="width:26px">1</span>Giai đoạn 1</div>
+        <p class="khuon-vi">Chương trình <b>5 Bước</b> · <b>Bổ trợ</b> · <b>Ứng dụng và Bám</b> · <b>Tốt nghiệp</b> · <b>Thử thách</b>. Dữ liệu được học: nền tảng và sâu · định hướng · các ý mở thêm.</p></div>
+      <div class="the"><div class="khuon-ten"><span class="so" style="width:26px">2</span>Giai đoạn 2</div>
+        <p class="khuon-vi">Chủ động học các phương pháp để <b>làm chủ cuộc đời, làm thầy chính mình</b>. Được hướng dẫn: Công thức Học · phương pháp giải quyết bất ổn · đưa khuôn Trí tuệ vào 7 khối. Được xin <b>đàm đạo</b> để hiểu đúng, hiểu chuẩn, hiểu sâu sắc từng ý.</p></div>
+      <div class="the"><div class="khuon-ten"><span class="so" style="width:26px">3</span>Giai đoạn 3</div>
+        <p class="khuon-vi">Học tiếp các dữ liệu sâu hơn. <em>Bản dựng này chưa có dữ liệu Giai đoạn 2 và 3.</em></p></div>
+    </div>
+
+    <h2 class="muc">Chương trình Bổ trợ — 11 mục và nơi xem</h2>
+    <p class="dan" style="margin-bottom:14px">Mười một mục Bổ trợ <b>không nằm chung một chỗ</b>, vì chúng thuộc bốn bản chất khác nhau. Bảng này là bảng điều hướng: mỗi mục dẫn tới đúng nơi nội dung của nó nằm trong app.</p>
+    <div class="bt-bang">
+      <div class="bt-dau"><span>Mục</span><span>Bản chất</span><span>Khi nào cần</span><span>Xem ở đâu</span></div>
+      ${BOTRO.map(b => `<div class="bt-hang">
+        <div class="bt-ten"><span class="bt-so">${b.n}</span><span>${esc(b.ten)}${b.trong ? ` <span class="nhan n-trong">Bài rà soát còn trống</span>` : ""}</span></div>
+        <div><span class="the-nho ${LOAIMAU[b.loai]}">${esc(b.loai)}</span></div>
+        <div class="bt-khi">${esc(b.khi)}</div>
+        <div><button class="bt-di" data-che="${b.di.che}">${esc(b.di.nhan)} →</button>
+          <div class="bt-lam">${b.lam}</div></div>
+      </div>`).join("")}
+    </div>
+
+    <h2 class="muc">Công thức học — dùng mỗi khi học một ý mới</h2>
+    <div class="the">
+      <div class="ct4">${CTHOC.map((c,i) => `
+        <div class="ct-cot"><div class="ct-nhan">Cột ${i+1}</div><div class="ct-ten">${esc(c.c)}</div><div class="ct-h">${c.h}</div></div>`).join("")}</div>
+      <div class="canh-bao" style="margin-top:6px">
+        <b>Dùng ngược lại để xây hướng đi.</b> Xác định muốn xây hướng đi cho <em>bản thân / gia đình / con cái / công việc / tài chính</em> → khai thác các ý Trí tuệ chỉ về việc đó (cột <b>Nhận ra</b>) → viết <b>Quy chuẩn</b> của từng ý → <b>Quy chiếu</b> để có động lực → ra <b>Hướng đi</b>.
+      </div>
+    </div>
+
+    <h2 class="muc">Trục vận hành suốt đời — chạy song song mọi giai đoạn</h2>
+    <div class="luoi" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr))">
+      <div class="the"><div class="khuon-ten">HỌC</div><p class="khuon-vi">Được học · Tự học · Đàm đạo</p></div>
+      <div class="the"><div class="khuon-ten">SỐNG</div><p class="khuon-vi">Ứng dụng khuôn · Sử dụng pháp · Rà soát · Phản xạ</p></div>
+      <div class="the"><div class="khuon-ten">HÀNH</div><p class="khuon-vi">Gieo duyên · Chăm sóc HTTĐ cá nhân</p></div>
+      <div class="the"><div class="khuon-ten">TU</div><p class="khuon-vi">Đúng đạo · Tròn đạo · Hành đạo · Cầu đạo · Tu đạo</p></div>
+      <div class="the"><div class="khuon-ten">LUYỆN</div><p class="khuon-vi">Viết · Thế pháp · Trí tuệ · Hằng ngày · Cao nhân</p></div>
+    </div>
+
+    <h2 class="muc">Tự định vị — bạn thuộc nhóm nào?</h2>
+    <div class="luoi luoi-2">${NHOMHOC.map(n => `
+      <div class="the"><div class="khuon-ten"><span class="so" style="width:26px">${n.n}</span>${esc(n.t)}</div>
+        <p class="khuon-vi">${n.g}</p></div>`).join("")}</div>
+  </div>`;
+}
+
+/* ── CHẾ ĐỘ: SỐNG HẰNG NGÀY ───────────────────────────────── */
+function veHangNgay(){
+  const k = S.hnKhoi ? KHOI.find(x => x.id === S.hnKhoi) : null;
+  const kk = k ? KHUONKHOI.find(x => x.id === S.hnKhoi) : null;
+  return `<div class="trang">
+    <h1 class="tieu">Sống hằng ngày</h1>
+    <p class="dan">Đây là <b>chế độ chủ động</b> — dùng khi không có vấn đề gì cấp bách. Đích không phải hóa giải bất ổn, mà là <b>dừng nghiệp</b>: không tạo nghiệp mới. Pháp dùng ở đây là <b>pháp xoay chuyển</b>, và làm cho <b>tất cả các nhóm</b> chứ không trực chỉ vào một góc độ.</p>
+
+    <h2 class="muc">Một ngày chạy như thế nào</h2>
+    <div class="ngay">
+      <div class="ngay-o"><div class="ngay-nhan">Tối hôm trước</div>
+        <div class="ngay-ten">Lập kế hoạch</div>
+        <ul class="ds"><li>Ngày mai mình có những việc gì? Việc đó là <b>Lợi tư</b> hay <b>Sứ mệnh</b>?</li>
+        <li>Những việc đó chạm vào <b>khối</b> nào?</li>
+        <li>Viết <b>Công thức đối cảnh</b> ra giấy A4 để bám</li></ul></div>
+      <div class="ngay-o"><div class="ngay-nhan">Trong ngày</div>
+        <div class="ngay-ten">Dùng 2 công thức song song</div>
+        <ul class="ds"><li><b>Công thức sử dụng Trí tuệ</b>: Khai thác → Quy chiếu → Ứng dụng → Bám</li>
+        <li><b>Công thức đối cảnh</b>: Đích → Thực tế → Phương pháp → Phối hợp → Kế hoạch</li>
+        <li>Mỗi việc đến: <b>xét thực tế trước</b> — là con người hay sự việc?</li></ul></div>
+      <div class="ngay-o"><div class="ngay-nhan">Tối</div>
+        <div class="ngay-ten">Rà soát hằng ngày</div>
+        <ul class="ds"><li>Hôm nay <b>làm được gì</b> mà Trí tuệ chỉ?</li>
+        <li><b>Bám</b> được khuôn nào?</li>
+        <li><b>Mắc</b> vào gì? — <em>cái không làm được chính là nghiệp chướng của mình, nhận diện để còn trả nghiệp</em></li>
+        <li>Ghi sổ tay phúc đức · hồi hướng công đức</li></ul></div>
+    </div>
+
+    <h2 class="muc">Hôm nay bạn chạm vào khối nào?</h2>
+    <p class="dan" style="margin-bottom:12px">Ngày nào cũng gặp <b>ba khối</b>: Bản thân · Gia đình · Quan hệ. Phát sinh thì thêm khối khác — đi làm thì thêm Công việc, đi chợ thì thêm Tài chính.</p>
+    <div class="luoi luoi-3" style="margin-bottom:18px">${KHOI.map(x => `
+      <button class="chon" data-hnkhoi="${x.id}" aria-pressed="${S.hnKhoi === x.id}">
+        <span class="o">${tick}</span>
+        <span><span class="chon-ten">${esc(x.ten)}</span><span class="chon-mo">${esc(x.mo)}</span></span>
+      </button>`).join("")}</div>
+
+    ${k ? `<div class="the" style="margin-bottom:18px">
+      <div class="hang-nhan">Khối ${esc(k.ten)} — khai thác để nhận ra đâu mà ứng dụng</div>
+      <ul class="ds">${k.khaithac.slice(0,4).map(x => `<li><b>${esc(x.y)}</b> — ${x.chi}. <em>Cần làm:</em> ${x.lam}</li>`).join("")}</ul>
+      <p class="khuon-vi" style="margin-top:8px;color:var(--tro)">Chỉ cần tập trung vào một số ý mấu chốt giúp mình thấy <b>tại sao</b> phải ứng dụng và giúp mình <b>bám</b> được khi ứng dụng. Vẫn cần học tất cả dữ liệu — nhưng là để khai thác <em>khi chia sẻ với người khác</em>.</p>
+    </div>` : ""}
+
+    ${kk ? `<div class="the">
+      <div class="hang-nhan">Khuôn đưa Trí tuệ vào ${esc(kk.ten)}</div>
+      <div class="phan"><div class="phan-nhan"><span class="phan-so">1</span>Ứng dụng trực chỉ theo Trí tuệ</div>
+        <ul class="ds">${kk.ud.map(x => `<li>${x}</li>`).join("")}</ul></div>
+      ${kk.them ? `<ul class="ds">${kk.them.map(x => `<li>${x}</li>`).join("")}</ul>` : ""}
+      <div class="phan"><div class="phan-nhan"><span class="phan-so">2</span>Bám vào các ý để ứng dụng</div>
+        <div class="chip-hang">${kk.bam.map(id => {
+          const key = "khoi-" + kk.id + ":" + id, b = BAMY[id];
+          return `<button class="chip ${S.bamMo.has(key) ? "sang" : ""}" data-bam="${key}">${esc(b ? b.t : id)}</button>`;
+        }).join("")}</div>
+        ${kk.bam.filter(id => S.bamMo.has("khoi-" + kk.id + ":" + id)).map(id => {
+          const b = BAMY[id];
+          return `<div class="bam-mo"><div class="bam-mot"><b>${esc(b.t)}</b> — ${b.n}${b.p ? ` <button class="bam-di" data-nhay="${b.p}">Mở Phần ${b.p} →</button>` : ""}</div></div>`;
+        }).join("")}</div>
+    </div>` : (S.hnKhoi === "bt" ? `<div class="canh-bao">Khối <b>Bản thân</b> không có một khuôn gộp — nó có <b>24 khuôn riêng</b>. <button class="bt-di" data-che="khuon">Mở Thư viện khuôn →</button></div>` : "")}
+
+    <h2 class="muc">Khuôn bên ngoài — khi giao tiếp ra ngoài</h2>
+    <div class="the">
+      <p class="khuon-vi" style="margin-bottom:12px">Đích: ${KHUONNGOAI.dich.map(d => `<span class="the-nho xam">${esc(d)}</span>`).join(" ")}</p>
+      <div class="luoi luoi-2" style="margin-bottom:14px">${KHUONNGOAI.mat.map(m => `
+        <div class="mat-o"><div class="mat-t">${esc(m.t)}</div><div class="mat-n">${m.n}</div></div>`).join("")}</div>
+      <div class="hang-nhan">4 bước — dùng cho cả 8 hành động giao tiếp</div>
+      <div class="buoc4">${KHUONNGOAI.buoc4.map((b,i) => `<div class="b4"><span class="b4-so">${i+1}</span>${esc(b)}</div>`).join("")}</div>
+      <div class="vien" style="margin-top:12px">${KHUONNGOAI.hanhdong8.map(h => `<span class="the-nho xam">${esc(h)}</span>`).join("")}</div>
+    </div>
+
+    <h2 class="muc">Phản xạ của người Trí tuệ</h2>
+    <p class="dan" style="margin-bottom:12px">Khi <b>bất kỳ việc gì</b> đến, trước tiên <b>xét Thực tế</b>: việc đó liên quan đến con người hay sự việc?</p>
+    <div class="luoi luoi-2">
+      ${[PHANXA.nguoi, PHANXA.viec].map(p => `
+        <div class="the"><div class="khuon-ten">${esc(p.t)}</div>
+          <ul class="ds">${p.b.map(x => `<li>${x}</li>`).join("")}</ul>
+          <p class="khuon-vi" style="margin-top:8px;color:var(--tro)">Cả hai đều: ý thức <b>Luật vận hành</b> · bám <b>Quy luật tự nhiên · Tâm từ bi · Nguyên tắc</b>.</p></div>`).join("")}
+    </div>
+
+    <h2 class="muc">Khi có việc phát sinh ngoài kế hoạch</h2>
+    <div class="luoi luoi-2">${CANHPHATSINH.map(c => `
+      <div class="the"><div class="khuon-ten">${esc(c.t)}</div>
+        <p class="khuon-vi"><b>Dấu hiệu:</b> ${esc(c.dh)}</p>
+        <div class="vi-sao" style="margin-top:9px"><b>Cách ứng:</b> ${c.ung}</div></div>`).join("")}</div>
+    <div class="canh-bao"><b>Đặt tên cảnh trước khi xử.</b> ${DATTENCANH.join(" · ")}.</div>
+
+    <h2 class="muc">Chu kỳ — việc gì làm lúc nào</h2>
+    <div class="luoi luoi-2">${CHUKY.map(c => `
+      <div class="the"><div class="khuon-ten" style="color:var(--dang)">${esc(c.t)}</div>
+        <ul class="ds">${c.v.map(v => `<li>${v}</li>`).join("")}</ul></div>`).join("")}</div>
+  </div>`;
+}
+
+/* ── CHẾ ĐỘ: THƯ VIỆN KHUÔN ───────────────────────────────── */
+function veThuVien(){
+  const nhoms = [...new Set(KHUON.map(k => k.nhom))];
+  const loc = S.khuonNhom;
+  const ds = loc ? KHUON.filter(k => k.nhom === loc) : KHUON;
+  return `<div class="trang">
+    <h1 class="tieu">Thư viện khuôn</h1>
+    <p class="dan">Toàn bộ <b>24 khuôn đưa Trí tuệ vào Bản thân</b>, cộng với <b>6 khuôn cho 6 khối còn lại</b>. Mỗi khuôn trình bày theo cùng một thẻ 4 phần — học cách đọc một lần là đọc được mọi khuôn.</p>
+
+    <div class="the" style="margin-bottom:20px;background:var(--surface-2)">
+      <div class="hang-nhan">Cách đọc một thẻ khuôn</div>
+      <div class="doc4">
+        <div><span class="phan-so">1</span><b>Nhận ra gì mà ứng dụng?</b><br><span style="color:var(--tro)">Đây là <em>động lực</em> — Trí tuệ chỉ gì mà mình phải làm việc này. Thiếu phần này thì làm được vài hôm là bỏ.</span></div>
+        <div><span class="phan-so">2</span><b>Việc cần làm</b><br><span style="color:var(--tro)">Phần <em>trực chỉ</em> — làm y theo.</span></div>
+        <div><span class="phan-so">3</span><b>Khi làm thì bám vào</b><br><span style="color:var(--tro)">Ứng dụng đúng khuôn mà <em>không bám</em> thì vẫn không thành công. Bấm mỗi chip để mở nghĩa ngay tại chỗ.</span></div>
+        <div><span class="phan-so">4</span><b>Hóa giải góc độ nào</b><br><span style="color:var(--tro)">Để biết khi có bất ổn thì khuôn này dùng vào việc gì.</span></div>
+      </div>
+    </div>
+
+    <div class="loc">
+      <button class="chip ${!loc ? "sang" : ""}" data-nhom="">Tất cả · ${KHUON.length}</button>
+      ${nhoms.map(n => `<button class="chip ${loc === n ? "sang" : ""}" data-nhom="${esc(n)}">${esc(n)} · ${KHUON.filter(k => k.nhom === n).length}</button>`).join("")}
+      <button class="chip" data-khuonall="1">${S.moKhuon.size ? "Thu tất cả" : "Mở tất cả"}</button>
+    </div>
+
+    <h2 class="muc">24 khuôn đưa Trí tuệ vào Bản thân</h2>
+    <div class="cay">${ds.map(k => theKhuon(k, S.moKhuon.has(k.id))).join("")}</div>
+
+    <h2 class="muc">Khuôn cho 6 khối còn lại</h2>
+    <p class="dan" style="margin-bottom:14px">Cả sáu khuôn đều theo <b>cùng một mô-típ 2 tầng</b>: <em>Ứng dụng trực chỉ</em> (việc cần LÀM, thường mở đầu bằng Thấu triệt) và <em>Bám vào các ý</em> (nguyên tắc để giữ khi làm).</p>
+    <div class="cay">${KHUONKHOI.map(kk => {
+      const mo = S.moKhuon.has("khoi-" + kk.id);
+      return `<div class="nut ${mo ? "mo" : ""}">
+        <button class="dau" data-khuonmo="khoi-${kk.id}" aria-expanded="${mo}">
+          <span class="so">K</span>
+          <span class="dau-chu"><span class="dau-ten">Khuôn đưa Trí tuệ vào ${esc(kk.ten)}</span>
+          <span class="dau-hoi">${kk.ud.length} ý ứng dụng · ${kk.bam.length} ý bám</span></span>
+          ${mui}
+        </button>
+        ${mo ? `<div class="than-nut">
+          <div class="phan"><div class="phan-nhan"><span class="phan-so">1</span>Ứng dụng trực chỉ theo Trí tuệ</div>
+            <ul class="ds">${kk.ud.map(x => `<li>${x}</li>`).join("")}${(kk.them||[]).map(x => `<li>${x}</li>`).join("")}</ul></div>
+          <div class="phan"><div class="phan-nhan"><span class="phan-so">2</span>Bám vào các ý để ứng dụng</div>
+            <div class="chip-hang">${kk.bam.map(id => {
+              const key = "khoi-" + kk.id + ":" + id, b = BAMY[id];
+              return `<button class="chip ${S.bamMo.has(key) ? "sang" : ""}" data-bam="${key}">${esc(b ? b.t : id)}</button>`;
+            }).join("")}</div>
+            ${kk.bam.filter(id => S.bamMo.has("khoi-" + kk.id + ":" + id)).map(id => {
+              const b = BAMY[id];
+              return `<div class="bam-mo"><div class="bam-mot"><b>${esc(b.t)}</b> — ${b.n}${b.p ? ` <button class="bam-di" data-nhay="${b.p}">Mở Phần ${b.p} →</button>` : ""}</div></div>`;
+            }).join("")}</div>
+        </div>` : ""}
+      </div>`;
+    }).join("")}</div>
+
+    <div class="canh-bao"><b>14 ý bám chung</b> — dùng cho mọi khuôn khi ứng dụng: ${BAM14.join(" · ")}. <em>Ứng dụng mới chỉ là hướng đi; có hướng đi rồi thì phải bám để đi đến đâu chắc đến đó.</em></div>
+  </div>`;
+}
+
+/* ── Vẽ & sự kiện ─────────────────────────────────────────── */
+function ve(){
+  if(S.tim){ vung.innerHTML = veTim(); return; }
+  thanhDem.textContent = "";
+  const R = {modau:veMoDau, lotrinh:veLoTrinh, hangngay:veHangNgay, wizard:veWizard,
+             cay:veCay, khuon:veThuVien, tudien:veTuDien};
+  vung.innerHTML = (R[S.che] || veMoDau)();
+}
+
+vung.addEventListener("click", e => {
+  const t = e.target;
+  const nut = s => t.closest(s);
+
+  const ph = nut("[data-phan]");
+  if(ph){ const n = +ph.dataset.phan; S.moNut.has(n) ? S.moNut.delete(n) : S.moNut.add(n); return ve(); }
+
+  const cy = nut("[data-cay]");
+  if(cy){ if(cy.dataset.cay === "mo") CAY.forEach(p => S.moNut.add(p.so)); else S.moNut.clear(); return ve(); }
+
+  const bu = nut("[data-buoc]");
+  if(bu){ const n = +bu.dataset.buoc; S.moBuoc.has(n) ? S.moBuoc.delete(n) : S.moBuoc.add(n); return ve(); }
+
+  const bm = nut("[data-bam]");
+  if(bm){ const k = bm.dataset.bam; S.bamMo.has(k) ? S.bamMo.delete(k) : S.bamMo.add(k); return ve(); }
+
+  const km = nut("[data-khuonmo]");
+  if(km){ const id = km.dataset.khuonmo; S.moKhuon.has(id) ? S.moKhuon.delete(id) : S.moKhuon.add(id); return ve(); }
+
+  const ka = nut("[data-khuonall]");
+  if(ka){
+    if(S.moKhuon.size){ S.moKhuon.clear(); S.bamMo.clear(); }
+    else { KHUON.forEach(k => S.moKhuon.add(k.id)); KHUONKHOI.forEach(k => S.moKhuon.add("khoi-" + k.id)); }
+    return ve();
+  }
+
+  const nh = nut("[data-nhom]");
+  if(nh){ S.khuonNhom = nh.dataset.nhom || null; return ve(); }
+
+  const hk = nut("[data-hnkhoi]");
+  if(hk){ S.hnKhoi = S.hnKhoi === hk.dataset.hnkhoi ? null : hk.dataset.hnkhoi; return ve(); }
+
+  const ch = nut("[data-che]");
+  if(ch){ return doiChe(ch.dataset.che); }
+
+  const kh = nut("[data-khoi]");
+  if(kh){
+    const id = kh.dataset.khoi;
+    if(S.w.khoi !== id){ S.w.khoi = id; S.w.vande.clear(); S.w.khaithacDaDoc.clear(); }
+    return ve();
+  }
+  const vd = nut("[data-vande]");
+  if(vd){ const i = +vd.dataset.vande; S.w.vande.has(i) ? S.w.vande.delete(i) : S.w.vande.add(i); return ve(); }
+
+  const kt = nut("[data-kt]");
+  if(kt){ const i = +kt.dataset.kt; S.w.khaithacDaDoc.has(i) ? S.w.khaithacDaDoc.delete(i) : S.w.khaithacDaDoc.add(i); return ve(); }
+
+  const bh = nut("[data-bh]");
+  if(bh){ const i = +bh.dataset.bh; S.w.bieuhien.has(i) ? S.w.bieuhien.delete(i) : S.w.bieuhien.add(i); return ve(); }
+
+  const gd = nut("[data-gd]");
+  if(gd){ const i = gd.dataset.gd; S.w.gocdo.has(i) ? S.w.gocdo.delete(i) : S.w.gocdo.add(i); return ve(); }
+
+  const di = nut("[data-di]");
+  if(di){ S.w.buoc = +di.dataset.di; ve(); return window.scrollTo({top:0,behavior:"smooth"}); }
+
+  const tr = nut("[data-tram]");
+  if(tr && !tr.disabled){ S.w.buoc = +tr.dataset.tram; ve(); return window.scrollTo({top:0,behavior:"smooth"}); }
+
+  if(t.closest("#inPhieu")) return window.print();
+  if(t.closest("#lamLai")){
+    S.w = {buoc:1, khoi:null, vande:new Set(), bieuhien:new Set(), gocdo:new Set(), khaithacDaDoc:new Set()};
+    ve(); return window.scrollTo({top:0});
+  }
+
+  const nhay = nut("[data-nhay]");
+  if(nhay && nhay.dataset.nhay){
+    S.moNut.add(+nhay.dataset.nhay); S.tim = ""; oTim.value = ""; S.che = "cay";
+    document.querySelectorAll("[data-che]").forEach(b => b.setAttribute("aria-current", String(b.dataset.che === "cay")));
+    return ve();
+  }
+});
+
+/* Khởi động */
+document.querySelector('[data-che="modau"]').setAttribute("aria-current","true");
+capNhatNutNen();
+matchMedia("(prefers-color-scheme:dark)").addEventListener("change", capNhatNutNen);
+ve();
+</script>
+
+<style media="print">
+  .ray,.thanh,.chan-buoc,.thuoc{display:none!important}
+  .khung{grid-template-columns:1fr}
+  .trang{padding:0;max-width:100%}
+  .phieu{border:none;box-shadow:none}
+  body{background:#fff;color:#000}
+</style>
+
+</body>
+</html>

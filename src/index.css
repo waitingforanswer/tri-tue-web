@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --nen: 40 30% 97%;        /* nền giấy ngà */
+    --giay: 0 0% 100%;        /* thẻ, khối nội dung */
+    --muc: 200 18% 14%;       /* chữ chính */
+    --nhat: 200 8% 44%;       /* chữ phụ */
+    --vien: 40 14% 88%;       /* đường viền */
+    --nhan: 172 40% 28%;      /* nhấn — xanh ngọc trầm */
+    --nhan-nhe: 172 34% 94%;
+    --am: 24 52% 44%;         /* ấm — đất nung, dùng rất tiết chế */
+    --canh: 40 60% 96%;       /* nền cảnh báo dịu */
+  }
+
+  [data-theme='dark'] {
+    --nen: 200 20% 9%;
+    --giay: 200 18% 12%;
+    --muc: 40 22% 92%;
+    --nhat: 200 8% 62%;
+    --vien: 200 12% 22%;
+    --nhan: 172 42% 58%;
+    --nhan-nhe: 172 30% 17%;
+    --am: 24 58% 62%;
+    --canh: 40 20% 15%;
+  }
+
+  * { @apply border-vien; }
+
+  body {
+    @apply bg-nen text-muc font-sans antialiased;
+    font-feature-settings: 'liga' 1, 'calt' 1;
+    /* Không cho trình duyệt tự "bôi đậm" giả khi thiếu weight — chữ có dấu
+       tiếng Việt bị bôi giả trông nhoè và dấu dính vào thân chữ. */
+    font-synthesis-weight: none;
+  }
+
+  /* Giãn chữ do từng bậc trong thang quy định (xem tailwind.config.ts),
+     nên ở đây chỉ đặt kiểu chữ, không đụng tới tracking. */
+  h1, h2, h3 { @apply font-chu; }
+
+  ::selection { background: hsl(var(--nhan) / 0.2); }
+}
+
+@layer components {
+  /* Văn bản dài lấy nguyên văn từ tài liệu Trí tuệ (có thẻ <b>, <em>) */
+  .van {
+    @apply leading-[1.75];
+  }
+  .van b, .van strong { @apply font-semibold text-muc; }
+  .van em { @apply not-italic text-nhat; }
+
+  .the {
+    @apply rounded-xl border border-vien bg-giay shadow-nhe;
+  }
+}

@@ -1,0 +1,63 @@
+<!-- ═══════════════════════════════════════════════════════════════════
+     Supabase → Authentication → Emails → "Reset Password"
+     Tiêu đề (Subject): Đặt lại mật khẩu — Vốn sống Trí tuệ
+     ═══════════════════════════════════════════════════════════════════ -->
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#f7f5f1;padding:32px 12px;font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+  <tr>
+    <td align="center">
+      <table width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;background:#ffffff;border:1px solid #e7e3da;border-radius:14px;">
+
+        <tr>
+          <td style="padding:28px 28px 0 28px;">
+            <div style="font-size:13px;font-weight:600;color:#2a6b60;letter-spacing:.3px;">VỐN SỐNG TRÍ TUỆ</div>
+            <h1 style="margin:12px 0 0 0;font-size:22px;line-height:1.3;color:#1e2629;font-weight:600;">
+              Đặt lại mật khẩu
+            </h1>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="padding:16px 28px 0 28px;font-size:15px;line-height:1.65;color:#5a6467;">
+            <p style="margin:0;">
+              Có người vừa xin đặt lại mật khẩu cho tài khoản
+              <b style="color:#1e2629;">{{ .Email }}</b>. Nếu là bạn, bấm nút dưới đây.
+            </p>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="padding:22px 28px 0 28px;">
+            <a href="{{ .ConfirmationURL }}"
+               style="display:inline-block;background:#2a6b60;color:#ffffff;text-decoration:none;font-size:15px;font-weight:600;padding:13px 26px;border-radius:9px;">
+              Đặt mật khẩu mới
+            </a>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="padding:20px 28px 0 28px;font-size:13.5px;line-height:1.6;color:#7b8386;">
+            <p style="margin:0;">
+              Link dùng được một lần và hết hạn sau 1 giờ. Nút không bấm được thì chép địa chỉ này vào trình duyệt:<br>
+              <span style="color:#2a6b60;word-break:break-all;">{{ .ConfirmationURL }}</span>
+            </p>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="padding:20px 28px 28px 28px;font-size:12.5px;line-height:1.6;color:#9aa1a3;">
+            <div style="border-top:1px solid #e7e3da;padding-top:16px;">
+              <p style="margin:0 0 8px 0;">
+                <b style="color:#5a6467;">Không phải bạn xin đổi?</b> Bỏ qua email này — mật khẩu cũ vẫn dùng được
+                bình thường và không có gì thay đổi.
+              </p>
+              <p style="margin:0;">
+                Chúng tôi không bao giờ hỏi mật khẩu của bạn qua email hay tin nhắn.
+              </p>
+            </div>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
