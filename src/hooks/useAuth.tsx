@@ -51,12 +51,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [vaiTro, setVaiTro] = useState<VaiTro[]>([]);
   const [quyenRieng, setQuyenRieng] = useState<MaQuyen[]>([]);
 
-  const napHoSo = useCallback(async (id: string) => {
-    const [{ data: hs }, { data: vt }, { data: qr }] = await Promise.all([
+  const napHoSo = useCallback(async (id: string, lan = 0): Promise<void> => {
+    const [{ data: hs, error: e1 }, { data: vt, error: e2 }, { data: qr, error: e3 }] = await Promise.all([
       sb().from('ho_so').select('*').eq('id', id).maybeSingle(),
       sb().from('vai_tro_nguoi_dung').select('vai_tro').eq('user_id', id),
       sb().from('quyen_nguoi_dung').select('quyen_ma').eq('user_id', id).eq('cho_phep', true),
     ]);
+    /* Ngay sau khi đăng nhập, token mới có thể bị PostgREST từ chối vài trăm ms
+     * (401 · PGRST303 — lệch đồng hồ). Trước đây lỗi bị nuốt và vai trò thành
+     * rỗng → admin mất quyền trên giao diện. Nay: giữ nguyên trạng thái cũ và thử lại. */
+    if (e1 || e2 || e3) {
+      if (lan < 3) {
+        await new Promise((r) => setTimeout(r, 600 * (lan + 1)));
+        return napHoSo(id, lan + 1);
+      }
+      console.error('Không nạp được hồ sơ / vai trò:', e1 ?? e2 ?? e3);
+      return;
+    }
     setHoSo((hs as HoSo) ?? null);
     setVaiTro(((vt ?? []) as { vai_tro: VaiTro }[]).map((r) => r.vai_tro));
     setQuyenRieng(((qr ?? []) as { quyen_ma: MaQuyen }[]).map((r) => r.quyen_ma));

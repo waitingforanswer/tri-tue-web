@@ -61,6 +61,43 @@ export async function layCay(module_id: string): Promise<{ nut: Nut[]; theoCha: 
   return { nut: ds, theoCha };
 }
 
+/* ── Soạn nội dung (tầng 3) ──────────────────────────────────────────
+ * RLS chặn bằng cách "không khớp dòng nào" chứ không báo lỗi — nên luôn
+ * .select() lại để biết thật sự có dòng nào được ghi hay không. */
+
+export type SuaNutInput = Partial<
+  Pick<Nut, 'ma' | 'tieu_de' | 'tom_tat' | 'noi_dung' | 'nhan' | 'thu_tu' | 'pham_vi' | 'trang_thai' | 'du_lieu'>
+>;
+
+export async function suaNut(id: string, t: SuaNutInput): Promise<Nut> {
+  const { data, error } = await sb().from('nut').update(t).eq('id', id).select('*');
+  if (error) throw error;
+  if (!data?.length) throw new Error('Không lưu được — tài khoản chưa có quyền sửa mục này.');
+  const moi = data[0] as Nut;
+  // Trigger chan_tu_xuat_ban lặng lẽ giữ nguyên phạm vi/trạng thái nếu thiếu quyền ND_XUAT_BAN
+  if ((t.pham_vi && moi.pham_vi !== t.pham_vi) || (t.trang_thai && moi.trang_thai !== t.trang_thai)) {
+    throw new Error('Đã lưu nội dung, nhưng đổi phạm vi / trạng thái cần quyền ND_XUAT_BAN.');
+  }
+  return moi;
+}
+
+export type ThemNutInput = Pick<Nut, 'loai' | 'tieu_de' | 'pham_vi' | 'trang_thai'> &
+  Partial<Pick<Nut, 'cha_id' | 'module_id' | 'ma' | 'tom_tat' | 'noi_dung' | 'nhan' | 'thu_tu'>>;
+
+export async function themNut(t: ThemNutInput): Promise<Nut> {
+  const { data: phien } = await sb().auth.getUser();
+  const { data, error } = await sb()
+    .from('nut')
+    .insert({ ...t, tao_boi: phien.user?.id ?? null, sua_boi: phien.user?.id ?? null })
+    .select('*');
+  if (error) {
+    if (error.code === '23505') throw new Error('Mã này đã có trong cùng mục cha. Chọn mã khác.');
+    throw error;
+  }
+  if (!data?.length) throw new Error('Không thêm được — tài khoản chưa có quyền soạn nội dung.');
+  return data[0] as Nut;
+}
+
 export async function layLienKet(quan_he: string, tu_id?: string): Promise<LienKet[]> {
   let q = sb().from('lien_ket_nut').select('*').eq('quan_he', quan_he);
   if (tu_id) q = q.eq('tu_id', tu_id);
