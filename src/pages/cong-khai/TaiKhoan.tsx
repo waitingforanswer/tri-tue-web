@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { Clock, Mail, ShieldAlert } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
@@ -241,7 +241,10 @@ export function DangNhap() {
 
 /* ═══ Chờ duyệt ═══════════════════════════════════════════════════════ */
 export function ChoDuyet() {
-  const { hoSo, dangXuat } = useAuth();
+  const { hoSo, dangXuat, daDuyet } = useAuth();
+  // Lớp chặn thứ hai: hồ sơ tải chậm hơn lúc chuyển trang, hoặc vừa được duyệt
+  // trong lúc đang mở trang này → đưa thẳng vào khu học.
+  if (daDuyet) return <Navigate to="/hoc" replace />;
   return (
     <Khung tieu="Hồ sơ của bạn đang được xem" mo="Chưa vào khu học được, nhưng không phải chờ vô hạn.">
       <The className="space-y-4">
