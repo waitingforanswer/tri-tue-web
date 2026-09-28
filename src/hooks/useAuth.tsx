@@ -125,9 +125,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   /* ── Hành động ─────────────────────────────────────────────────── */
   const dangNhap = useCallback(async (email: string, matKhau: string) => {
-    const { error } = await sb().auth.signInWithPassword({ email, password: matKhau });
+    const { data, error } = await sb().auth.signInWithPassword({ email, password: matKhau });
     if (error) throw error;
-  }, []);
+    /* Chờ nạp xong hồ sơ + vai trò rồi mới trả về. Nếu không, trang gọi sẽ
+     * chuyển sang /hoc khi hoSo còn null → cổng CanDuyet tưởng "chưa duyệt"
+     * và đẩy nhầm sang /cho-duyet (kể cả với admin đã hoạt động). */
+    if (data.user) {
+      setUid(data.user.id);
+      await napHoSo(data.user.id);
+    }
+  }, [napHoSo]);
 
   const dangKy = useCallback(async (t: DangKyInput) => {
     const { error } = await sb().auth.signUp({
